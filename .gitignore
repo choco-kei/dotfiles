@@ -1,6 +1,7 @@
 .vim/bundle/auto/*
 .vim/tmp/*
 .vim/.netrwhist
+.zsh/.zsh_history
 
 # Compiled source #
 ###################
