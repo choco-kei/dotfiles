@@ -289,6 +289,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit
 compinit -u
 
+# 自動インクリメンタル補完(incr.zsh)
+[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
+
 ## terminal configuration
 # http://journal.mycom.co.jp/column/zsh/009/index.html
 unset LSCOLORS
