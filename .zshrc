@@ -1,8 +1,3 @@
-# users generic .zshrc file for zsh(1)
-
-## Environment variable configuration
-#
-
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 
@@ -56,7 +51,6 @@ case ${UID} in
 
     # Show git branch when you are in git repository
     # http://d.hatena.ne.jp/mollifier/20100906/p1
-
     autoload -Uz add-zsh-hook
     autoload -Uz vcs_info
 
@@ -142,36 +136,32 @@ case ${UID} in
 esac
 
 
-# 強力な補完を有効にする
-autoload -Uz compinit
-compinit
-
-# 指定したコマンド名がなく、ディレクトリ名と一致した場合 cd する
+# cd無しでディレクトリに移動
 setopt auto_cd
 
-# cd でTabを押すとdir list を表示
+# 自動でpushdする
 setopt auto_pushd
 
-# ディレクトリスタックに同じディレクトリを追加しないようになる
+# pushdで同じディレクトリをpushしない
 setopt pushd_ignore_dups
 
-# コマンドのスペルチェックをする
+# コマンドのスペルチェック
 setopt correct
 
-# コマンドライン全てのスペルチェックをする
+# コマンド以外も全てスペルチェック
 setopt correct_all
 
-# 上書きリダイレクトの禁止
-setopt no_clobber
+# リダイレクトでファイル上書きの禁止
+#setopt no_clobber
 
 # 補完候補リストを詰めて表示
 setopt list_packed
 
-# auto_list の補完候補一覧で、ls -F のようにファイルの種別をマーク表示
-setopt list_types
-
 # 補完候補が複数ある時に、一覧表示する
 setopt auto_list
+
+# auto_list の補完候補一覧で、ls -F のようにファイルの種別をマーク表示
+setopt list_types
 
 # コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
 setopt magic_equal_subst
@@ -188,24 +178,11 @@ setopt brace_ccl
 # シンボリックリンクは実体を追うようになる
 #setopt chase_links
 
-# 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
-setopt auto_menu
-
-# sudoも補完の対象
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
-
-# 色付きで補完する
-zstyle ':completion:*' list-colors di=34 fi=0
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
 # 複数のリダイレクトやパイプなど、必要に応じて tee や cat の機能が使われる
 setopt multios
 
 # 最後がディレクトリ名で終わっている場合末尾の / を自動的に取り除かない
 setopt noautoremoveslash
-
-# 親ディレクトリ(..)のあとに/を補完する
-zstyle ':completion:*' special-dirs true
 
 # beepを鳴らさないようにする
 setopt nolistbeep
@@ -216,15 +193,13 @@ setopt nobeep
 # remove * without a file "398". For test, use "echo *~398"
 setopt extended_glob
 
-## Keybind configuration
-#
-# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
-#   to end of it)
-#
+# ログアウト時にバックグラウンドプロセスをkillしない
+setopt no_hup
+
+# vimキーバインドを使用
 bindkey -v
 
-# historical backward/forward search with linehead string binded to ^P/^N
-#
+# ^P/^Nでヒストリー検索
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -237,15 +212,15 @@ bindkey "\\en" history-beginning-search-forward-end
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
-## Command history configuration
-HISTFILE=~/.zsh_history
+# ヒストリー設定
+HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
 # 登録済コマンド行は古い方を削除
 setopt hist_ignore_all_dups
 
-# historyの共有
+# ヒストリーの共有
 setopt share_history
 
 # 余分な空白は詰める
@@ -256,43 +231,34 @@ setopt inc_append_history
 
 # history (fc -l) コマンドをヒストリリストから取り除く。
 setopt hist_no_store
-# サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
-#setopt auto_resume
 
-# =command を command のパス名に展開する
-#setopt equals
 
-# ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
-#setopt extended_glob
-
-# zsh の開始・終了時刻をヒストリファイルに書き込む
-#setopt extended_history
-
-# Ctrl+S/Ctrl+Q によるフロー制御を使わないようにする
-#setopt NO_flow_control
-
-# 各コマンドが実行されるときにパスをハッシュに入れる
-#setopt hash_cmds
-
-# コマンドラインの先頭がスペースで始まる場合ヒストリに追加しない
-#setopt hist_ignore_space
-
-# ヒストリを呼び出してから実行する間に一旦編集できる状態になる
-#setopt hist_verify
-
+## 補完関連
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-## Completion configuration
-#
-#fpath=(~/.zsh/functions/Completion ${fpath})
-autoload -U compinit
-compinit -u
+# 強力な補完を有効にする
+autoload -Uz compinit
+compinit
 
 # 自動インクリメンタル補完(incr.zsh)
 [ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
 
-## terminal configuration
+# 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
+setopt auto_menu
+
+# sudoも補完の対象
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+# 色付きで補完する
+zstyle ':completion:*' list-colors di=34 fi=0
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# 親ディレクトリ(..)のあとに/を補完する
+zstyle ':completion:*' special-dirs true
+
+
+## ターミナルのカラー設定
 # http://journal.mycom.co.jp/column/zsh/009/index.html
 unset LSCOLORS
 
