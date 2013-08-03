@@ -15,6 +15,8 @@ set directory=~/.vim/tmp
 set visualbell t_vb=
 set nobackup
 
+
+
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
 nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
@@ -41,8 +43,6 @@ else
 endif
 
 
-
-
 " Plugin Manage
 set nocompatible
 
@@ -59,6 +59,7 @@ NeoBundle 'akiomik/itermcolors-vim'
 
 " colors
 NeoBundle 'tomasr/molokai'
+NeoBundle 'larssmit/vim-getafe'
 
 " syntax
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -72,7 +73,6 @@ NeoBundle 'othree/html5.vim'
 
 " markdown
 NeoBundle 'suan/vim-instant-markdown'
-"NeoBundle 'kannokanno/previm'
 
 " No Repository
 NeoBundleLocal ~/.vim/bundle/user
@@ -83,11 +83,13 @@ NeoBundleLocal ~/.vim/bundle/user
 filetype plugin indent on
 autocmd Filetype * set formatoptions-=ro
 
-
 " vim-instant-markdown
 "let g:instant_markdown_slow = 1
 
-" previm
-"let g:previm_open_cmd = 'open -a Google\ Chrome'
-
-
+" カラースキーム
+let scheme = 'molokai'
+augroup guicolorscheme
+    autocmd!
+    execute 'autocmd GUIEnter * colorscheme' scheme
+augroup END
+execute 'colorscheme' scheme
