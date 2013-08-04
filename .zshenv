@@ -25,3 +25,7 @@ alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"
 
 #tree -N
 alias tree='/usr/local/bin/tree -N'
+
+# ls -GF
+alias ls='ls -GF'
+
