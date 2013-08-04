@@ -1,0 +1,148 @@
+# itg.zsh-theme
+# a designer developed zsh Prompt
+# twitter: @itg
+# https://gist.github.com/3834711
+
+# Colors:
+local black=235
+local dark=236
+local white=015
+local yellow=003
+local blue=038
+local darker_blue=030
+local darker_green=023
+
+# Extending the git library locally
+function git_user_initials {
+  #MSG=$(git config --get user.initials || echo '✈')
+  MSG=$(git config --get user.initials || echo '(˘ω˘)ｽﾔｧ')
+  print $MSG
+}
+
+function git_is_dirty() {
+  local SUBMODULE_SYNTAX=''
+  if [[ $POST_1_7_2_GIT -gt 0 ]]; then
+        SUBMODULE_SYNTAX="--ignore-submodules=dirty"
+  fi
+  if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function itg_git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$(itg_git_prompt_ahead)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
+# oh-my-zsh/lib/git.zsh
+parse_git_dirty() {
+  local SUBMODULE_SYNTAX=''
+  local GIT_STATUS=''
+  local CLEAN_MESSAGE='nothing to commit (working directory clean)'
+  if [[ "$(command git config --get oh-my-zsh.hide-status)" != "1" ]]; then
+    if [[ $POST_1_7_2_GIT -gt 0 ]]; then
+          SUBMODULE_SYNTAX="--ignore-submodules=dirty"
+    fi
+    if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
+        GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} -uno 2> /dev/null | tail -n1)
+    else
+        GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} 2> /dev/null | tail -n1)
+    fi
+    if [[ -n $GIT_STATUS ]]; then
+      echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+    else
+      echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+    fi
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+}
+
+function itg_git_prompt_ahead() {
+  if $(echo "$(git log $(itg_git_current_upstream)/$(current_branch)..HEAD 2> /dev/null)" | grep '^commit' &> /dev/null); then
+    echo "$ZSH_THEME_GIT_PROMPT_AHEAD"
+  fi
+}
+
+function itg_git_current_upstream() {
+  local upstream=$(git config --get branch."$(current_branch)".remote) || return
+  echo $upstream
+}
+
+# oh-my-zsh/plugins/git/git.plugin.zsh 
+function current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+        ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+    echo ${ref#refs/heads/}
+}
+
+# Prompt builder functions
+function itg_dir() {
+  if git rev-parse --git-dir > /dev/null 2>&1 && [ ! -d .git ]; then
+    git_dir_cdup=$(git rev-parse --show-cdup)
+    git_dir_top=$(cd $git_dir_cdup; echo ${PWD##*r})
+    git_dir_path=$(git rev-parse --show-prefix)
+    dir="⭠ $git_dir_top/$git_dir_path"
+  else
+    if [ -d .git ]; then
+      prefix="⭠ "
+    else
+      prefix=""
+    fi
+    dir="$prefix%1~"
+  fi
+  echo -n "%K{$blue} %F{$black}$dir"
+}
+
+function itg_git() {
+  # Is this a dirty git directory?
+  # This check is done first to set colors
+  if ($(git_is_dirty)); then
+    git_status_color_k=$yellow
+    git_status_color_f=$darker_green
+  else
+    git_status_color_k=$darker_blue
+    git_status_color_f=$black
+  fi
+
+  # Is this a git directory?
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    git_prefix=" %K{$git_status_color_k}%F{$blue}⮀ %F{$git_status_color_f}"
+    git_suffix="%F{$git_status_color_k}⮀"
+    git_status=$(itg_git_prompt_info)
+  else
+    git_prefix=""
+    git_suffix="%F{$blue}⮀"
+    git_status=""
+  fi
+
+  echo -e "$git_prefix$git_status %K{$darker_green}$git_suffix"
+}
+
+function itg_pair() {
+  echo " %F{$yellow}$(git_user_initials) %k%F{$darker_green}⮀%f"
+}
+
+#function itg_rvm() {
+#  echo "%F{$dark}⮂%K{$dark}%F{$white} $(rvm_prompt_info) %k"
+#}
+
+ZSH_THEME_GIT_PROMPT_PREFIX=''
+ZSH_THEME_GIT_PROMPT_SUFFIX=''
+ZSH_THEME_GIT_PROMPT_DIRTY='%F{$darker_green} ✍'
+ZSH_THEME_GIT_PROMPT_CLEAN=''
+
+ZSH_THEME_GIT_PROMPT_AHEAD="↑"
+ZSH_THEME_GIT_PROMPT_BEHIND="↓"
+ZSH_THEME_GIT_PROMPT_DIVERGED="↕"
+
+# command to make sure the prompt reruns the functions on new prompt
+function precmd {
+  PROMPT="$(itg_dir)$(itg_git)$(itg_pair) "
+#  PROMPT="$(itg_dir)$(itg_git)$(itg_pair)
+#(˘ω˘) < "
+#  RPROMPT="$(itg_rvm)"
+}
+
