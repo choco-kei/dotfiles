@@ -14,6 +14,7 @@ set showmatch
 set directory=~/.vim/tmp
 set visualbell t_vb=
 set nobackup
+set nu
 syntax enable
 
 
@@ -55,8 +56,18 @@ endif
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
 
-" itermcolors
+" vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
+
+" マークダウンリアルタイムプレビュー
+NeoBundle 'suan/vim-instant-markdown'
+"let g:instant_markdown_slow = 1
+
+" gitの差分を表示
+NeoBundle 'airblade/vim-gitgutter'
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+
 
 " colors
 NeoBundle 'tomasr/molokai'
@@ -72,20 +83,15 @@ NeoBundle 'tpope/vim-markdown'
 " indent
 NeoBundle 'othree/html5.vim'
 
-" markdown
-NeoBundle 'suan/vim-instant-markdown'
-
 " No Repository
 NeoBundleLocal ~/.vim/bundle/user
 "NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
 "NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
 "NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
 
+
 filetype plugin indent on
 autocmd Filetype * set formatoptions-=ro
-
-" vim-instant-markdown
-"let g:instant_markdown_slow = 1
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
@@ -103,6 +109,7 @@ elseif &term =~ "xterm-color"
 endif
 
 " カラースキーム
+set background=dark
 let scheme = 'solarized'
 augroup guicolorscheme
     autocmd!
