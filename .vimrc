@@ -17,6 +17,8 @@ set nobackup
 set nu
 syntax enable
 
+" if_lua
+let $LUA_DLL='/usr/local/lib/liblua.dylib'
 
 
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
@@ -53,37 +55,81 @@ if has('vim_starting')
     call neobundle#rc(expand('~/.vim/bundle/auto/'))
 endif
 
-" NeoBundle
+"" NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
 
-" vim syntaxからiTermのカラー設定を作成
+"" vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
 
-" マークダウンリアルタイムプレビュー
+"" マークダウンリアルタイムプレビュー
 NeoBundle 'suan/vim-instant-markdown'
 "let g:instant_markdown_slow = 1
 
-" gitの差分を表示
+"" gitの差分を表示
 NeoBundle 'airblade/vim-gitgutter'
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
+"" 入力補完
+NeoBundle 'Shougo/neocomplete.vim'
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-" colors
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+"" colors
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
 
-" syntax
+"" syntax
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
 "NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
 
-" indent
+"" indent
 NeoBundle 'othree/html5.vim'
 
-" No Repository
+"" No Repository
 NeoBundleLocal ~/.vim/bundle/user
 "NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
 "NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
