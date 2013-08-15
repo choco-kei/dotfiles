@@ -58,6 +58,9 @@ endif
 "" NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
 
+"" unite.vim
+NeoBundle 'Shougo/unite.vim'
+
 "" vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
 
