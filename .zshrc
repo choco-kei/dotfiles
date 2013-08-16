@@ -150,6 +150,17 @@ kterm*|xterm*)
 
 esac
 
+# tmux自動起動
+if [ -z "$TMUX" -a -z "$STY" ]; then
+    if type tmux >/dev/null 2>&1; then
+        if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+            tmux attach && echo "tmux attached session "
+        else
+            tmux new-session && echo "tmux created new session"
+        fi
+    fi  
+fi
+
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt prompt_subst
 
