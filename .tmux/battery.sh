@@ -1,0 +1,12 @@
+#!/bin/sh
+case ${OSTYPE} in
+    darwin*)
+        /usr/bin/pmset -g ps | awk '{ if (NR == 2) print "♥ " $2 ; }' | sed "s/;//g"
+    ;;
+    linux*)
+        if [ -e "acpi" ]; then
+            echo -n "♥ "
+            acpi | grep -o -E "[0-9]+%"
+        fi
+    ;;
+esac
