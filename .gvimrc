@@ -1,6 +1,3 @@
-if has('gui_macvim')
-    " 透明度
-    set transparency=4
     " タブ表示
     set showtabline=2
     " カラム数
@@ -11,18 +8,18 @@ if has('gui_macvim')
     set guioptions-=T
     " 選択範囲のコピー
     set guioptions+=a
+    " ビジュアルベルを無効
+    set visualbell t_vb=
+
+if has('gui_macvim')
+    " 透明度
+    set transparency=4
     " IM制御
     "set imdisable
     " 入力モードでIMを自動ON
     "set iminsert
     " モード切替でIMを自動ON/OFF
     set noimdisableactivate
-    " ビープ音
-    set visualbell t_vb=
-    " 行番号
-    set number
-    " バックアップ
-    set nobackup
 
     " 行間
     "set linespace=2
@@ -34,5 +31,8 @@ if has('gui_macvim')
     set guifont=Source\ Code\ Pro:h14
     "set guifont=Osaka-Mono:h15
     set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h12
+elseif has('win32')
+    " カラーをダークに
+    set background=dark
 endif
 

@@ -12,9 +12,8 @@ set shortmess+=I
 set cursorline
 set showmatch
 set directory=~/dotfiles/.vim/tmp
-set visualbell t_vb=
 set nobackup
-set nu
+set number
 syntax enable
 
 " if_lua
