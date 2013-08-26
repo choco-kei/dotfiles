@@ -11,7 +11,7 @@ set wrapscan
 set shortmess+=I
 set cursorline
 set showmatch
-set directory=~/.vim/tmp
+set directory=~/dotfiles/.vim/tmp
 set visualbell t_vb=
 set nobackup
 set nu
@@ -51,8 +51,8 @@ endif
 set nocompatible
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/auto/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle/auto/'))
+    set runtimepath+=~/dotfiles/.vim/bundle/auto/neobundle.vim
+    call neobundle#rc(expand('~/dotfiles/.vim/bundle/auto/'))
 endif
 
 "" NeoBundle
@@ -133,10 +133,10 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'othree/html5.vim'
 
 "" No Repository
-NeoBundleLocal ~/.vim/bundle/user
-"NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
-"NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
-"NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/.vim/bundle/user'}
+NeoBundleLocal ~/dotfiles/.vim/bundle/user
+"NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
+"NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
+"NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 
 
 filetype plugin indent on
