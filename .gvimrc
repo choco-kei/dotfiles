@@ -1,17 +1,17 @@
-    " タブ表示
-    set showtabline=2
-    " カラム数
-    set columns=110
-    " 行数
-    set lines=34
-    " GUIツールバー非表示
-    set guioptions-=T
-    " GUIメニュー非表示
-    set guioptions-=m
-    " 選択範囲のコピー
-    set guioptions+=a
-    " ビジュアルベルを無効
-    set visualbell t_vb=
+" タブ表示
+set showtabline=2
+" カラム数
+set columns=110
+" 行数
+set lines=34
+" GUIツールバー非表示
+set guioptions-=T
+" GUIメニュー非表示
+set guioptions-=m
+" 選択範囲のコピー
+set guioptions+=a
+" ビジュアルベルを無効
+set visualbell t_vb=
 
 if has('gui_macvim')
     " 透明度
