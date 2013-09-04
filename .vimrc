@@ -1,23 +1,47 @@
+" 折り返さない
 set nowrap
+" tabの幅
 set tabstop=4
+" tabをスペースにする
 set expandtab
+" スマートインデント
 set smartindent
+" オートインデント
 set autoindent
+" ルーラーを表示
 set ruler
+" キーボードから入力した場合のtabの幅
 set softtabstop=4
+" 自動で挿入/削除されるインデントの量
 set shiftwidth=4
+" 末尾まで検索後、ファイル先頭にループさせる
 set wrapscan
+" tabと改行を表示
 "set list
+" 開始時の挨拶を表示しない
 set shortmess+=I
+" カレント行のハイライト
 set cursorline
+" 対応する括弧を表示する
 set showmatch
+" テンポラリディレクトリパス
 set directory=~/dotfiles/.vim/tmp
+" バックアップを作成しない
 set nobackup
+" 行番号を表示
 set number
+" 文字コード関係
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
+set fileformats=unix,dos
+" シンタックスハイライトを使用
 syntax enable
 
-" if_lua
-let $LUA_DLL='/usr/local/lib/liblua.dylib'
+"lua
+if has('mac')
+    let $LUA_DLL='/usr/local/lib/liblua.dylib'
+endif
 
 
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
@@ -60,17 +84,26 @@ NeoBundle 'Shougo/neobundle.vim'
 "" unite.vim
 NeoBundle 'Shougo/unite.vim'
 
+"" vim-singleton
+"NeoBundle 'thinca/vim-singleton'
+"call singleton#enable()
+
 "" vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
 
 "" マークダウンリアルタイムプレビュー
-NeoBundle 'suan/vim-instant-markdown'
-"let g:instant_markdown_slow = 1
+if has('mac')
+    NeoBundle 'suan/vim-instant-markdown'
+    "let g:instant_markdown_slow = 1
+endif
 
-"" gitの差分を表示
-NeoBundle 'airblade/vim-gitgutter'
-nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+"" vitの差分を表示
+" windowsで動かないっぽい？
+if has('mac')
+    NeoBundle 'airblade/vim-gitgutter'
+    nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+    nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+endif
 
 "" 入力補完
 NeoBundle 'Shougo/neocomplete.vim'
