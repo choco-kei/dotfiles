@@ -14,10 +14,18 @@ set showmatch
 set directory=~/dotfiles/.vim/tmp
 set nobackup
 set number
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
+set fileformats=unix,dos
 syntax enable
 
-" if_lua
-let $LUA_DLL='/usr/local/lib/liblua.dylib'
+"lua
+if has('mac')
+    let $LUA_DLL='/usr/local/lib/liblua.dylib'
+elseif has('win32')
+    let $LUA_DLL='/dotfiles/win/lua5.1.dll'
+endif
 
 
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
@@ -60,17 +68,26 @@ NeoBundle 'Shougo/neobundle.vim'
 "" unite.vim
 NeoBundle 'Shougo/unite.vim'
 
+"" vim-singleton
+"NeoBundle 'thinca/vim-singleton'
+"call singleton#enable()
+
 "" vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
 
 "" マークダウンリアルタイムプレビュー
-NeoBundle 'suan/vim-instant-markdown'
-"let g:instant_markdown_slow = 1
+if has('mac')
+    NeoBundle 'suan/vim-instant-markdown'
+    "let g:instant_markdown_slow = 1
+endif
 
-"" gitの差分を表示
-NeoBundle 'airblade/vim-gitgutter'
-nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+"" vitの差分を表示
+" windowsで動かないっぽい？
+if has('mac')
+    NeoBundle 'airblade/vim-gitgutter'
+    nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+    nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+endif
 
 "" 入力補完
 NeoBundle 'Shougo/neocomplete.vim'

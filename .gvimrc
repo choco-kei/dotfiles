@@ -4,8 +4,10 @@
     set columns=110
     " 行数
     set lines=34
-    " GUIメニュー非表示
+    " GUIツールバー非表示
     set guioptions-=T
+    " GUIメニュー非表示
+    set guioptions-=m
     " 選択範囲のコピー
     set guioptions+=a
     " ビジュアルベルを無効
@@ -32,6 +34,8 @@ if has('gui_macvim')
     "set guifont=Osaka-Mono:h15
     set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h12
 elseif has('win32')
+    " フォント
+    set guifont=Source\ Code\ Pro:h10
     " カラーをダークに
     set background=dark
 endif
