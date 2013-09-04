@@ -151,106 +151,106 @@ kterm*|xterm*)
 esac
 
 # tmux自動起動
-if [ -z "$TMUX" -a -z "$STY" ]; then
-    if type tmux >/dev/null 2>&1; then
-        if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
-            tmux attach && echo "tmux attached session "
-        else
-            tmux new-session && echo "tmux created new session"
-        fi
-    fi  
-fi
+#if [ -z "$TMUX" -a -z "$STY" ]; then
+#    if type tmux >/dev/null 2>&1; then
+#        if tmux has-session && tmux list-sessions | /usr/bin/grep -qE '.*]$'; then
+#            tmux attach && echo "tmux attached session "
+#        else
+#            tmux new-session && echo "tmux created new session"
+#        fi
+#    fi  
+#fi
 
 # tmux status
-readuntil() {
-    typeset a
-    while [ "$a" != "$1" ]
-    do
-        read -E -k 1 a
-    done
-}
+#readuntil() {
+#    typeset a
+#    while [ "$a" != "$1" ]
+#    do
+#        read -E -k 1 a
+#    done
+#}
 
-showmode() {
-    typeset movedown
-    typeset row
+#showmode() {
+#    typeset movedown
+#    typeset row
+#
+#    movedown=$(($(echo "$RBUFFER" | wc -l)))
+#
+#    echo -n "\e[6n"
+#    row="${${$(readuntil R)#*\[}%;*}"
+#
+#    if [ $((row+movedown)) -gt "$LINES" ]; then
+#        echo -n "\e[1S"
+#        echo -n "\e[1A"
+#    fi
+#
+#    echo -n "\e[s"
+#    echo -n "\e[$movedown;E"
+#    echo -n "\e[${LINES};${movedown}H"
+#    echo -n "\e[1m"
+#    if [ -n "$1" ]; then
+#        echo -n "-- $1 --"
+#    else
+#        echo -n "\e[0K"
+#    fi
+#
+#    echo -n "\e[0m"
+#    echo -n "\e[u"
+#}
 
-    movedown=$(($(echo "$RBUFFER" | wc -l)))
-
-    echo -n "\e[6n"
-    row="${${$(readuntil R)#*\[}%;*}"
-
-    if [ $((row+movedown)) -gt "$LINES" ]; then
-        echo -n "\e[1S"
-        echo -n "\e[1A"
-    fi
-
-    echo -n "\e[s"
-    echo -n "\e[$movedown;E"
-    echo -n "\e[${LINES};${movedown}H"
-    echo -n "\e[1m"
-    if [ -n "$1" ]; then
-        echo -n "-- $1 --"
-    else
-        echo -n "\e[0K"
-    fi
-
-    echo -n "\e[0m"
-    echo -n "\e[u"
-}
-
-function zle-line-init zle-keymap-select {
-    vimode="${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}"
-
-    if [ -n "$TMUX" ]; then
-        if [ $vimode = "NORMAL" ]; then
-            statbg="colour236"
-            statfg="colour247"
-            hostbg="colour240"
-            hostfg="colour231"
-            modebg="colour148"
-            modefg="colour22"
-            weatherbg="colour252"
-            weatherfg="colour236"
-            batterybg="colour240"
-            batteryfg="colour247"
-            datebg="colour252"
-            datefg="colour236"
-        else
-            statbg="colour24"
-            statfg="colour117"
-            hostbg="colour31"
-            hostfg="colour231"
-            modebg="colour231"
-            modefg="colour23"
-            weatherbg="colour117"
-            weatherfg="colour23"
-            batterybg="colour31"
-            batteryfg="colour117"
-            datebg="colour117"
-            datefg="colour23"
-        fi
-        tmux set -g status-bg ${statbg} > /dev/null
-        tmux set -g status-fg ${statfg} > /dev/null
-
-        host="#[bg=${hostbg}, fg=${hostfg}] #h "
-        hosta="#[bg=${statbg}, fg=${hostbg}]⮀"
-        mode="#[bg=${modebg}, fg=${modefg}] $vimode "
-        modea="#[bg=${hostbg}, fg=${modebg}]⮀"
-        tmux set -g status-left "${mode}${modea}${host}${hosta}" > /dev/null
-
-        weather="#[bg=${weatherbg}, fg=${weatherfg}] #($HOME/dotfiles/.tmux/weather.sh) "
-        weathera="#[bg=${statbg}, fg=${weatherbg}]⮂"
-        battery="#[bg=${batterybg}, fg=${batteryfg}] #($HOME/dotfiles/.tmux/battery.sh) "
-        batterya="#[bg=${weatherbg}, fg=${batterybg}]⮂"
-        date="#[bg=${datebg}, fg=${datefg}] %Y-%m-%d(%a) %H:%M "
-        datea="#[bg=${batterybg}, fg=${datebg}]⮂"
-        tmux set -g status-right "${weathera}${weather}${batterya}${battery}${datea}${date}" > /dev/null
-    else
-        showmode $vimode
-    fi
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+#function zle-line-init zle-keymap-select {
+#    vimode="${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}"
+#
+#    if [ -n "$TMUX" ]; then
+#        if [ $vimode = "NORMAL" ]; then
+#            statbg="colour236"
+#            statfg="colour247"
+#            hostbg="colour240"
+#            hostfg="colour231"
+#            modebg="colour148"
+#            modefg="colour22"
+#            weatherbg="colour252"
+#            weatherfg="colour236"
+#            batterybg="colour240"
+#            batteryfg="colour247"
+#            datebg="colour252"
+#            datefg="colour236"
+#        else
+#            statbg="colour24"
+#            statfg="colour117"
+#            hostbg="colour31"
+#            hostfg="colour231"
+#            modebg="colour231"
+#            modefg="colour23"
+#            weatherbg="colour117"
+#            weatherfg="colour23"
+#            batterybg="colour31"
+#            batteryfg="colour117"
+#            datebg="colour117"
+#            datefg="colour23"
+#        fi
+#        tmux set -g status-bg ${statbg} > /dev/null
+#        tmux set -g status-fg ${statfg} > /dev/null
+#
+#        host="#[bg=${hostbg}, fg=${hostfg}] #h "
+#        hosta="#[bg=${statbg}, fg=${hostbg}]⮀"
+#        mode="#[bg=${modebg}, fg=${modefg}] $vimode "
+#        modea="#[bg=${hostbg}, fg=${modebg}]⮀"
+#        tmux set -g status-left "${mode}${modea}${host}${hosta}" > /dev/null
+#
+#        weather="#[bg=${weatherbg}, fg=${weatherfg}] #($HOME/dotfiles/.tmux/weather.sh) "
+#        weathera="#[bg=${statbg}, fg=${weatherbg}]⮂"
+#        battery="#[bg=${batterybg}, fg=${batteryfg}] #($HOME/dotfiles/.tmux/battery.sh) "
+#        batterya="#[bg=${weatherbg}, fg=${batterybg}]⮂"
+#        date="#[bg=${datebg}, fg=${datefg}] %Y-%m-%d(%a) %H:%M "
+#        datea="#[bg=${batterybg}, fg=${datebg}]⮂"
+#        tmux set -g status-right "${weathera}${weather}${batterya}${battery}${datea}${date}" > /dev/null
+#    else
+#        showmode $vimode
+#    fi
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
 
 
 
