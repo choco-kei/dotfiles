@@ -23,8 +23,6 @@ syntax enable
 "lua
 if has('mac')
     let $LUA_DLL='/usr/local/lib/liblua.dylib'
-elseif has('win32')
-    let $LUA_DLL='/dotfiles/win/lua5.1.dll'
 endif
 
 
