@@ -47,3 +47,10 @@ set modelines=0
 " タイトルを変更させない
 set notitle
 
+" ヤンクでクリップボードを使用
+set clipboard=unnamed
+
+" ファイルタイプとインデントの判別をon
+filetype plugin indent on
+autocmd Filetype * set formatoptions-=ro
+

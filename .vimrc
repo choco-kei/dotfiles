@@ -2,6 +2,9 @@
 " .vimrc
 "----------------------------------------------------------
 
+" 基本設定
+source ~/dotfiles/.vimrc.base
+
 " 表示設定
 source ~/dotfiles/.vimrc.apperance
 
@@ -12,8 +15,6 @@ source ~/dotfiles/.vimrc.indent
 source ~/dotfiles/.vimrc.search
 
 
-" 基本設定
-source ~/dotfiles/.vimrc.base
 
 " 文字コード関係
 set encoding=utf-8
@@ -176,9 +177,6 @@ NeoBundleLocal ~/dotfiles/.vim/bundle/user
 "NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 "NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 
-
-filetype plugin indent on
-autocmd Filetype * set formatoptions-=ro
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
