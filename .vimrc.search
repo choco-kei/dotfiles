@@ -1,56 +1,25 @@
 "----------------------------------------------------------
-" 基本 Base
+" 検索 Search
 "----------------------------------------------------------
 
-" 編集中でもファイルを開けるように
-set hidden
+" キーマップリーダーを変更
+let mapleader = ","
 
-" 他で編集したファイルを自動で再読み込み
-set autoread
+" 末尾まで検索後、ファイル先頭にループさせる
+set wrapscan
 
-" スクロール時の余白行数
-set scrolloff=5
+" 検索で大文字小文字を区別しない
+set ignorecase
 
-" バックアップを作成しない
-set nobackup
+" 検索文字に大文字があるときは大文字小文字を区別する
+set smartcase
 
-" テンポラリディレクトリパス
-set directory=~/dotfiles/.vim/tmp
+" インクリメンタルサーチ
+set incsearch
 
-" バックスペースでなんでも消せるように
-set backspace=indent,eol,start
+" 検索文字列をハイライト表示
+set hlsearch
 
-" テキスト整形オプション マルチバイト系を追加
-set formatoptions=lmoq
-
-" ビープ無効
-set vb t_vb=
-
-" 現在のディレクトリから開始
-set browsedir=buffer
-
-" カーソルを行をまたいで移動
-set whichwrap=b,s,h,l,<,>,[,]
-
-" コマンドをステータスに表示
-set showcmd
-
-" 現在のモードを表示
-set showmode
-
-" viminfoの設定
-set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
-
-" モードラインを無効
-set modelines=0
-
-" タイトルを変更させない
-set notitle
-
-" ヤンクでクリップボードを使用
-set clipboard=unnamed
-
-" ファイルタイプとインデントの判別をon
-filetype plugin indent on
-autocmd Filetype * set formatoptions-=ro
-
+" 自動的にエスケープ
+cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
