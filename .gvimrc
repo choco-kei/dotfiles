@@ -12,6 +12,8 @@ set guioptions-=m
 set guioptions+=a
 " ビジュアルベルを無効
 set visualbell t_vb=
+" ノーマルモード ESC2回でIMEをOFF
+nnoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 if has('gui_macvim')
     " 透明度
@@ -22,9 +24,7 @@ if has('gui_macvim')
     "set iminsert
     " モード切替でIMを自動ON/OFF
     set noimdisableactivate
-
     " 行間
-    "set linespace=2
     set linespace=2 "SorceCodePro
     " フォント
     "set guifont=Menlo-Regular:h14
