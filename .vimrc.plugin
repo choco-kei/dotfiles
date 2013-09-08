@@ -61,3 +61,13 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 " gundo.vim
 nnoremap <Leader>ud :GundoToggle<CR>
 
+" lightline.vim
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'component': {
+    \   'readonly': '%{&readonly?"⭤":""}',
+    \ },
+    \ 'separator': { 'left': '⮀', 'right': '⮂' },
+    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+    \ }
+

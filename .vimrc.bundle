@@ -40,11 +40,13 @@ NeoBundle 'Shougo/neocomplete.vim'
 
 "" gundo.vim
 " 高機能なundo
-NeoBundleLazy "sjl/gundo.vim", {
-    \ "autoload": {
-    \   "commands": ['GundoToggle'],
+NeoBundleLazy 'sjl/gundo.vim', {
+    \ 'autoload': {
+    \   'commands': ['GundoToggle'],
     \}}
 
+"" lightline.vim
+NeoBundle 'itchyny/lightline.vim' 
 
 "" colors
 NeoBundle 'tomasr/molokai'

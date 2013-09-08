@@ -33,12 +33,12 @@ if has('gui_macvim')
     " モード切替でIMを自動ON/OFF
     set noimdisableactivate
     " 行間
-    set linespace=1 "SorceCodePro
+    set linespace=0 "SorceCodePro
     " フォント
     "set guifont=Menlo-Regular:h14
     "set guifont=Osaka-Mono:h15
     "set guifont=Consolas:h14
-    set guifont=Source\ Code\ Pro:h13
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h13
     "set guifont=Osaka-Mono:h15
     set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h10
 
