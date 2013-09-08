@@ -12,11 +12,9 @@ source ~/dotfiles/.vimrc.indent
 source ~/dotfiles/.vimrc.search
 
 
+" 基本設定
+source ~/dotfiles/.vimrc.base
 
-" テンポラリディレクトリパス
-set directory=~/dotfiles/.vim/tmp
-" バックアップを作成しない
-set nobackup
 " 文字コード関係
 set encoding=utf-8
 set fileencoding=utf-8
