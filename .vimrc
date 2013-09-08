@@ -14,15 +14,11 @@ source ~/dotfiles/.vimrc.indent
 " 検索設定
 source ~/dotfiles/.vimrc.search
 
+" エンコーディング設定
+source ~/dotfiles/.vimrc.encoding
 
-
-" 文字コード関係
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
-set fileformats=unix,dos
-" シンタックスハイライトを使用
-syntax enable
+" その他設定
+source ~/dotfiles/.vimrc.misc
 
 " 検索時にヒットした行を画面中央に表示
 nnoremap n  nzz
@@ -44,37 +40,6 @@ nnoremap <S-Right> <C-w>>
 nnoremap <S-Up>    <C-w>-
 nnoremap <S-Down>  <C-w>+
 
-
-"lua
-if has('mac')
-    let $LUA_DLL='/usr/local/lib/liblua.dylib'
-endif
-
-
-" .vimrcや.gvimrcを編集するためのKey-mappingを定義する
-nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
-nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
-
-" .vimrcや.gvimrcの変更を反映するためのKey-mappingを定義する
-" Load .gvimrc after .vimrc edited at GVim.
-nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
-nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
-
-".vimrcや.gvimrcを変更すると、自動的に変更が反映されるようにする
-" Set augroup.
-augroup MyAutoCmd
-    autocmd!
-augroup END
-
-if !has('gui_running') && !(has('win32') || has('win64'))
-    " .vimrcの再読込時にも色が変化するようにする
-    autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
-else
-    " .vimrcの再読込時にも色が変化するようにする
-    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC | 
-                \if has('gui_running') | source $MYGVIMRC  
-    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
-endif
 
 
 " Plugin Manage
