@@ -8,17 +8,11 @@ source ~/dotfiles/.vimrc.apperance
 " インデント設定
 source ~/dotfiles/.vimrc.indent
 
+" 検索設定
+source ~/dotfiles/.vimrc.search
 
-" 末尾まで検索後、ファイル先頭にループさせる
-set wrapscan
-" 検索で大文字小文字を区別しない
-set ignorecase
-" 検索文字に大文字があるときは大文字小文字を区別する
-set smartcase
-" インクリメンタルサーチ
-set incsearch
-" 検索文字列をハイライト表示
-set hlsearch
+
+
 " テンポラリディレクトリパス
 set directory=~/dotfiles/.vim/tmp
 " バックアップを作成しない
