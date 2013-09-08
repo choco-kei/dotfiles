@@ -16,14 +16,26 @@ set softtabstop=4
 set shiftwidth=4
 " 末尾まで検索後、ファイル先頭にループさせる
 set wrapscan
-" tabと改行を表示
+" 検索で大文字小文字を区別しない
+set ignorecase
+" 検索文字に大文字があるときは大文字小文字を区別する
+set smartcase
+" インクリメンタルサーチ
+set incsearch
+" 検索文字列をハイライト表示
+set hlsearch
+" 不可視文字を表示
 "set list
+" 不可視文字の設定
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
 " 開始時の挨拶を表示しない
 set shortmess+=I
 " カレント行のハイライト
 set cursorline
-" 対応する括弧を表示する
-set showmatch
+" 対応する括弧をハイライト表示する
+"set showmatch
+" 括弧のハイライト表示の秒数を設定
+set matchtime=1
 " テンポラリディレクトリパス
 set directory=~/dotfiles/.vim/tmp
 " バックアップを作成しない
@@ -37,6 +49,27 @@ set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
 set fileformats=unix,dos
 " シンタックスハイライトを使用
 syntax enable
+
+" 検索時にヒットした行を画面中央に表示
+nnoremap n  nzz
+nnoremap N  Nzz
+nnoremap *  *zz
+nnoremap #  #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" Ctrl + hjkl でウィンドウ間を移動
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Shift + 矢印でウィンドウサイズを変更
+nnoremap <S-Left>  <C-w><
+nnoremap <S-Right> <C-w>>
+nnoremap <S-Up>    <C-w>-
+nnoremap <S-Down>  <C-w>+
+
 
 "lua
 if has('mac')
