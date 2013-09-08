@@ -2,21 +2,13 @@
 " .vimrc
 "----------------------------------------------------------
 
-" 表示関連読み込み
+" 表示設定
 source ~/dotfiles/.vimrc.apperance
 
-" tabの幅
-set tabstop=4
-" tabをスペースにする
-set expandtab
-" スマートインデント
-set smartindent
-" オートインデント
-set autoindent
-" キーボードから入力した場合のtabの幅
-set softtabstop=4
-" 自動で挿入/削除されるインデントの量
-set shiftwidth=4
+" インデント設定
+source ~/dotfiles/.vimrc.indent
+
+
 " 末尾まで検索後、ファイル先頭にループさせる
 set wrapscan
 " 検索で大文字小文字を区別しない
