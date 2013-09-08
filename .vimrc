@@ -1,5 +1,10 @@
-" 折り返さない
-set nowrap
+"----------------------------------------------------------
+" .vimrc
+"----------------------------------------------------------
+
+" 表示関連読み込み
+source ~/dotfiles/.vimrc.apperance
+
 " tabの幅
 set tabstop=4
 " tabをスペースにする
@@ -8,8 +13,6 @@ set expandtab
 set smartindent
 " オートインデント
 set autoindent
-" ルーラーを表示
-set ruler
 " キーボードから入力した場合のtabの幅
 set softtabstop=4
 " 自動で挿入/削除されるインデントの量
@@ -24,24 +27,10 @@ set smartcase
 set incsearch
 " 検索文字列をハイライト表示
 set hlsearch
-" 不可視文字を表示
-"set list
-" 不可視文字の設定
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
-" 開始時の挨拶を表示しない
-set shortmess+=I
-" カレント行のハイライト
-set cursorline
-" 対応する括弧をハイライト表示する
-"set showmatch
-" 括弧のハイライト表示の秒数を設定
-set matchtime=1
 " テンポラリディレクトリパス
 set directory=~/dotfiles/.vim/tmp
 " バックアップを作成しない
 set nobackup
-" 行番号を表示
-set number
 " 文字コード関係
 set encoding=utf-8
 set fileencoding=utf-8
