@@ -17,3 +17,6 @@ set incsearch
 " 検索文字列をハイライト表示
 set hlsearch
 
+" 自動的にエスケープ
+cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
