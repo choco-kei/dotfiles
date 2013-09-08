@@ -38,6 +38,13 @@ endif
 " 入力補完
 NeoBundle 'Shougo/neocomplete.vim'
 
+"" gundo.vim
+" 高機能なundo
+NeoBundleLazy "sjl/gundo.vim", {
+    \ "autoload": {
+    \   "commands": ['GundoToggle'],
+    \}}
+
 
 "" colors
 NeoBundle 'tomasr/molokai'
