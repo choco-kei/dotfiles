@@ -17,29 +17,11 @@ source ~/dotfiles/.vimrc.search
 " エンコーディング設定
 source ~/dotfiles/.vimrc.encoding
 
+" キーマップ設定
+source ~/dotfiles/.vimrc.keymap
+
 " その他設定
 source ~/dotfiles/.vimrc.misc
-
-" 検索時にヒットした行を画面中央に表示
-nnoremap n  nzz
-nnoremap N  Nzz
-nnoremap *  *zz
-nnoremap #  #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
-
-" Ctrl + hjkl でウィンドウ間を移動
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Shift + 矢印でウィンドウサイズを変更
-nnoremap <S-Left>  <C-w><
-nnoremap <S-Right> <C-w>>
-nnoremap <S-Up>    <C-w>-
-nnoremap <S-Down>  <C-w>+
-
 
 
 " Plugin Manage
