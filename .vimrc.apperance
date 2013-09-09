@@ -12,7 +12,10 @@ set ruler
 "set list
 
 " 不可視文字の設定
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+" winだとエラー出るっぽい
+if has('mac')
+    set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+endif
 
 " 開始時の挨拶を表示しない
 set shortmess+=I
