@@ -72,7 +72,7 @@ if has('win32')
         \ 'separator': { 'left': '⮀', 'right': '⮂' },
         \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
         \ }
-elseif
+else
     let g:lightline = {
         \ 'colorscheme': 'solarized',
         \ 'component': {
