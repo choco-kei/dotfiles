@@ -62,12 +62,23 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 nnoremap <Leader>ud :GundoToggle<CR>
 
 " lightline.vim
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'component': {
-    \   'readonly': '%{&readonly?"⭤":""}',
-    \ },
-    \ 'separator': { 'left': '⮀', 'right': '⮂' },
-    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-    \ }
-
+" winのdark設定が反映しないので決め打ち
+if has('win32')
+    let g:lightline = {
+        \ 'colorscheme': 'solarized_dark',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"⭤":""}',
+        \ },
+        \ 'separator': { 'left': '⮀', 'right': '⮂' },
+        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+        \ }
+elseif
+    let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"⭤":""}',
+        \ },
+        \ 'separator': { 'left': '⮀', 'right': '⮂' },
+        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+        \ }
+endif

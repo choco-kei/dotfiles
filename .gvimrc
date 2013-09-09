@@ -45,8 +45,8 @@ if has('gui_macvim')
 "" Win GVim
 elseif has('win32')
     " フォント
-    set guifont=Source\ Code\ Pro:h10
-    " カラーをダークに
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h10
+    " カラースキームをダークテーマに
     set background=dark
 endif
 
