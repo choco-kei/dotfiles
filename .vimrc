@@ -48,6 +48,13 @@ NeoBundleLazy 'sjl/gundo.vim', {
 "" lightline.vim
 NeoBundle 'itchyny/lightline.vim' 
 
+"" vimfiler
+NeoBundle 'Shougo/vimfiler'
+
+"" indentLine
+NeoBundle 'Yggdroot/indentLine'
+
+
 "" colors
 NeoBundle 'tomasr/molokai'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -139,12 +146,14 @@ set nowrap
 set ruler
 
 " 不可視文字を表示
-"set list
+set list
 
 " 不可視文字の設定
 " winだとエラー出るっぽい
-if has('mac')
-    set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+if has('win32')
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,eol:\ 
+else
+    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,nbsp:%
 endif
 
 " 開始時の挨拶を表示しない
@@ -364,12 +373,15 @@ else
         \ }
 endif
 
+" indentline
+let g:indentLine_char = '┆'
+
 " プラグイン インデントをon
 filetype plugin indent on
 
 
 "----------------------------------------------------------
-" カラー Color
+" カラー
 "----------------------------------------------------------
 
 " シンタックスハイライトを使用
@@ -398,10 +410,11 @@ augroup guicolorscheme
     execute 'autocmd GUIEnter * colorscheme' scheme
 augroup END
 execute 'colorscheme' scheme
+let g:solarized_italic=0
 
 
 "----------------------------------------------------------
-" その他 Misc
+" その他
 "----------------------------------------------------------
 
 " lua
@@ -433,3 +446,4 @@ else
                 \if has('gui_running') | source $MYGVIMRC  
     autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 endif
+
