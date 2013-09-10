@@ -82,3 +82,6 @@ else
         \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
         \ }
 endif
+
+
+filetype plugin indent on

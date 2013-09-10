@@ -20,3 +20,5 @@ set softtabstop=4
 " 自動で挿入/削除されるインデントの量
 set shiftwidth=4
 
+" paste時にコメントのインデントをやめる
+autocmd Filetype * set formatoptions-=ro
