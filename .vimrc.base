@@ -53,6 +53,9 @@ set notitle
 " ヤンクでクリップボードを使用
 set clipboard=unnamed
 
+" コマンドモードで補完を使用
+set wildmode=longest:full,full
+
 " ファイルタイプとインデントの判別をon
 filetype plugin indent on
 autocmd Filetype * set formatoptions-=ro
