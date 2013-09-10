@@ -374,7 +374,8 @@ else
 endif
 
 " indentline
-let g:indentLine_char = '┆'
+let g:indentLine_char = '┊'
+
 
 " プラグイン インデントをon
 filetype plugin indent on
