@@ -22,6 +22,7 @@ set visualbell t_vb=
 " ノーマルモード ESC2回でIMEをOFF
 nnoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
+
 "" MacVim
 if has('gui_macvim')
     " 透明度
@@ -50,3 +51,5 @@ elseif has('win32')
     set background=dark
 endif
 
+" 不可視文字のbold解除
+highlight SpecialKey gui=none

@@ -120,7 +120,7 @@ set showcmd
 set showmode
 
 " viminfoの設定
-set viminfo='50,<1000,s100,\"50  " viminfoファイルの設定
+set viminfo='50,<1000,s100,\"50
 
 " モードラインを無効
 set modelines=0
@@ -149,7 +149,7 @@ set ruler
 set list
 
 " 不可視文字の設定
-" winだとエラー出るっぽい
+" winだとユニコード文字でエラー出るっぽいので回避
 if has('win32')
     set listchars=tab:>\ ,trail:-,extends:>,precedes:<,eol:\ 
 else
@@ -443,8 +443,8 @@ if !has('gui_running') && !(has('win32') || has('win64'))
     autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
 else
     " .vimrcの再読込時にも色が変化するようにする
-    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC | 
-                \if has('gui_running') | source $MYGVIMRC  
+    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
+                \if has('gui_running') | source $MYGVIMRC
     autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 endif
 
