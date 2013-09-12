@@ -203,6 +203,9 @@ set shiftwidth=4
 " paste時にコメントのインデントをやめる
 autocmd Filetype * set formatoptions-=ro
 
+" 折りたたむ
+set foldmethod=manual
+
 
 "----------------------------------------------------------
 " 検索
