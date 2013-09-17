@@ -44,7 +44,7 @@ if has('gui_macvim')
     "set guifont=Consolas:h14
     set guifont=Source\ Code\ Pro\ for\ Powerline:h13
     "set guifont=Osaka-Mono:h15
-    "set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h10
+    set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h13
 
 "" Win GVim
 elseif has('win32')
