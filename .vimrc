@@ -177,6 +177,9 @@ set lazyredraw
 " 高速ターミナル接続を行う
 set ttyfast
 
+" 全角記号を1バイトとして扱う
+set ambiwidth=single
+
 
 "----------------------------------------------------------
 " インデント
@@ -380,7 +383,7 @@ else
 endif
 
 " indentline
-let g:indentLine_char = '¦'
+let g:indentLine_char = '┊'
 
 
 " プラグイン インデントをon
