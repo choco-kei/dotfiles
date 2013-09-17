@@ -206,6 +206,9 @@ autocmd Filetype * set formatoptions-=ro
 " 折りたたむ
 set foldmethod=manual
 
+" PHPでcase/defaultをインデントする
+let g:PHP_vintage_case_default_indent = 1
+
 
 "----------------------------------------------------------
 " 検索
@@ -377,7 +380,7 @@ else
 endif
 
 " indentline
-let g:indentLine_char = '┊'
+let g:indentLine_char = '¦'
 
 
 " プラグイン インデントをon
@@ -408,13 +411,17 @@ endif
 
 " カラースキーム
 set background=dark
-let scheme = 'solarized'
-augroup guicolorscheme
-    autocmd!
-    execute 'autocmd GUIEnter * colorscheme' scheme
-augroup END
-execute 'colorscheme' scheme
+"let scheme = 'solarized'
+"augroup guicolorscheme
+"    autocmd!
+"    execute 'autocmd GUIEnter * colorscheme' scheme
+"augroup END
+"execute 'colorscheme' scheme
+colorscheme solarized
 let g:solarized_italic=0
+highlight SpecialKey term=none gui=none cterm=none
+autocmd Colorscheme * highlight SpecialKey term=none gui=none
+
 
 
 "----------------------------------------------------------

@@ -19,6 +19,9 @@ set guioptions+=a
 " ビジュアルベルを無効
 set visualbell t_vb=
 
+" カラースキームをダークテーマに
+set background=dark
+
 " ノーマルモード ESC2回でIMEをOFF
 nnoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
@@ -47,9 +50,7 @@ if has('gui_macvim')
 elseif has('win32')
     " フォント
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
-    " カラースキームをダークテーマに
-    set background=dark
+    " 不可視文字のbold解除
+    highlight SpecialKey gui=none
 endif
 
-" 不可視文字のbold解除
-highlight SpecialKey gui=none
