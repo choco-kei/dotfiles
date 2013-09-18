@@ -227,7 +227,7 @@ function zle-line-init zle-keymap-select {
             batterybg="colour31"
             batteryfg="colour117"
             datebg="colour117"
-            datefg="colour23"
+            datefg="colour23"e
         fi
         tmux set -g status-bg ${statbg} > /dev/null
         tmux set -g status-fg ${statfg} > /dev/null

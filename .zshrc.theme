@@ -1,148 +1,134 @@
-# itg.zsh-theme
-# a designer developed zsh Prompt
-# twitter: @itg
-# https://gist.github.com/3834711
+## Default shell configuration
+# colors enables us to idenfity color by $fg[red].
+autoload colors
+colors
+case ${UID} in
+0)
+    PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+    PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+    SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+    ;;
+*)
+    #
+    # Color
+    #
+    DEFAULT=$'%{\e[1;0m%}'
+    RESET="%{${reset_color}%}"
+    GREEN="%{${fg[green]}%}"
+    BLUE="%{${fg[blue]}%}"
+    RED="%{${fg[red]}%}"
+    CYAN="%{${fg[cyan]}%}"
+    WHITE="%{${fg[white]}%}"
+    SUYA="( ˘ω˘)"
+    POH="ｽﾔｧ"
 
-# Colors:
-local black=235
-local dark=236
-local white=015
-local yellow=003
-local blue=038
-local darker_blue=030
-local darker_green=023
+    #
+    # Prompt
+    #
+    PROMPT='%{$fg[cyan]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}'
+    RPROMPT='${RESET}${WHITE}[${BLUE}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${RESET}'
 
-# Extending the git library locally
-function git_user_initials {
-  #MSG=$(git config --get user.initials || echo '✈')
-  MSG=$(git config --get user.initials || echo '(˘ω˘)ｽﾔｧ')
-  print $MSG
-}
+    #
+    # Vi入力モードでPROMPTの色を変える
+    # http://memo.officebrook.net/20090226.html
+    function zle-line-init zle-keymap-select {
+      case $KEYMAP in
+        vicmd)
+        PROMPT="%{$fg[magenta]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
+        ;;
+        main|viins)
+        PROMPT="%{$fg[cyan]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
+        ;;
+      esac
+      zle reset-prompt
+    }
+    zle -N zle-line-init
+    zle -N zle-keymap-select
 
-function git_is_dirty() {
-  local SUBMODULE_SYNTAX=''
-  if [[ $POST_1_7_2_GIT -gt 0 ]]; then
-        SUBMODULE_SYNTAX="--ignore-submodules=dirty"
-  fi
-  if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then
-    return 0
-  else
-    return 1
-  fi
-}
+    # Show git branch when you are in git repository
+    # http://d.hatena.ne.jp/mollifier/20100906/p1
+    autoload -Uz add-zsh-hook
+    autoload -Uz vcs_info
 
-function itg_git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$(itg_git_prompt_ahead)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
+    zstyle ':vcs_info:*' enable git svn hg bzr
+    zstyle ':vcs_info:*' formats '(%s)-[%b]'
+    zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+    zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
+    zstyle ':vcs_info:bzr:*' use-simple true
 
-# oh-my-zsh/lib/git.zsh
-parse_git_dirty() {
-  local SUBMODULE_SYNTAX=''
-  local GIT_STATUS=''
-  local CLEAN_MESSAGE='nothing to commit (working directory clean)'
-  if [[ "$(command git config --get oh-my-zsh.hide-status)" != "1" ]]; then
-    if [[ $POST_1_7_2_GIT -gt 0 ]]; then
-          SUBMODULE_SYNTAX="--ignore-submodules=dirty"
+    autoload -Uz is-at-least
+    if is-at-least 4.3.10; then
+      # この check-for-changes が今回の設定するところ
+      zstyle ':vcs_info:git:*' check-for-changes true
+      zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
+      zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
+      zstyle ':vcs_info:git:*' formats '(%s)-[%c%u%b]'
+      zstyle ':vcs_info:git:*' actionformats '(%s)-[%c%u%b|%a]'
     fi
-    if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
-        GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} -uno 2> /dev/null | tail -n1)
-    else
-        GIT_STATUS=$(command git status -s ${SUBMODULE_SYNTAX} 2> /dev/null | tail -n1)
-    fi
-    if [[ -n $GIT_STATUS ]]; then
-      echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-    else
-      echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-    fi
-  else
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  fi
-}
 
-function itg_git_prompt_ahead() {
-  if $(echo "$(git log $(itg_git_current_upstream)/$(current_branch)..HEAD 2> /dev/null)" | grep '^commit' &> /dev/null); then
-    echo "$ZSH_THEME_GIT_PROMPT_AHEAD"
-  fi
-}
+    function _update_vcs_info_msg() {
+        psvar=()
+        LANG=en_US.UTF-8 vcs_info
+        psvar[2]=$(_git_not_pushed)
+        [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+    }
+    add-zsh-hook precmd _update_vcs_info_msg
 
-function itg_git_current_upstream() {
-  local upstream=$(git config --get branch."$(current_branch)".remote) || return
-  echo $upstream
-}
+    # show status of git pushed to HEAD in prompt
+    function _git_not_pushed()
+    {
+      if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
+        head="$(git rev-parse HEAD)"
+        for x in $(git rev-parse --remotes)
+        do
+          if [ "$head" = "$x" ]; then
+            return 0
+          fi
+        done
+        echo "|?"
+      fi
+      return 0
+    }
 
-# oh-my-zsh/plugins/git/git.plugin.zsh 
-function current_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-        ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-    echo ${ref#refs/heads/}
-}
+    # git のブランチ名 *と作業状態* を zsh の右プロンプトに表示＋ status に応じて色もつけてみた - Yarukidenized:ヤルキデナイズド :
+    # http://d.hatena.ne.jp/uasi/20091025/1256458798
+    autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 
-# Prompt builder functions
-function itg_dir() {
-  if git rev-parse --git-dir > /dev/null 2>&1 && [ ! -d .git ]; then
-    git_dir_cdup=$(git rev-parse --show-cdup)
-    git_dir_top=$(cd $git_dir_cdup; echo ${PWD##*r})
-    git_dir_path=$(git rev-parse --show-prefix)
-    dir="⭠ $git_dir_top/$git_dir_path"
-  else
-    if [ -d .git ]; then
-      prefix="⭠ "
-    else
-      prefix=""
-    fi
-    dir="$prefix%1~"
-  fi
-  echo -n "%K{$blue} %F{$black}$dir"
-}
+    function rprompt-git-current-branch {
+      local name st color gitdir action pushed
+      if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+              return
+      fi
 
-function itg_git() {
-  # Is this a dirty git directory?
-  # This check is done first to set colors
-  if ($(git_is_dirty)); then
-    git_status_color_k=$yellow
-    git_status_color_f=$darker_green
-  else
-    git_status_color_k=$darker_blue
-    git_status_color_f=$black
-  fi
+      name=`git rev-parse --abbrev-ref=loose HEAD 2> /dev/null`
+      if [[ -z $name ]]; then
+              return
+      fi
 
-  # Is this a git directory?
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    git_prefix=" %K{$git_status_color_k}%F{$blue}⮀ %F{$git_status_color_f}"
-    git_suffix="%F{$git_status_color_k}⮀"
-    git_status=$(itg_git_prompt_info)
-  else
-    git_prefix=""
-    git_suffix="%F{$blue}⮀"
-    git_status=""
-  fi
+      gitdir=`git rev-parse --git-dir 2> /dev/null`
+      action=`VCS_INFO_git_getaction "$gitdir"` && action="|$action"
+      pushed="`_git_not_pushed`"
 
-  echo -e "$git_prefix$git_status %K{$darker_green}$git_suffix"
-}
+      st=`git status 2> /dev/null`
+      if [[ "$st" =~ "(?m)^nothing to" ]]; then
+        color=%F{green}
+      elif [[ "$st" =~ "(?m)^nothing added" ]]; then
+        color=%F{yellow}
+      elif [[ "$st" =~ "(?m)^# Untracked" ]]; then
+        color=%B%F{red}
+      else
+        color=%F{red}
+      fi
 
-function itg_pair() {
-  echo " %F{$yellow}$(git_user_initials) %k%F{$darker_green}⮀%f"
-}
+      echo "[$color$name$action$pushed%f%b]"
+    }
 
-#function itg_rvm() {
-#  echo "%F{$dark}⮂%K{$dark}%F{$white} $(rvm_prompt_info) %k"
-#}
+    # PCRE 互換の正規表現を使う
+    setopt re_match_pcre
 
-ZSH_THEME_GIT_PROMPT_PREFIX=''
-ZSH_THEME_GIT_PROMPT_SUFFIX=''
-ZSH_THEME_GIT_PROMPT_DIRTY='%F{$darker_green} ✍'
-ZSH_THEME_GIT_PROMPT_CLEAN=''
+    RPROMPT='`rprompt-git-current-branch`${RESET}${WHITE}[${BLUE}%(5~,%-2~/.../%2~,%~)${WHITE}]${RESET}'
 
-ZSH_THEME_GIT_PROMPT_AHEAD="↑"
-ZSH_THEME_GIT_PROMPT_BEHIND="↓"
-ZSH_THEME_GIT_PROMPT_DIVERGED="↕"
-
-# command to make sure the prompt reruns the functions on new prompt
-function precmd {
-  PROMPT="$(itg_dir)$(itg_git)$(itg_pair) "
-#  PROMPT="$(itg_dir)$(itg_git)$(itg_pair)
-#(˘ω˘) < "
-#  RPROMPT="$(itg_rvm)"
-}
-
+    ;;
+esac
