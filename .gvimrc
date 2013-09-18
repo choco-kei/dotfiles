@@ -52,5 +52,7 @@ elseif has('win32')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h10
     " 不可視文字のbold解除
     highlight SpecialKey gui=none
+    " カラースキームの設定
+    colorscheme solarized
 endif
 
