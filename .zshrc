@@ -99,7 +99,7 @@ setopt hist_no_store
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # 自動インクリメンタル補完(incr.zsh)
-#[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
+[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
 
 # 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
 setopt auto_menu
