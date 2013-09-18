@@ -296,6 +296,11 @@ cnoremap <M-b> <S-Left>
 " 次の単語へ移動
 cnoremap <M-f> <S-Right>
 
+" TABをスペースに変換
+nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
+" CRを削除
+nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
+
 
 "----------------------------------------------------------
 " プラグイン Plugin
@@ -309,8 +314,8 @@ endif
 "" vim-gitgutter
 " windowsで動かないっぽい？
 if has('mac')
-    nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-    nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+    nnoremap <silent> <Leader>gg :<C-u>GitGutterToggle<CR>
+    nnoremap <silent> <Leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 endif
 
 "" neocomplete
