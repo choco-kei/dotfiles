@@ -99,7 +99,7 @@ setopt hist_no_store
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # 自動インクリメンタル補完(incr.zsh)
-#[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
+[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
 
 # 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
 setopt auto_menu
@@ -117,6 +117,61 @@ zstyle ':completion:*' special-dirs true
 # 強力な補完を有効にする
 autoload -Uz compinit
 compinit
+
+
+###-begin-npm-completion-###
+#
+# npm command completion script
+#
+# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
+# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
+#
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+if type complete &>/dev/null; then
+  _npm_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           npm completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -F _npm_completion npm
+elif type compdef &>/dev/null; then
+  _npm_completion() {
+    si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+elif type compctl &>/dev/null; then
+  _npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
+fi
+###-end-npm-completion-###
 
 ## ターミナルのカラー設定
 # http://journal.mycom.co.jp/column/zsh/009/index.html
@@ -227,7 +282,7 @@ function zle-line-init zle-keymap-select {
             batterybg="colour31"
             batteryfg="colour117"
             datebg="colour117"
-            datefg="colour23"
+            datefg="colour23"e
         fi
         tmux set -g status-bg ${statbg} > /dev/null
         tmux set -g status-fg ${statfg} > /dev/null
