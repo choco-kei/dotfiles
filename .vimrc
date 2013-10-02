@@ -16,6 +16,9 @@ NeoBundle 'Shougo/neobundle.vim'
 "" unite.vim
 NeoBundle 'Shougo/unite.vim'
 
+"" unite outline
+NeoBundle 'h1mesuke/unite-outline'
+
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
