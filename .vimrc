@@ -1,5 +1,5 @@
 "----------------------------------------------------------
-" プラグイン読み込み
+" プラグイン読み込み {{{
 "----------------------------------------------------------
 
 set nocompatible
@@ -57,6 +57,9 @@ NeoBundle 'Shougo/vimfiler'
 "" indentLine
 NeoBundle 'Yggdroot/indentLine'
 
+"" foldCC
+NeoBundle 'LeafCage/foldCC'
+
 
 "" colors
 NeoBundle 'tomasr/molokai'
@@ -78,9 +81,10 @@ NeoBundleLocal ~/dotfiles/.vim/bundle/user
 "NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 "NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 
+"}}}
 
 "----------------------------------------------------------
-" 基本
+" 基本 {{{
 "----------------------------------------------------------
 
 " キーマップリーダーを変更
@@ -137,9 +141,10 @@ set clipboard=unnamed
 " コマンドモードで補完を使用
 set wildmode=longest:full,full
 
+"}}}
 
 "----------------------------------------------------------
-" 表示
+" 表示 {{{
 "----------------------------------------------------------
 
 " 折り返さない
@@ -183,9 +188,10 @@ set ttyfast
 " 全角記号を1バイトとして扱う
 set ambiwidth=single
 
+"}}}
 
 "----------------------------------------------------------
-" インデント
+" インデント {{{
 "----------------------------------------------------------
 
 " tabの幅
@@ -209,15 +215,19 @@ set shiftwidth=4
 " paste時にコメントのインデントをやめる
 autocmd Filetype * set formatoptions-=ro
 
-" 折りたたむ
-set foldmethod=manual
+" 折りたたみ
+set foldmethod=marker
+set foldlevel=1
+set foldcolumn=0
 
-" PHPでcase/defaultをインデントする
+" PHPの折りたたみ設定
 let g:PHP_vintage_case_default_indent = 1
+let php_folding = 1
 
+" }}}
 
 "----------------------------------------------------------
-" 検索
+" 検索 {{{
 "----------------------------------------------------------
 
 " 末尾まで検索後、ファイル先頭にループさせる
@@ -250,9 +260,10 @@ set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
 set fileformats=unix
 
+" }}}
 
 "----------------------------------------------------------
-" キーマップ
+" キーマップ {{{
 "----------------------------------------------------------
 
 " 検索時にヒットした行を画面中央に表示
@@ -304,9 +315,10 @@ nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
 " CRを削除
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
 
+"}}}
 
 "----------------------------------------------------------
-" プラグイン Plugin
+" プラグイン {{{
 "----------------------------------------------------------
 
 "" vim-instant-markdown
@@ -365,10 +377,10 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-" gundo.vim
+"" gundo.vim
 nnoremap <Leader>ud :GundoToggle<CR>
 
-" lightline.vim
+"" lightline.vim
 " winのdark設定が反映しないので決め打ち
 if has('win32')
     let g:lightline = {
@@ -390,16 +402,23 @@ else
         \ }
 endif
 
-" indentline
+"" indentline
 let g:indentLine_char = '┊'
+
+"" fonldCC
+set foldtext=foldCC#foldtext()
+let g:foldCCtext_maxchars = 120
+let g:foldCCtext_head = '"( ˘ω˘) "'
+let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 
 
 " プラグイン インデントをon
 filetype plugin indent on
 
+" }}}
 
 "----------------------------------------------------------
-" カラー
+" カラー {{{
 "----------------------------------------------------------
 
 " シンタックスハイライトを使用
@@ -433,10 +452,10 @@ let g:solarized_italic=0
 highlight SpecialKey term=none gui=none cterm=none
 autocmd Colorscheme * highlight SpecialKey term=none gui=none
 
-
+" }}}
 
 "----------------------------------------------------------
-" その他
+" その他 {{{
 "----------------------------------------------------------
 
 " lua
@@ -468,4 +487,6 @@ else
                 \if has('gui_running') | source $MYGVIMRC
     autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 endif
+
+" }}}
 
