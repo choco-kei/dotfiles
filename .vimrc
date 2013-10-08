@@ -315,6 +315,24 @@ nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
 " CRを削除
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
 
+"" unite.vim
+" バッファ
+nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
+" ファイル
+nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ
+nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル
+nnoremap <silent> <Leader>um :<C-u>Unite file_mru<CR>
+"nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+"nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" ウィンドウを分割して開く
+"au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+"au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+"au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+"au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+
 "}}}
 
 "----------------------------------------------------------
