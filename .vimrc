@@ -249,9 +249,16 @@ set hlsearch
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
+" grep
+if has('win32')
+    set grepprg=jvgrep
+endif
+
+
+" }}}
 
 "----------------------------------------------------------
-" エンコーディング
+" エンコーディング {{{
 "----------------------------------------------------------
 
 " 文字コード関係
@@ -316,14 +323,36 @@ nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
 
 "" unite.vim
-" バッファ
-nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
-" ファイル
-nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" レジスタ
-nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register<CR>
-" 最近使用したファイル
-nnoremap <silent> <Leader>um :<C-u>Unite file_mru<CR>
+" 起動時にインサートモードで開始
+let g:unite_enable_start_insert = 1
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+" キーマップ
+nnoremap [unite] <Nop>
+nmap <Leader>u [unite]
+" buffer
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+" file
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" register
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+" file_mru
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+" grep
+nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+" カーソル位置の単語からgrep
+nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+" grep検索結果を再呼び出し
+nnoremap <silent> [unite]vg  :<C-u>UniteResume search-buffer<CR>
+" jvgrep
+if has('win32')
+    let g:unite_source_grep_command = 'jvgrep'
+    "let g:unite_source_grep_default_opts = '-exclude=''\.(git|svn|hg|bzr)'''
+    let g:unite_source_grep_default_opts = '-8'
+    "let g:unite_source_grep_recursive_opt = '-R'
+endif
+"
 "nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 "nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " ウィンドウを分割して開く
