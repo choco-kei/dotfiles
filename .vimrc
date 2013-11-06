@@ -257,7 +257,19 @@ if has('win32')
     set grepprg=jvgrep
 endif
 
+" }}}
+
+"----------------------------------------------------------
+" タグ {{{
+"----------------------------------------------------------
+" タグファイルを指定
 set tags+=.tags
+
+" 補完時に1行まるごと補完
+set showfulltag
+
+" タグから補完リストに追加
+set wildoptions=tagfile
 
 
 
@@ -329,9 +341,6 @@ nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
 " CRを削除
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
 
-" unite-tag
-nnoremap <C-]> :<C-u>UniteWithCursorWord -immediately tag/include<CR>
-
 "" unite.vim
 nnoremap [unite] <Nop>
 nmap <Leader>u [unite]
@@ -348,7 +357,10 @@ nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
 nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " grep検索結果を再呼び出し
-nnoremap <silent> [unite]vg  :<C-u>UniteResume search-buffer<CR>
+nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
+" unite-tag
+nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
+
 " jvgrep
 if has('win32')
     let g:unite_source_grep_command = 'jvgrep'
@@ -365,6 +377,23 @@ endif
 " ウィンドウを縦に分割して開く
 "au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 "au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+
+" tags
+" t: tags-and-searches
+" The prefix key.
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Jump.
+" nnoremap [Tag]t  <C-]>
+nnoremap <silent><expr> [Tag]t  &filetype == 'help' ?  "\<C-]>" :
+      \ ":\<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include\<CR>"
+nnoremap <silent><expr> [Tag]p  &filetype == 'help' ?
+      \ ":\<C-u>pop\<CR>" : ":\<C-u>Unite jump\<CR>"
+
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
 
 "}}}
 
@@ -399,7 +428,7 @@ endif
 
 "" neocomplete
 " ディレクトリ変更
-let g:neocomplcache_temporary_dir='~/dotfiles/.vim/tmp/.neocomplete'
+let g:neocomplete#data_directory='~/dotfiles/.vim/tmp/.neocomplete'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
