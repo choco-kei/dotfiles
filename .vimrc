@@ -16,8 +16,11 @@ NeoBundle 'Shougo/neobundle.vim'
 "" unite.vim
 NeoBundle 'Shougo/unite.vim'
 
-"" unite outline
-NeoBundle 'h1mesuke/unite-outline'
+"" unite-outline
+NeoBundle 'Shougo/unite-outline'
+
+"" unite-tag
+NeoBundle 'tsukkee/unite-tag'
 
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
@@ -49,7 +52,7 @@ NeoBundleLazy 'sjl/gundo.vim', {
     \}}
 
 "" lightline.vim
-NeoBundle 'itchyny/lightline.vim' 
+NeoBundle 'itchyny/lightline.vim'
 
 "" vimfiler
 NeoBundle 'Shougo/vimfiler'
@@ -254,6 +257,10 @@ if has('win32')
     set grepprg=jvgrep
 endif
 
+set tags+=.tags
+
+
+
 
 " }}}
 
@@ -322,13 +329,10 @@ nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
 " CRを削除
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
 
+" unite-tag
+nnoremap <C-]> :<C-u>UniteWithCursorWord -immediately tag/include<CR>
+
 "" unite.vim
-" 起動時にインサートモードで開始
-let g:unite_enable_start_insert = 1
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-" キーマップ
 nnoremap [unite] <Nop>
 nmap <Leader>u [unite]
 " buffer
@@ -368,6 +372,19 @@ endif
 " プラグイン {{{
 "----------------------------------------------------------
 
+"" unite.vim
+" ディレクトリ変更
+let g:unite_data_directory='~/dotfiles/.vim/tmp/.unite'
+" 起動時にインサートモードで開始
+let g:unite_enable_start_insert = 1
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+"" vimfiler
+" ディレクトリ変更
+let g:vimfiler_data_directory='~/dotfiles/.vim/tmp/.vimfiler'
+
 "" vim-instant-markdown
 if has('mac')
     "let g:instant_markdown_slow = 1
@@ -381,6 +398,8 @@ if has('mac')
 endif
 
 "" neocomplete
+" ディレクトリ変更
+let g:neocomplcache_temporary_dir='~/dotfiles/.vim/tmp/.neocomplete'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
