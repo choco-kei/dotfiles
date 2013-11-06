@@ -295,10 +295,11 @@ set fileformats=unix
 " 検索時にヒットした行を画面中央に表示
 nnoremap n  nzz
 nnoremap N  Nzz
-nnoremap *  *zz
-nnoremap #  #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+" +単語検索と文字列検索に置き換え
+nnoremap *  g*zz
+nnoremap #  g#zz
+nnoremap g* *zz
+nnoremap g# #zz
 
 " Ctrl + hjkl でウィンドウ間を移動
 nnoremap <C-h> <C-w>h
