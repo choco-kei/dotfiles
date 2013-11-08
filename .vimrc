@@ -480,6 +480,7 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 "" gundo.vim
+let g:gundo_prefer_python3 = 1
 nnoremap <Leader>ud :GundoToggle<CR>
 
 "" lightline.vim
