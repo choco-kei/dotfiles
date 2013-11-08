@@ -364,6 +364,9 @@ nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-
 nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
 nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
+" reanimate
+nnoremap <silent> [unite]rl :<C-u>Unite reanimate -default-action=reanimate_load<CR>
+nnoremap <silent> [unite]rs :<C-u>Unite reanimate -default-action=reanimate_save<CR>
 
 " jvgrep
 if has('win32')
