@@ -47,9 +47,9 @@ NeoBundle 'Shougo/neocomplete.vim'
 "" gundo.vim
 " 高機能なundo
 NeoBundleLazy 'sjl/gundo.vim', {
-    \ 'autoload': {
-    \   'commands': ['GundoToggle'],
-    \}}
+            \ 'autoload': {
+            \   'commands': ['GundoToggle'],
+            \ }}
 
 "" lightline.vim
 NeoBundle 'itchyny/lightline.vim'
@@ -62,6 +62,9 @@ NeoBundle 'Yggdroot/indentLine'
 
 "" foldCC
 NeoBundle 'LeafCage/foldCC'
+
+"" vim-reanimate
+NeoBundle 'osyo-manga/vim-reanimate'
 
 
 "" colors
@@ -387,13 +390,13 @@ nmap    t [Tag]
 " Jump.
 " nnoremap [Tag]t  <C-]>
 nnoremap <silent><expr> [Tag]t  &filetype == 'help' ?  "\<C-]>" :
-      \ ":\<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include\<CR>"
+            \ ":\<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include\<CR>"
 nnoremap <silent><expr> [Tag]p  &filetype == 'help' ?
-      \ ":\<C-u>pop\<CR>" : ":\<C-u>Unite jump\<CR>"
+            \ ":\<C-u>pop\<CR>" : ":\<C-u>Unite jump\<CR>"
 
 " Tab jump
 for n in range(1, 9)
-  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+    execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 
 "}}}
@@ -442,10 +445,10 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -461,9 +464,9 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    return neocomplete#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -480,22 +483,22 @@ nnoremap <Leader>ud :GundoToggle<CR>
 " winのdark設定が反映しないので決め打ち
 if has('win32')
     let g:lightline = {
-        \ 'colorscheme': 'solarized_dark',
-        \ 'component': {
-        \   'readonly': '%{&readonly?"⭤":""}',
-        \ },
-        \ 'separator': { 'left': '⮀', 'right': '⮂' },
-        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-        \ }
+                \ 'colorscheme': 'solarized_dark',
+                \ 'component': {
+                \   'readonly': '%{&readonly?"⭤":""}',
+                \ },
+                \ 'separator': { 'left': '⮀', 'right': '⮂' },
+                \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+                \ }
 else
     let g:lightline = {
-        \ 'colorscheme': 'solarized',
-        \ 'component': {
-        \   'readonly': '%{&readonly?"⭤":""}',
-        \ },
-        \ 'separator': { 'left': '⮀', 'right': '⮂' },
-        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-        \ }
+                \ 'colorscheme': 'solarized',
+                \ 'component': {
+                \   'readonly': '%{&readonly?"⭤":""}',
+                \ },
+                \ 'separator': { 'left': '⮀', 'right': '⮂' },
+                \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+                \ }
 endif
 
 "" indentline
@@ -506,6 +509,51 @@ set foldtext=foldCC#foldtext()
 let g:foldCCtext_maxchars = 120
 let g:foldCCtext_head = '"( ˘ω˘) "'
 let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
+
+"" vim-session
+"let g:session_directory = '~/dotfiles/.vim/tmp/.vim-session'
+"let g:session_autosave = 'yes'
+"let g:session_autoload = 'prompt'
+"let g:session_autosave_periodic = 1
+
+"" vim-reanimate
+let g:reanimate_save_dir = $HOME.'/dotfiles/.vim/tmp/.reanimate'
+let g:reanimate_default_save_name = 'latest'
+let g:reanimate_default_category = 'default'
+let g:reanimate_sessionoptions = 'curdir, folds, globals, help, localoptions, slash, tabpages, winsize'
+
+" lightline用function
+"function! Last_point()
+"    return reanimate#is_saved() ? reanimate#last_point() : "no save"
+"endfunction
+
+" オートコマンド
+augroup SavePoint
+    autocmd!
+    " 終了時に保存を行う
+    autocmd VimLeavePre * ReanimateSave
+    " バッファに書き込む時に一緒の保存する
+    autocmd BufWritePost * ReanimateSave
+    " CursorHold 時には ReanimateSaveCursorHold を使用する
+    autocmd CursorHold * ReanimateSaveCursorHold
+    " 自動的に復元する場合
+    "autocmd VimEnter * ReanimateLoad
+augroup END
+
+"function! s:event.load_pre(...)
+"    " 読み込み前に全てのバッファを保存
+"    :wall
+"    " 復元前にタブを削除する
+"    :tabonly
+"endfunction
+"
+"function! s:event.save_pre(...)
+"    " 保存前に args を削除する
+"    try
+"        :execute "argd *"
+"    catch
+"    endtry
+"endfunction
 
 
 " プラグイン インデントをon
@@ -566,23 +614,23 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 " .vimrcや.gvimrcの変更を反映するためのKey-mappingを定義する
 " Load .gvimrc after .vimrc edited at GVim.
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
-nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
+    nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-".vimrcや.gvimrcを変更すると、自動的に変更が反映されるようにする
-" Set augroup.
-augroup MyAutoCmd
-    autocmd!
-augroup END
+    ".vimrcや.gvimrcを変更すると、自動的に変更が反映されるようにする
+    " Set augroup.
+    augroup MyAutoCmd
+        autocmd!
+    augroup END
 
-if !has('gui_running') && !(has('win32') || has('win64'))
-    " .vimrcの再読込時にも色が変化するようにする
-    autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
-else
-    " .vimrcの再読込時にも色が変化するようにする
-    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
-                \if has('gui_running') | source $MYGVIMRC
-    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
-endif
+    if !has('gui_running') && !(has('win32') || has('win64'))
+        " .vimrcの再読込時にも色が変化するようにする
+        autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+    else
+        " .vimrcの再読込時にも色が変化するようにする
+        autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
+                    \if has('gui_running') | source $MYGVIMRC
+        autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
+    endif
 
-" }}}
+    " }}}
 
