@@ -31,6 +31,8 @@ NeoBundle 'akiomik/itermcolors-vim'
 if has('mac')
     NeoBundle 'suan/vim-instant-markdown'
     "let g:instant_markdown_slow = 1
+elseif has('win32')
+    NeoBundle 'kannokanno/previm'
 endif
 
 "" vim-gitgutter
@@ -422,8 +424,11 @@ let g:unite_enable_smart_case = 1
 let g:vimfiler_data_directory='~/dotfiles/.vim/tmp/.vimfiler'
 
 "" vim-instant-markdown
+"" previm
 if has('mac')
     "let g:instant_markdown_slow = 1
+elseif has('win32')
+    let g:previm_open_cmd = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 endif
 
 "" vim-gitgutter
