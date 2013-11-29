@@ -68,6 +68,12 @@ NeoBundle 'LeafCage/foldCC'
 "" vim-reanimate
 NeoBundle 'osyo-manga/vim-reanimate'
 
+"" vdebug
+NeoBundle 'joonty/vdebug'
+
+"" DBGPavim
+"NeoBundle 'brookhong/DBGPavim'
+
 
 "" colors
 NeoBundle 'tomasr/molokai'
@@ -151,6 +157,9 @@ set clipboard=unnamed
 
 " コマンドモードで補完を使用
 set wildmode=longest:full,full
+
+" スワップファイルを作らない
+set noswapfile
 
 "}}}
 
@@ -488,7 +497,7 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 "" gundo.vim
-let g:gundo_prefer_python3 = 1
+"let g:gundo_prefer_python3 = 1
 nnoremap <Leader>ud :GundoToggle<CR>
 
 "" lightline.vim
@@ -566,6 +575,16 @@ let g:reanimate_sessionoptions = 'curdir, folds, globals, localoptions, slash, t
 "    catch
 "    endtry
 "endfunction
+
+"" vdebug
+let g:vdebug_options = {}
+let g:vdebug_options['port'] = 9001
+let g:vdebug_options['path_maps'] = {'/vagrant': 'c:\Users\otaki\work\001_nbadev'}
+
+"" DBGPavim
+"let g:dbgPavimPort = 9001
+"let g:dbgPavimBreakAtEntry = 0
+"let g:dbgPavimPathMap = [['C:\Users\otaki\work\001_nbadev','/vagrant'],]
 
 
 " プラグイン インデントをon
