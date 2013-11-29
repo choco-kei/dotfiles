@@ -113,6 +113,9 @@ set nobackup
 " テンポラリディレクトリパス
 set directory=~/dotfiles/.vim/tmp
 
+" runtimepathの追加
+set runtimepath+=~/dotfiles/.vim/
+
 " バックスペースでなんでも消せるように
 set backspace=indent,eol,start
 
@@ -268,7 +271,7 @@ endif
 " タグ {{{
 "----------------------------------------------------------
 " タグファイルを指定
-set tags+=.tags
+set tags+=.tags,./.tags
 
 " 補完時に1行まるごと補完
 set showfulltag
@@ -529,7 +532,7 @@ let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 let g:reanimate_save_dir = $HOME.'/dotfiles/.vim/tmp/.reanimate'
 let g:reanimate_default_save_name = 'latest'
 let g:reanimate_default_category = 'default'
-let g:reanimate_sessionoptions = 'curdir, folds, globals, help, localoptions, slash, tabpages, winsize'
+let g:reanimate_sessionoptions = 'curdir, folds, globals, localoptions, slash, tabpages, winsize'
 
 " lightline用function
 "function! Last_point()
@@ -537,17 +540,17 @@ let g:reanimate_sessionoptions = 'curdir, folds, globals, help, localoptions, sl
 "endfunction
 
 " オートコマンド
-augroup SavePoint
-    autocmd!
-    " 終了時に保存を行う
-    autocmd VimLeavePre * ReanimateSave
-    " バッファに書き込む時に一緒の保存する
-    autocmd BufWritePost * ReanimateSave
-    " CursorHold 時には ReanimateSaveCursorHold を使用する
-    autocmd CursorHold * ReanimateSaveCursorHold
-    " 自動的に復元する場合
-    "autocmd VimEnter * ReanimateLoad
-augroup END
+"augroup SavePoint
+"    autocmd!
+"    " 終了時に保存を行う
+"    autocmd VimLeavePre * ReanimateSave
+"    " バッファに書き込む時に一緒の保存する
+"    autocmd BufWritePost * ReanimateSave
+"    " CursorHold 時には ReanimateSaveCursorHold を使用する
+"    autocmd CursorHold * ReanimateSaveCursorHold
+"    " 自動的に復元する場合
+"    "autocmd VimEnter * ReanimateLoad
+"augroup END
 
 "function! s:event.load_pre(...)
 "    " 読み込み前に全てのバッファを保存
