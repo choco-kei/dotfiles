@@ -29,7 +29,7 @@ nnoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 "" MacVim
 if has('gui_macvim')
     " 透明度
-    set transparency=4
+    set transparency=6
     " IM制御
     "set imdisable
     " 入力モードでIMを自動ON
