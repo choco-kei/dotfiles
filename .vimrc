@@ -65,9 +65,6 @@ NeoBundle 'Yggdroot/indentLine'
 "" foldCC
 NeoBundle 'LeafCage/foldCC'
 
-"" vim-reanimate
-NeoBundle 'osyo-manga/vim-reanimate'
-
 "" vdebug
 NeoBundle 'joonty/vdebug'
 
@@ -83,7 +80,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
-"NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
 
 "" indent
@@ -378,9 +375,6 @@ nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-
 nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
 nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
-" reanimate
-nnoremap <silent> [unite]rl :<C-u>Unite reanimate -default-action=reanimate_load<CR>
-nnoremap <silent> [unite]rs :<C-u>Unite reanimate -default-action=reanimate_save<CR>
 
 " jvgrep
 if has('win32')
@@ -539,30 +533,6 @@ let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 "let g:session_autosave = 'yes'
 "let g:session_autoload = 'prompt'
 "let g:session_autosave_periodic = 1
-
-"" vim-reanimate
-let g:reanimate_save_dir = $HOME.'/dotfiles/.vim/tmp/.reanimate'
-let g:reanimate_default_save_name = 'latest'
-let g:reanimate_default_category = 'default'
-let g:reanimate_sessionoptions = 'curdir, folds, globals, localoptions, slash, tabpages, winsize'
-
-" lightline用function
-"function! Last_point()
-"    return reanimate#is_saved() ? reanimate#last_point() : "no save"
-"endfunction
-
-" オートコマンド
-"augroup SavePoint
-"    autocmd!
-"    " 終了時に保存を行う
-"    autocmd VimLeavePre * ReanimateSave
-"    " バッファに書き込む時に一緒の保存する
-"    autocmd BufWritePost * ReanimateSave
-"    " CursorHold 時には ReanimateSaveCursorHold を使用する
-"    autocmd CursorHold * ReanimateSaveCursorHold
-"    " 自動的に復元する場合
-"    "autocmd VimEnter * ReanimateLoad
-"augroup END
 
 "function! s:event.load_pre(...)
 "    " 読み込み前に全てのバッファを保存
