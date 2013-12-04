@@ -582,7 +582,8 @@ let g:reanimate_sessionoptions = 'curdir, folds, globals, localoptions, slash, t
 "" vdebug
 let g:vdebug_options = {}
 let g:vdebug_options['port'] = 9001
-let g:vdebug_options['path_maps'] = {'/vagrant': 'c:\Users\otaki\work\001_nbadev'}
+let g:vdebug_options['path_maps'] = {'/vagrant': 'C:\Users\otaki\work\001_nbadev'}
+let g:vdebug_options['break_on_open'] = 0
 
 "" DBGPavim
 "let g:dbgPavimPort = 9001
