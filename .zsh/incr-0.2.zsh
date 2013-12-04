@@ -71,18 +71,18 @@ function show-prediction
 		buffer_org="$BUFFER"
 		comppostfuncs=(limit-completion)
 		zle complete-word
-		cursor_prd="$CURSOR"
-		buffer_prd="$BUFFER"
-		if [[ "$buffer_org[1,cursor_org]" == "$buffer_prd[1,cursor_org]" ]]; then
-			CURSOR="$cursor_org"
-			if [[ "$buffer_org" != "$buffer_prd" ]] || ((cursor_org != cursor_prd)); then
-				now_predict=1
-			fi
-		else
+		#cursor_prd="$CURSOR"
+		#buffer_prd="$BUFFER"
+		#if [[ "$buffer_org[1,cursor_org]" == "$buffer_prd[1,cursor_org]" ]]; then
+		#	CURSOR="$cursor_org"
+		#	if [[ "$buffer_org" != "$buffer_prd" ]] || ((cursor_org != cursor_prd)); then
+		#		now_predict=1
+		#	fi
+		#else
 			BUFFER="$buffer_org"
 			CURSOR="$cursor_org"
-		fi
-		echo -n "\e[32m"
+		#fi
+		#echo -n "\e[32m"
 	else
 		zle -M ""
 	fi
