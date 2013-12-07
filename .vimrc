@@ -53,6 +53,10 @@ NeoBundleLazy 'sjl/gundo.vim', {
             \   'commands': ['GundoToggle'],
             \ }}
 
+
+"" DBGPavim
+NeoBundle 'brookhong/DBGPavim'
+
 "" lightline.vim
 NeoBundle 'itchyny/lightline.vim'
 
@@ -66,10 +70,8 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'LeafCage/foldCC'
 
 "" vdebug
-NeoBundle 'joonty/vdebug'
+"NeoBundle 'joonty/vdebug'
 
-"" DBGPavim
-"NeoBundle 'brookhong/DBGPavim'
 
 
 "" colors
@@ -237,9 +239,6 @@ set foldmethod=marker
 set foldlevel=1
 set foldcolumn=0
 
-" PHPの折りたたみ設定
-let g:PHP_vintage_case_default_indent = 1
-let php_folding = 1
 
 " }}}
 
@@ -528,38 +527,19 @@ let g:foldCCtext_maxchars = 120
 let g:foldCCtext_head = '"( ˘ω˘) "'
 let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 
-"" vim-session
-"let g:session_directory = '~/dotfiles/.vim/tmp/.vim-session'
-"let g:session_autosave = 'yes'
-"let g:session_autoload = 'prompt'
-"let g:session_autosave_periodic = 1
-
-"function! s:event.load_pre(...)
-"    " 読み込み前に全てのバッファを保存
-"    :wall
-"    " 復元前にタブを削除する
-"    :tabonly
-"endfunction
-"
-"function! s:event.save_pre(...)
-"    " 保存前に args を削除する
-"    try
-"        :execute "argd *"
-"    catch
-"    endtry
-"endfunction
-
 "" vdebug
-let g:vdebug_options = {}
-let g:vdebug_options['port'] = 9001
-let g:vdebug_options['path_maps'] = {'/vagrant': 'C:\Users\otaki\work\001_nbadev'}
-let g:vdebug_options['break_on_open'] = 0
+"let g:vdebug_options = {}
+"let g:vdebug_options['port'] = 9001
+"let g:vdebug_options['path_maps'] = {'/vagrant': 'C:\Users\otaki\work\001_nbadev'}
+"let g:vdebug_options['break_on_open'] = 0
 
 "" DBGPavim
-"let g:dbgPavimPort = 9001
-"let g:dbgPavimBreakAtEntry = 0
-"let g:dbgPavimPathMap = [['C:\Users\otaki\work\001_nbadev','/vagrant'],]
-
+let g:dbgPavimPort = 9001
+let g:dbgPavimBreakAtEntry = 0
+let g:dbgPavimPathMap = [['C:/Users/otaki/work/001_nbadev','/vagrant'],]
+let g:dbgPavimKeyStepOver = '<F2>'
+let g:dbgPavimKeyStepInto = '<F3>'
+let g:dbgPavimKeyStepOut  = '<F4>'
 
 " プラグイン インデントをon
 filetype plugin indent on
@@ -619,23 +599,23 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 " .vimrcや.gvimrcの変更を反映するためのKey-mappingを定義する
 " Load .gvimrc after .vimrc edited at GVim.
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
-    nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
+nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-    ".vimrcや.gvimrcを変更すると、自動的に変更が反映されるようにする
-    " Set augroup.
-    augroup MyAutoCmd
-        autocmd!
-    augroup END
+"".vimrcや.gvimrcを変更すると、自動的に変更が反映されるようにする
+"" Set augroup.
+"augroup MyAutoCmd
+"    autocmd!
+"augroup END
+"
+"if !has('gui_running') && !(has('win32') || has('win64'))
+"    " .vimrcの再読込時にも色が変化するようにする
+"    autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+"else
+"    " .vimrcの再読込時にも色が変化するようにする
+"    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
+"                \if has('gui_running') | source $MYGVIMRC
+"    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
+"endif
 
-    if !has('gui_running') && !(has('win32') || has('win64'))
-        " .vimrcの再読込時にも色が変化するようにする
-        autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
-    else
-        " .vimrcの再読込時にも色が変化するようにする
-        autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC |
-                    \if has('gui_running') | source $MYGVIMRC
-        autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
-    endif
-
-    " }}}
+" }}}
 
