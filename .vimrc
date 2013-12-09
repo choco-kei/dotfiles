@@ -53,10 +53,6 @@ NeoBundleLazy 'sjl/gundo.vim', {
             \   'commands': ['GundoToggle'],
             \ }}
 
-
-"" DBGPavim
-NeoBundle 'brookhong/DBGPavim'
-
 "" lightline.vim
 NeoBundle 'itchyny/lightline.vim'
 
@@ -70,8 +66,10 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'LeafCage/foldCC'
 
 "" vdebug
-"NeoBundle 'joonty/vdebug'
+"NeoBundle 'choco-kei/vdebug'
 
+"" DBGPavim
+NeoBundle 'choco-kei/DBGPavim'
 
 
 "" colors
