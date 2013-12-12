@@ -83,6 +83,7 @@ NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
+NeoBundle 'StanAngeloff/php.vim'
 
 "" indent
 NeoBundle 'othree/html5.vim'
@@ -463,10 +464,7 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries = {
             \ 'default' : '',
             \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions',
-            \ 'php' : $HOME.'/dotfiles/.vim/dict/php.dict',
-            \ 'ruby' : $HOME.'/dotfiles/.vim/dict/ruby.dict',
-            \ 'python' : $HOME.'/dotfiles/.vim/dict/python.dict'
+            \ 'scheme' : $HOME.'/.gosh_completions'
             \ }
 
 " Define keyword.
@@ -487,7 +485,7 @@ let g:neocomplete#delimiter_patterns.ruby = ['.', '::']
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType php setlocal omnifunc=pythoncomplete#CompletePHP
+"autocmd FileType php setlocal omnifunc=phpomplete#CompletePHP
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -495,8 +493,8 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 " Include
