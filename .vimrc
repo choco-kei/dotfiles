@@ -350,11 +350,11 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
 " TABをスペースに変換
-"nnoremap <Leader>dt :<C-u>retab<CR>
+nnoremap <Leader>dt :<C-u>retab<CR>
 " CRを削除
 "nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR>
 " TAB CR削除
-nnoremap <silent> <Leader>dc :<C-u>%s/\r//ge<CR> :<C-u>noh<CR> :<C-u>retab<CR><ESC>
+nnoremap <silent> <Leader>dc :<C-u>retab<CR><ESC> :<C-u>%s/\r//<CR><ESC> :<C-u>noh<CR><ESC>
 
 "" unite.vim
 nnoremap [unite] <Nop>
@@ -451,6 +451,8 @@ let g:neocomplete#data_directory='~/dotfiles/.vim/tmp/.neocomplete'
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
+" Max list
+let g:neocomplete#max_list = 20
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
@@ -472,6 +474,37 @@ if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" Delimiter
+if !exists('g:neocomplete#delimiter_patterns')
+  let g:neocomplete#delimiter_patterns = {}
+endif
+" PHP -> :: \
+let g:neocomplete#delimiter_patterns.php = ['->', '::', '\']
+" Ruby . ::
+let g:neocomplete#delimiter_patterns.ruby = ['.', '::']
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType php setlocal omnifunc=pythoncomplete#CompletePHP
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+
+" Include
+if !exists('g:neocomplete#sources#include#paths')
+    let g:neocomplete#sources#include#paths = {}
+endif
+let g:neocomplete#sources#include#patterns = {}
+let g:neocomplete#filename#include#exprs = {}
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
