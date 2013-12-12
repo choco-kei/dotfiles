@@ -36,18 +36,18 @@ elseif has('win32')
 endif
 
 "" vim-gitgutter
-" vitの差分を表示
 " windowsで動かないっぽい？
 if has('mac')
     NeoBundle 'airblade/vim-gitgutter'
 endif
 
 "" neocomplete
-" 入力補完
 NeoBundle 'Shougo/neocomplete.vim'
 
+"" neosnippet
+NeoBundle 'Shougo/neosnippet'
+
 "" gundo.vim
-" 高機能なundo
 NeoBundleLazy 'sjl/gundo.vim', {
             \ 'autoload': {
             \   'commands': ['GundoToggle'],
@@ -349,9 +349,11 @@ cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
 
 " TABをスペースに変換
-nnoremap <Leader>dt :<C-u>%s/\t/    /g<CR><ESC>
+"nnoremap <Leader>dt :<C-u>retab<CR>
 " CRを削除
-nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR><ESC>
+"nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR>
+" TAB CR削除
+nnoremap <silent> <Leader>dc :<C-u>%s/\r//ge<CR> :<C-u>noh<CR> :<C-u>retab<CR><ESC>
 
 "" unite.vim
 nnoremap [unite] <Nop>
@@ -538,6 +540,37 @@ let g:dbgPavimPathMap = [['C:/Users/otaki/work/001_nbadev','/vagrant'],]
 let g:dbgPavimKeyStepOver = '<F2>'
 let g:dbgPavimKeyStepInto = '<F3>'
 let g:dbgPavimKeyStepOut  = '<F4>'
+
+"" neosnippet
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neosnippet#jumpable() ?
+"      \ "\<Plug>(neosnippet_expand_or_jump)"
+"      \: pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> pumvisible() ? "\<C-n>"
+      \: neosnippet#jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
+smap <expr><TAB> neosnippet#jumpable() ?
+      \"\<Plug>(neosnippet_expand_or_jump)"
+      \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+"let g:neosnippet#enable_preview = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+
 
 " プラグイン インデントをon
 filetype plugin indent on
