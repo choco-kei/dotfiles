@@ -74,7 +74,8 @@ NeoBundle 'choco-kei/DBGPavim'
 
 "" colors
 NeoBundle 'tomasr/molokai'
-NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'illicium/vim-colors-solarized'
 
 "" syntax
 NeoBundle 'hail2u/vim-css3-syntax'
