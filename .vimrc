@@ -49,9 +49,9 @@ NeoBundle 'Shougo/neosnippet'
 
 "" gundo.vim
 NeoBundleLazy 'sjl/gundo.vim', {
-            \ 'autoload': {
-            \   'commands': ['GundoToggle'],
-            \ }}
+      \ 'autoload': {
+      \   'commands': ['GundoToggle'],
+      \ }}
 
 "" lightline.vim
 NeoBundle 'itchyny/lightline.vim'
@@ -355,7 +355,7 @@ nnoremap <Leader>dt :<C-u>retab<CR>
 " CRを削除
 "nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//g<CR>
 " TAB CR削除
-nnoremap <silent> <Leader>dc :<C-u>retab<CR><ESC> :<C-u>%s/\r//<CR><ESC> :<C-u>noh<CR><ESC>
+nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>gg
 
 "" unite.vim
 nnoremap [unite] <Nop>
@@ -531,23 +531,23 @@ nnoremap <Leader>ud :GundoToggle<CR>
 "" lightline.vim
 " winのdark設定が反映しないので決め打ち
 if has('win32')
-    let g:lightline = {
-                \ 'colorscheme': 'solarized_dark',
-                \ 'component': {
-                \   'readonly': '%{&readonly?"⭤":""}',
-                \ },
-                \ 'separator': { 'left': '⮀', 'right': '⮂' },
-                \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-                \ }
+  let g:lightline = {
+        \ 'colorscheme': 'solarized_dark',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"⭤":""}',
+        \ },
+        \ 'separator': { 'left': '⮀', 'right': '⮂' },
+        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+        \ }
 else
-    let g:lightline = {
-                \ 'colorscheme': 'solarized',
-                \ 'component': {
-                \   'readonly': '%{&readonly?"⭤":""}',
-                \ },
-                \ 'separator': { 'left': '⮀', 'right': '⮂' },
-                \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-                \ }
+  let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'component': {
+        \   'readonly': '%{&readonly?"⭤":""}',
+        \ },
+        \ 'separator': { 'left': '⮀', 'right': '⮂' },
+        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+        \ }
 endif
 
 "" indentline
