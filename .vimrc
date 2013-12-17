@@ -89,7 +89,7 @@ NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'othree/html5.vim'
 
 "" No Repository
-NeoBundleLocal ~/dotfiles/.vim/bundle/user
+NeoBundleLocal expand('~/dotfiles/.vim/bundle/user');
 "NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 "NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
 "NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
@@ -419,7 +419,7 @@ endfor
 
 "" unite.vim
 " ディレクトリ変更
-let g:unite_data_directory='~/dotfiles/.vim/tmp/.unite'
+let g:unite_data_directory=expand('~/dotfiles/.vim/tmp/.unite')
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 " 大文字小文字を区別しない
@@ -428,7 +428,7 @@ let g:unite_enable_smart_case = 1
 
 "" vimfiler
 " ディレクトリ変更
-let g:vimfiler_data_directory='~/dotfiles/.vim/tmp/.vimfiler'
+let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/.vimfiler')
 
 "" vim-instant-markdown
 "" previm
@@ -447,7 +447,7 @@ endif
 
 "" neocomplete
 " ディレクトリ変更
-let g:neocomplete#data_directory='~/dotfiles/.vim/tmp/.neocomplete'
+let g:neocomplete#data_directory=expand('~/dotfiles/.vim/tmp/.neocomplete')
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -606,7 +606,7 @@ endif
 "let g:neosnippet#enable_preview = 1
 
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#snippets_directory=expand('~/dotfiles/.vim/snippets')
 
 
 " プラグイン インデントをon
