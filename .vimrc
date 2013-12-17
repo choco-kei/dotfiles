@@ -504,6 +504,11 @@ endif
 let g:neocomplete#sources#include#patterns = {}
 let g:neocomplete#filename#include#exprs = {}
 
+" Ctags
+let g:neocomplete#ctags_arguments = {
+      \ 'php': '--regex-php="/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/"'
+      \ }
+
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
