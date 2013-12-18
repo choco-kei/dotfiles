@@ -69,7 +69,7 @@ NeoBundle 'LeafCage/foldCC'
 "NeoBundle 'choco-kei/vdebug'
 
 "" DBGPavim
-NeoBundle 'choco-kei/DBGPavim'
+"NeoBundle 'choco-kei/DBGPavim'
 
 
 "" colors
@@ -83,7 +83,8 @@ NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'StanAngeloff/php.vim'
+"NeoBundle 'StanAngeloff/php.vim'
+NeoBundle 'paulyg/Vim-PHP-Stuff'
 
 "" indent
 NeoBundle 'othree/html5.vim'
@@ -425,6 +426,7 @@ let g:unite_enable_start_insert = 1
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
+let g:unite_source_file_mru_limit = 300
 
 "" vimfiler
 " ディレクトリ変更
@@ -571,12 +573,12 @@ let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 "let g:vdebug_options['break_on_open'] = 0
 
 "" DBGPavim
-let g:dbgPavimPort = 9001
-let g:dbgPavimBreakAtEntry = 0
-let g:dbgPavimPathMap = [['C:/Users/otaki/work/001_nbadev','/vagrant'],]
-let g:dbgPavimKeyStepOver = '<F2>'
-let g:dbgPavimKeyStepInto = '<F3>'
-let g:dbgPavimKeyStepOut  = '<F4>'
+"let g:dbgPavimPort = 9001
+"let g:dbgPavimBreakAtEntry = 0
+"let g:dbgPavimPathMap = [['C:/Users/otaki/work/001_nbadev','/vagrant'],]
+"let g:dbgPavimKeyStepOver = '<F2>'
+"let g:dbgPavimKeyStepInto = '<F3>'
+"let g:dbgPavimKeyStepOut  = '<F4>'
 
 "" neosnippet
 " <TAB>: completion.
