@@ -368,7 +368,7 @@ nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " file_mru
-nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_mru<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
