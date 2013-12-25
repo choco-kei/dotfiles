@@ -68,6 +68,10 @@ NeoBundle 'LeafCage/foldCC'
 "" vim-over
 NeoBundle 'osyo-manga/vim-over'
 
+"" yankround.vim
+NeoBundle 'LeafCage/yankround.vim'
+"" ctrlp.vim
+NeoBundle 'kien/ctrlp.vim'
 
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
@@ -633,6 +637,14 @@ nnoremap <silent> <Leader>m :OverCommandLine<CR>
 nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 " コピーした文字列をハイライト付きで置換
 "nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+"" yankround.vim
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 
 
 " プラグイン インデントをon
