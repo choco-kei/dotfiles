@@ -208,6 +208,13 @@ set ttyfast
 " 全角記号を1バイトとして扱う
 set ambiwidth=single
 
+" IMオン時にカーソルの色を変える
+"if has('multi_byte_ime') || has('xim')
+"  highlight Cursor guifg=NONE guibg=White
+"  highlight CursorIM guifg=NONE guibg=DarkRed
+"endif
+
+
 "}}}
 
 "----------------------------------------------------------
