@@ -378,13 +378,6 @@ nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
 nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
 
-" jvgrep
-if has('win32')
-    let g:unite_source_grep_command = 'jvgrep'
-    "let g:unite_source_grep_default_opts = '-exclude=''\.(git|svn|hg|bzr)'''
-    let g:unite_source_grep_default_opts = '-8'
-    "let g:unite_source_grep_recursive_opt = '-R'
-endif
 "
 "nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 "nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
@@ -427,6 +420,14 @@ let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 let g:unite_source_file_mru_limit = 300
+let g:unite_source_grep_encoding = 'utf-8'
+" jvgrep
+if has('win32')
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags)'''
+    let g:unite_source_grep_recursive_opt = '-R'
+endif
+
 
 "" vimfiler
 " ディレクトリ変更
