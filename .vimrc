@@ -22,6 +22,9 @@ NeoBundle 'Shougo/unite-outline'
 "" unite-tag
 NeoBundle 'tsukkee/unite-tag'
 
+"" unite-colorscheme
+NeoBundle 'ujihisa/unite-colorscheme'
+
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
@@ -84,6 +87,25 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'illicium/vim-colors-solarized'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'junegunn/seoul256.vim'
+NeoBundle 'noahfrederick/vim-hemisu'
+NeoBundle 'morhetz/gruvbox'
+NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'hamxiaoz/sonofobsidian_hamxiaoz'
+NeoBundle 'vim-scripts/rdark'
+NeoBundle 'hamxiaoz/sonofobsidian_hamxiaoz'
+NeoBundle 'vyshane/vydark-vim-color'
+NeoBundle 'chriskempson/tomorrow-theme'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'twerth/ir_black'
+NeoBundle 'vim-scripts/moria'
+NeoBundle 'fmoralesc/vim-vitamins'
+NeoBundle 'vim-scripts/tango.vim'
+NeoBundle 'vim-scripts/vylight'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'larssmit/vim-getafe'
 
 "" syntax
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -559,7 +581,7 @@ nnoremap <Leader>ud :GundoToggle<CR>
 " winのdark設定が反映しないので決め打ち
 if has('win32')
   let g:lightline = {
-        \ 'colorscheme': 'solarized_dark',
+        \ 'colorscheme': 'wombat',
         \ 'component': {
         \   'readonly': '%{&readonly?"⭤":""}',
         \ },
@@ -568,7 +590,7 @@ if has('win32')
         \ }
 else
   let g:lightline = {
-        \ 'colorscheme': 'solarized',
+        \ 'colorscheme': 'wombat',
         \ 'component': {
         \   'readonly': '%{&readonly?"⭤":""}',
         \ },
@@ -682,7 +704,8 @@ set background=dark
 "    execute 'autocmd GUIEnter * colorscheme' scheme
 "augroup END
 "execute 'colorscheme' scheme
-colorscheme solarized
+"colorscheme solarized
+colorscheme seoul256
 let g:solarized_italic=0
 highlight SpecialKey term=none gui=none cterm=none
 autocmd Colorscheme * highlight SpecialKey term=none gui=none
