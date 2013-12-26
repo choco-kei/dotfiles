@@ -438,12 +438,12 @@ let g:unite_source_file_mru_limit = 300
 let g:unite_source_grep_encoding = 'utf-8'
 " jvgrep
 if has('win32')
-    let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags)'''
-    let g:unite_source_grep_recursive_opt = '-R'
-    "let g:unite_source_grep_command = 'ag'
-    "let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    "let g:unite_source_grep_recursive_opt = ''
+    "let g:unite_source_grep_command = 'jvgrep'
+    "let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
+    "let g:unite_source_grep_recursive_opt = '-R'
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
 endif
 
 
