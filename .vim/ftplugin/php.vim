@@ -11,5 +11,9 @@ let php_noShortTags = 1
 let g:PHP_vintage_case_default_indent = 1
 
 " PHPの折りたたみ設定
-let php_folding = 1
+"let php_folding = 1
+set foldmethod=indent
+set foldlevel=2
+set foldnestmax=2
+
 
