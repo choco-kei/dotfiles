@@ -584,7 +584,7 @@ nnoremap <Leader>ud :GundoToggle<CR>
 " winのdark設定が反映しないので決め打ち
 if has('win32')
   let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'solarized_dark',
         \ 'component': {
         \   'readonly': '%{&readonly?"⭤":""}',
         \ },
@@ -593,7 +593,7 @@ if has('win32')
         \ }
 else
   let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'solarized',
         \ 'component': {
         \   'readonly': '%{&readonly?"⭤":""}',
         \ },
@@ -707,8 +707,7 @@ set background=dark
 "    execute 'autocmd GUIEnter * colorscheme' scheme
 "augroup END
 "execute 'colorscheme' scheme
-"colorscheme solarized
-colorscheme seoul256
+colorscheme solarized
 let g:solarized_italic=0
 highlight SpecialKey term=none gui=none cterm=none
 autocmd Colorscheme * highlight SpecialKey term=none gui=none

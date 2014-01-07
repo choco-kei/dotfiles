@@ -53,7 +53,6 @@ elseif has('win32')
     " 不可視文字のbold解除
     highlight SpecialKey gui=none
     " カラースキームの設定
-    "colorscheme solarized
-    colorscheme seoul256
+    colorscheme solarized
 endif
 
