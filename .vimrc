@@ -412,7 +412,7 @@ nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
-nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
 " grep検索結果を再呼び出し
 nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
