@@ -409,6 +409,7 @@ nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " file_mru
 nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_mru<CR>
+"nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
@@ -463,12 +464,12 @@ let g:unite_source_file_mru_limit = 300
 let g:unite_source_grep_encoding = 'utf-8'
 " jvgrep
 if has('win32')
-    "let g:unite_source_grep_command = 'jvgrep'
-    "let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
-    "let g:unite_source_grep_recursive_opt = '-R'
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
+    let g:unite_source_grep_recursive_opt = '-R'
+    "let g:unite_source_grep_command = 'ag'
+    "let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    "let g:unite_source_grep_recursive_opt = ''
 endif
 
 
@@ -747,6 +748,11 @@ nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 "                \if has('gui_running') | source $MYGVIMRC
 "    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 "endif
+
+" ローカル設定
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
 
 " }}}
 
