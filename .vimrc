@@ -76,6 +76,9 @@ NeoBundle 'LeafCage/yankround.vim'
 "" ctrlp.vim
 NeoBundle 'kien/ctrlp.vim'
 
+"" t9md/vim-quickhl
+NeoBundle 't9md/vim-quickhl'
+
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
 
@@ -676,6 +679,12 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
+"" vim-quickhl
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+nmap <Space>j <Plug>(quickhl-cword-toggle)
 
 " プラグイン インデントをon
 filetype plugin indent on
