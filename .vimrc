@@ -83,6 +83,7 @@ NeoBundle 'kien/ctrlp.vim'
 "NeoBundle 'choco-kei/DBGPavim'
 
 
+
 "" colors
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'altercation/vim-colors-solarized'
@@ -409,7 +410,8 @@ nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " file_mru
 nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_mru<CR>
-"nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+" history/yank
+nnoremap <silent> [unite]y :<C-u>:Unite history/yank<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
@@ -462,6 +464,8 @@ let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 let g:unite_source_file_mru_limit = 300
 let g:unite_source_grep_encoding = 'utf-8'
+" history/yankの有効化
+let g:unite_source_history_yank_enable = 1
 " jvgrep
 if has('win32')
     let g:unite_source_grep_command = 'jvgrep'
