@@ -79,6 +79,10 @@ NeoBundle 'kien/ctrlp.vim'
 "" t9md/vim-quickhl
 NeoBundle 't9md/vim-quickhl'
 
+"" vim-anzu
+NeoBundle 'osyo-manga/vim-anzu'
+
+
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
 
@@ -97,7 +101,6 @@ NeoBundle 'junegunn/seoul256.vim'
 NeoBundle 'noahfrederick/vim-hemisu'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle '29decibel/codeschool-vim-theme'
-NeoBundle 'hamxiaoz/sonofobsidian_hamxiaoz'
 NeoBundle 'vim-scripts/rdark'
 NeoBundle 'hamxiaoz/sonofobsidian_hamxiaoz'
 NeoBundle 'vyshane/vydark-vim-color'
@@ -220,6 +223,9 @@ endif
 
 " 開始時の挨拶を表示しない
 set shortmess+=I
+
+" 検索ループ時のメッセージを表示しない
+set shortmess+=s
 
 " カレント行のハイライト
 set cursorline
@@ -349,15 +355,23 @@ set fileformats=unix
 "----------------------------------------------------------
 " キーマップ {{{
 "----------------------------------------------------------
-
+"
 " 検索時にヒットした行を画面中央に表示
-nnoremap n  nzz
-nnoremap N  Nzz
+nmap n <Plug>(anzu-n)
+nmap N <Plug>(anzu-N)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+"nmap n nzz
+"nmap N Nzz
+"nmap nzz <Plug>(anzu-mode-n)
+"nmap Nzz <Plug>(anzu-mode-N)
+"nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
+"nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
 " +単語検索と文字列検索に置き換え
-nnoremap *  g*zz
-nnoremap #  g#zz
-nnoremap g* *zz
-nnoremap g# #zz
+"nnoremap * g*zz
+"nnoremap g* *zz
+"nnoremap # g#zz
+"nnoremap g# #zz
 
 " Ctrl + hjkl でウィンドウ間を移動
 nnoremap <C-h> <C-w>h
@@ -591,24 +605,28 @@ nnoremap <Leader>ud :GundoToggle<CR>
 "" lightline.vim
 " winのdark設定が反映しないので決め打ち
 if has('win32')
-  let g:lightline = {
-        \ 'colorscheme': 'solarized_dark',
-        \ 'component': {
-        \   'readonly': '%{&readonly?"⭤":""}',
-        \ },
-        \ 'separator': { 'left': '⮀', 'right': '⮂' },
-        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-        \ }
+  let llcolor = 'solarized_dark'
 else
-  let g:lightline = {
-        \ 'colorscheme': 'solarized',
-        \ 'component': {
-        \   'readonly': '%{&readonly?"⭤":""}',
-        \ },
-        \ 'separator': { 'left': '⮀', 'right': '⮂' },
-        \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-        \ }
+  let llcolor = 'solarized'
 endif
+let g:lightline = {
+      \ 'colorscheme': g:llcolor,
+      \ 'active': {
+      \   'left': [
+      \     ['mode', 'paste'],
+      \     ['readonly', 'filename', 'modified'],
+      \     ['anzu']
+      \   ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ },
+      \ 'component_function': {
+      \   'anzu': 'anzu#search_status'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 
 "" indentline
 let g:indentLine_char = '┊'
@@ -685,6 +703,18 @@ xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
 nmap <Space>j <Plug>(quickhl-cword-toggle)
+
+"" vim-anzu
+let g:anzu_bottomtop_word = '( ˘ω˘)ｳｪ'
+let g:anzu_topbottom_word = '( ˘ω˘)ｼﾀ'
+let g:anzu_status_format = '%p[%i/%l] %w'
+set statusline=%{anzu#search_status()}
+augroup vim-anzu
+  " 一定時間キー入力がないとき、ウインドウを移動したとき、タブを移動したときに
+  " 検索ヒット数の表示を消去する
+  autocmd!
+  autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
+augroup END
 
 " プラグイン インデントをon
 filetype plugin indent on
