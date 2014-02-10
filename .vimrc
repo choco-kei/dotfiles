@@ -356,22 +356,12 @@ set fileformats=unix
 " キーマップ {{{
 "----------------------------------------------------------
 "
-" 検索時にヒットした行を画面中央に表示
-nmap n <Plug>(anzu-n)
-nmap N <Plug>(anzu-N)
-nmap * <Plug>(anzu-star)
-nmap # <Plug>(anzu-sharp)
-"nmap n nzz
-"nmap N Nzz
-"nmap nzz <Plug>(anzu-mode-n)
-"nmap Nzz <Plug>(anzu-mode-N)
-"nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
-"nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
-" +単語検索と文字列検索に置き換え
-"nnoremap * g*zz
-"nnoremap g* *zz
-"nnoremap # g#zz
-"nnoremap g# #zz
+" 検索時にヒットした行を画面中央に表示 折りたたみを展開
+nmap n <Plug>(anzu-n)zzzv
+nmap N <Plug>(anzu-N)zzzv
+" */#をsmartcaseに対応できるように置き換え
+nmap * /<C-r><C-w><CR>N
+nmap # ?<C-r><C-w><CR>N
 
 " Ctrl + hjkl でウィンドウ間を移動
 nnoremap <C-h> <C-w>h
