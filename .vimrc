@@ -87,6 +87,37 @@ NeoBundle 'kana/vim-operator-user'
 "" vim-operator-replace
 NeoBundle 'kana/vim-operator-replace'
 
+"" vim-textobj-user
+NeoBundle 'kana/vim-textobj-user'
+
+" カーソル行
+" al, il
+NeoBundle "kana/vim-textobj-line"
+
+" 日付と時刻
+" ada, ida
+NeoBundle "kana/vim-textobj-datetime"
+
+" コメント
+" ac, ic
+NeoBundle "thinca/vim-textobj-comment"
+
+" ASCII文字とマルチバイト文字の境界を区切り
+" am, im
+NeoBundle "deton/textobj-mbboundary.vim"
+
+" URL
+" au, iu
+NeoBundle "mattn/vim-textobj-url"
+
+" 任意の複数の括弧のいずれか
+" asb, isb
+NeoBundle "osyo-manga/vim-textobj-multiblock"
+
+" インデントの空白行
+" ao, io
+NeoBundle "glts/vim-textobj-indblock"
+
 
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
@@ -714,6 +745,12 @@ augroup END
 
 "" vim-operator-replace
 map s <Plug>(operator-replace)
+
+"" vim-textobj-user
+omap ab <Plug>(textobj-multiblock-a)
+omap ib <Plug>(textobj-multiblock-i)
+vmap ab <Plug>(textobj-multiblock-a)
+vmap ib <Plug>(textobj-multiblock-i)
 
 
 " プラグイン インデントをon
