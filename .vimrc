@@ -76,11 +76,16 @@ NeoBundle 'LeafCage/yankround.vim'
 "" ctrlp.vim
 NeoBundle 'kien/ctrlp.vim'
 
-"" t9md/vim-quickhl
+"" vim-quickhl
 NeoBundle 't9md/vim-quickhl'
 
 "" vim-anzu
 NeoBundle 'osyo-manga/vim-anzu'
+
+"" vim-operator-user
+NeoBundle 'kana/vim-operator-user'
+"" vim-operator-replace
+NeoBundle 'kana/vim-operator-replace'
 
 
 "" vdebug
@@ -706,6 +711,10 @@ augroup vim-anzu
   autocmd!
   autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
 augroup END
+
+"" vim-operator-replace
+map s <Plug>(operator-replace)
+
 
 " プラグイン インデントをon
 filetype plugin indent on
