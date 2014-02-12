@@ -677,6 +677,9 @@ let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
 "let g:dbgPavimKeyStepOut  = '<F4>'
 
 "" neosnippet
+let g:neosnippet#disable_runtime_snippets = {
+      \ '_': 1,
+      \ }
 " <TAB>: completion.
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
