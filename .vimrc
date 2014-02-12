@@ -620,6 +620,7 @@ let g:lightline = {
 
 "" indentline
 let g:indentLine_char = '┊'
+let g:indentLine_bufNameExclude = ['\[unite\].*']
 
 "" fonldCC
 set foldtext=foldCC#foldtext()
