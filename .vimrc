@@ -73,8 +73,6 @@ NeoBundle 'osyo-manga/vim-over'
 
 "" yankround.vim
 NeoBundle 'LeafCage/yankround.vim'
-"" ctrlp.vim
-NeoBundle 'kien/ctrlp.vim'
 
 "" vim-quickhl
 NeoBundle 't9md/vim-quickhl'
@@ -453,8 +451,8 @@ nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " file_mru
 nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_mru<CR>
-" history/yank
-nnoremap <silent> [unite]y :<C-u>:Unite history/yank<CR>
+" yankround
+nnoremap <silent> [unite]y :<C-u>:Unite yankround<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
@@ -723,6 +721,8 @@ nmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
+let g:yankround_dir = '~/dotfiles/.vim/tmp/.yankround/'
+let g:yankround_max_history = 50
 
 "" vim-quickhl
 nmap <Space>m <Plug>(quickhl-manual-this)
