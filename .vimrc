@@ -24,6 +24,8 @@ NeoBundle 'tsukkee/unite-tag'
 
 "" unite-colorscheme
 NeoBundle 'ujihisa/unite-colorscheme'
+"" unite-quickfix
+NeoBundle 'osyo-manga/unite-quickfix'
 
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
@@ -253,9 +255,9 @@ set list
 " 不可視文字の設定
 " winだとユニコード文字でエラー出るっぽいので回避
 if has('win32')
-    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,eol:\ 
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:%,eol:\ 
 else
-    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,nbsp:%
+    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,nbsp:%,eol:\ 
 endif
 
 " 開始時の挨拶を表示しない
@@ -520,6 +522,9 @@ if has('win32')
     "let g:unite_source_grep_recursive_opt = ''
 endif
 
+"" unite-quickfix
+let g:unite_quickfix_is_multiline = 1
+let g:unite_quickfix_filename_is_pathshorten = 0
 
 "" vimfiler
 " ディレクトリ変更
@@ -644,6 +649,11 @@ let g:lightline = {
       \     ['mode', 'paste'],
       \     ['readonly', 'filename', 'modified'],
       \     ['anzu']
+      \   ],
+      \   'right':[
+      \     ['syntastic', 'lineinfo'],
+      \     ['percent'],
+      \     ['fileformat', 'fileencoding', 'filetype']
       \   ]
       \ },
       \ 'component_function': {
@@ -656,6 +666,12 @@ let g:lightline = {
       \   'fileencoding': 'LlFileencoding',
       \   'mode': 'LlMode',
       \   'anzu': 'anzu#search_status'
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
       \ },
       \ 'separator': { 'left': '⮀', 'right': '⮂' },
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
@@ -713,6 +729,16 @@ function! LlMode()
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost,BufReadPost *.php,*.js,*.css,*.html call s:syntastic()
+augroup END
+
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
 endfunction
 
 " 他プラグインのステータスライン上書き
@@ -825,9 +851,9 @@ vmap ib <Plug>(textobj-multiblock-i)
 
 "" syntastic
 nmap <Leader>sc :SyntasticCheck<CR>
-" とりあえずpassive
+" とりあえずactive
 let g:syntastic_mode_map = {
-      \ 'mode': 'passive',
+      \ 'mode': 'active',
       \ 'active_filetypes': [],
       \ 'passive_filetypes': []
       \ }
@@ -835,10 +861,13 @@ let g:syntastic_mode_map = {
 let g:syntastic_check_on_open = 1
 " マウスオーバーでポップアップ
 let g:syntastic_enable_balloons = 0
-" エラー時に自動でQuickfixを開かない
+" エラー時に自動でQuickfix
 let g:syntastic_auto_loc_list = 0
 " phpcsの構文チェックをPSR2に変更
-let g:syntastic_php_phpcs_args = '--report=csv -n --standard=PSR2'
+let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
+" location_listをunite-quickfixで表示
+let g:syntastic_always_populate_loc_list = 1
+
 
 
 " プラグイン インデントをon
