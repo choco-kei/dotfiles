@@ -80,6 +80,9 @@ NeoBundle 't9md/vim-quickhl'
 "" vim-anzu
 NeoBundle 'osyo-manga/vim-anzu'
 
+"" syntastic
+NeoBundle 'scrooloose/syntastic'
+
 "" vim-operator-user
 NeoBundle 'kana/vim-operator-user'
 "" vim-operator-replace
@@ -819,6 +822,23 @@ omap ab <Plug>(textobj-multiblock-a)
 omap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
+
+"" syntastic
+nmap <Leader>sc :SyntasticCheck<CR>
+" とりあえずpassive
+let g:syntastic_mode_map = {
+      \ 'mode': 'passive',
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': []
+      \ }
+" ファイルオープン時にチェック
+let g:syntastic_check_on_open = 1
+" マウスオーバーでポップアップ
+let g:syntastic_enable_balloons = 0
+" エラー時に自動でQuickfixを開かない
+let g:syntastic_auto_loc_list = 0
+" phpcsの構文チェックをPSR2に変更
+let g:syntastic_php_phpcs_args = '--report=csv -n --standard=PSR2'
 
 
 " プラグイン インデントをon
