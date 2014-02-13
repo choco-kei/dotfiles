@@ -634,7 +634,8 @@ else
   let llcolor = 'solarized'
 endif
 let g:lightline = {
-      \ 'colorscheme': g:llcolor,
+      \ 'colorscheme': llcolor,
+      \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
@@ -642,15 +643,79 @@ let g:lightline = {
       \     ['anzu']
       \   ]
       \ },
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ },
       \ 'component_function': {
+      \   'readonly': 'LlReadonly',
+      \   'modified': 'LlModified',
+      \   'fugitive': 'LlFugitive',
+      \   'filename': 'LlFilename',
+      \   'fileformat': 'LlFileformat',
+      \   'filetype': 'LlFiletype',
+      \   'fileencoding': 'LlFileencoding',
+      \   'mode': 'LlMode',
       \   'anzu': 'anzu#search_status'
       \ },
       \ 'separator': { 'left': '⮀', 'right': '⮂' },
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
+
+function! LlModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LlReadonly()
+  return &ft !~? 'help' && &readonly ? '⭤' : ''
+endfunction
+
+function! LlFilename()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ '__Gundo' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != fname ? fname : '[No Name]')
+endfunction
+
+function! LlFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = ''  " edit here for cool mark
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LlFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LlFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! LlFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LlMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+" 他プラグインのステータスライン上書き
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 
 "" indentline
 let g:indentLine_char = '┊'
