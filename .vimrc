@@ -452,6 +452,10 @@ nmap <Leader>u [unite]
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 " file
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" file_rec
+nnoremap <silent> [unite]fr :<C-u>Unite file_rec<CR>
+" file_rec/async
+nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " file_mru
@@ -515,12 +519,15 @@ let g:unite_source_history_yank_enable = 1
 " jvgrep
 if has('win32')
     let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '-8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
+    let g:unite_source_grep_default_opts = '-i -8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
     let g:unite_source_grep_recursive_opt = '-R'
     "let g:unite_source_grep_command = 'ag'
     "let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
     "let g:unite_source_grep_recursive_opt = ''
 endif
+" file_rec/async
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
+let g:unite_source_rec_max_cache_files = 5000
 
 "" unite-quickfix
 let g:unite_quickfix_is_multiline = 1
@@ -748,7 +755,7 @@ let g:vimshell_force_overwrite_statusline = 0
 
 "" indentline
 let g:indentLine_char = '┊'
-let g:indentLine_bufNameExclude = ['\[unite\].*']
+let g:indentLine_bufNameExclude = ['\[unite\].*', 'vimfiler.*']
 
 "" fonldCC
 set foldtext=foldCC#foldtext()
@@ -816,8 +823,8 @@ nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
+nmap <C-p> <Plug>(yankround-next)
+nmap <C-n> <Plug>(yankround-prev)
 let g:yankround_dir = '~/dotfiles/.vim/tmp/.yankround/'
 let g:yankround_max_history = 50
 
