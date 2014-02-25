@@ -874,6 +874,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
 " location_listをunite-quickfixで表示
 let g:syntastic_always_populate_loc_list = 1
+" ステータスライン表示を変更
+let g:syntastic_stl_format = '%E{[Syntax: line:%F (%t)]}'
 
 
 
