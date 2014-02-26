@@ -16,6 +16,9 @@ NeoBundle 'Shougo/neobundle.vim'
 "" unite.vim
 NeoBundle 'Shougo/unite.vim'
 
+"" neomru
+NeoBundle 'Shougo/neomru.vim'
+
 "" unite-outline
 NeoBundle 'Shougo/unite-outline'
 
@@ -470,8 +473,10 @@ nnoremap <silent> [unite]fr :<C-u>Unite file_rec<CR>
 nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-" file_mru
-nnoremap <silent> [unite]m :<C-u>:call unite#sources#mru#_save()<CR>:Unite file_mru<CR>
+" neomru
+" vimが落ちるとmruが保存されないのでその対策
+nnoremap <silent> [unite]m :<C-u>:call neomru#_save()<CR>:Unite neomru/file<CR>
+nnoremap <silent> [unite]d :<C-u>:Unite neomru/directory<CR>
 " yankround
 nnoremap <silent> [unite]y :<C-u>:Unite yankround<CR>
 " grep
@@ -524,7 +529,6 @@ let g:unite_enable_start_insert = 1
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
-let g:unite_source_file_mru_limit = 300
 let g:unite_source_grep_encoding = 'utf-8'
 " history/yankの有効化
 let g:unite_source_history_yank_enable = 1
@@ -540,6 +544,13 @@ endif
 " file_rec/async
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
 let g:unite_source_rec_max_cache_files = 5000
+
+"" neomru
+let g:neomru#file_mru_path      = expand('~/dotfiles/.vim/tmp/neomru/file')
+let g:neomru#directory_mru_path = expand('~/dotfiles/.vim/tmp/neomru/directory')
+let g:neomru#time_format        = '(%Y.%m.%d %H:%M:%S) '
+let g:neomru#filename_format    = ':~:.'
+"let g:neomru#update_interval    = 300
 
 "" unite-quickfix
 let g:unite_quickfix_is_multiline = 1
@@ -651,7 +662,7 @@ inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 
 "" gundo.vim
 "let g:gundo_prefer_python3 = 1
-nnoremap <Leader>ud :GundoToggle<CR>
+nnoremap <Leader>gd :GundoToggle<CR>
 
 "" lightline.vim
 " winのdark設定が反映しないので決め打ち
