@@ -24,8 +24,13 @@ NeoBundle 'tsukkee/unite-tag'
 
 "" unite-colorscheme
 NeoBundle 'ujihisa/unite-colorscheme'
+
 "" unite-quickfix
 NeoBundle 'osyo-manga/unite-quickfix'
+
+"" unite-qfixhowm
+NeoBundle 'osyo-manga/unite-qfixhowm'
+
 
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
@@ -95,31 +100,37 @@ NeoBundle 'kana/vim-textobj-user'
 
 " カーソル行
 " al, il
-NeoBundle "kana/vim-textobj-line"
+NeoBundle 'kana/vim-textobj-line'
 
 " 日付と時刻
 " ada, ida
-NeoBundle "kana/vim-textobj-datetime"
+NeoBundle 'kana/vim-textobj-datetime'
 
 " コメント
 " ac, ic
-NeoBundle "thinca/vim-textobj-comment"
+NeoBundle 'thinca/vim-textobj-comment'
 
 " ASCII文字とマルチバイト文字の境界を区切り
 " am, im
-NeoBundle "deton/textobj-mbboundary.vim"
+NeoBundle 'deton/textobj-mbboundary.vim'
 
 " URL
 " au, iu
-NeoBundle "mattn/vim-textobj-url"
+NeoBundle 'mattn/vim-textobj-url'
 
 " 任意の複数の括弧のいずれか
 " asb, isb
-NeoBundle "osyo-manga/vim-textobj-multiblock"
+NeoBundle 'osyo-manga/vim-textobj-multiblock'
 
 " インデントの空白行
 " ao, io
-NeoBundle "glts/vim-textobj-indblock"
+NeoBundle 'glts/vim-textobj-indblock'
+
+"" QFixHowm
+NeoBundle 'fuenor/qfixhowm'
+
+"" mtachit
+NeoBundle 'tmhedberg/matchit'
 
 
 "" vdebug
@@ -415,8 +426,8 @@ nnoremap <S-Up>    <C-w>-
 nnoremap <S-Down>  <C-w>+
 
 " TABにて対応ペアにジャンプ
-nnoremap <Tab> %
-vnoremap <Tab> %
+nmap <Tab> %
+vmap <Tab> %
 
 "" コマンドラインモード
 " 行頭に移動
@@ -857,7 +868,7 @@ vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
 "" syntastic
-nmap <Leader>sc :SyntasticCheck<CR>
+"nmap <Leader>sc :SyntasticCheck<CR>
 " とりあえずactive
 let g:syntastic_mode_map = {
       \ 'mode': 'active',
@@ -877,6 +888,19 @@ let g:syntastic_always_populate_loc_list = 1
 " ステータスライン表示を変更
 let g:syntastic_stl_format = '%E{[Syntax: line:%F (%t)]}'
 
+"" QFixHowm
+let QFixHowm_Key = 'g'
+let howm_dir          = '~/memo'
+let howm_filename     = '%Y/%m/%Y-%m-%d-%H%M%S.md'
+let howm_fileencoding = 'utf-8'
+let howm_fileformat   = 'unix'
+let QFixHowm_FileType = 'markdown'
+let QFixHowm_Title    = '#'
+let QFixHowm_SaveTime = -1
+let QFixHowm_Template = [
+      \ "%TITLE% ",
+      \ ""
+      \ ]
 
 
 " プラグイン インデントをon
