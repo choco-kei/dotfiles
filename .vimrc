@@ -523,7 +523,7 @@ endfor
 
 "" unite.vim
 " ディレクトリ変更
-let g:unite_data_directory=expand('~/dotfiles/.vim/tmp/.unite')
+let g:unite_data_directory=expand('~/dotfiles/.vim/tmp/unite')
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 " 大文字小文字を区別しない
@@ -558,7 +558,7 @@ let g:unite_quickfix_filename_is_pathshorten = 0
 
 "" vimfiler
 " ディレクトリ変更
-let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/.vimfiler')
+let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/vimfiler')
 
 "" vim-instant-markdown
 "" previm
@@ -577,7 +577,7 @@ endif
 
 "" neocomplete
 " ディレクトリ変更
-let g:neocomplete#data_directory=expand('~/dotfiles/.vim/tmp/.neocomplete')
+let g:neocomplete#data_directory=expand('~/dotfiles/.vim/tmp/neocomplete')
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -848,7 +848,7 @@ nmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-next)
 nmap <C-n> <Plug>(yankround-prev)
-let g:yankround_dir = '~/dotfiles/.vim/tmp/.yankround/'
+let g:yankround_dir = expand('~/dotfiles/.vim/tmp/yankround/')
 let g:yankround_max_history = 50
 
 "" vim-quickhl
