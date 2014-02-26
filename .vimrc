@@ -208,6 +208,7 @@ set directory=~/dotfiles/.vim/tmp
 
 " runtimepathの追加
 set runtimepath+=~/dotfiles/.vim/
+set runtimepath+=~/dotfiles/.vim/after/
 
 " バックスペースでなんでも消せるように
 set backspace=indent,eol,start
@@ -985,4 +986,3 @@ if filereadable(expand('~/.vimrc.local'))
 endif
 
 " }}}
-
