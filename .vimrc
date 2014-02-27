@@ -475,10 +475,14 @@ nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
 " vimが落ちるとmruが保存されないのでその対策
-nnoremap <silent> [unite]m :<C-u>:call neomru#_save()<CR>:Unite neomru/file<CR>
-nnoremap <silent> [unite]d :<C-u>:Unite neomru/directory<CR>
+nnoremap <silent> [unite]m :<C-u>call g:savemru()<CR>
+function! g:savemru()
+  Unite neomru/file
+  call neomru#_save()
+endfunction
+nnoremap <silent> [unite]d :<C-u>Unite neomru/directory<CR>
 " yankround
-nnoremap <silent> [unite]y :<C-u>:Unite yankround<CR>
+nnoremap <silent> [unite]y :<C-u>Unite yankround<CR>
 " grep
 nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語からgrep
@@ -530,6 +534,9 @@ let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 let g:unite_source_grep_encoding = 'utf-8'
+"時間のフォーマット
+let g:unite_source_buffer_time_format = '(%Y.%m.%d %H:%M:%S) '
+
 " history/yankの有効化
 let g:unite_source_history_yank_enable = 1
 " jvgrep
