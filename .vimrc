@@ -34,6 +34,8 @@ NeoBundle 'osyo-manga/unite-quickfix'
 "" unite-qfixhowm
 NeoBundle 'osyo-manga/unite-qfixhowm'
 
+"" vim-qfreplace
+NeoBundle 'thinca/vim-qfreplace'
 
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
@@ -270,9 +272,9 @@ set list
 " 不可視文字の設定
 " winだとユニコード文字でエラー出るっぽいので回避
 if has('win32')
-    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:%,eol:\ 
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,eol:\ ,nbsp:%
 else
-    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,nbsp:%,eol:\ 
+    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,eol:\ ,nbsp:%
 endif
 
 " 開始時の挨拶を表示しない
@@ -972,6 +974,9 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 if has('mac')
     let $LUA_DLL='/usr/local/lib/liblua.dylib'
 endif
+
+" 保存時に行末スペースを削除
+autocmd BufWritePre * %s/\s\+$//e
 
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
