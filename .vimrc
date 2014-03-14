@@ -494,6 +494,27 @@ nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
 nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
 
+function! s:UniteMapping()
+  " C-gで閉じる
+  imap <buffer><C-g> <Plug>(unite_exit)
+  " マークを変更
+  nmap <silent> <buffer> J <Plug>(unite_toggle_mark_current_candidate)
+  nmap <silent> <buffer> K <Plug>(unite_toggle_mark_current_candidate_up)
+endfunction
+
+autocmd FileType unite call s:UniteMapping()
+
+function! s:VimFilerMapping()
+  " マークを変更
+  nmap <buffer> J <Plug>(vimfiler_toggle_mark_current_line)
+  nmap <buffer> K <Plug>(vimfiler_toggle_mark_current_line_up)
+  nmap <buffer> vv <Plug>(vimfiler_toggle_mark_all_lines)
+  nmap <buffer> vu <Plug>(vimfiler_clear_mark_all_lines)
+endfunction
+
+autocmd FileType vimfiler call s:VimFilerMapping()
+
+
 "
 "nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 "nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
