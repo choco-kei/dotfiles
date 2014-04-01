@@ -137,6 +137,12 @@ NeoBundle 'fuenor/qfixhowm'
 "" mtachit
 NeoBundle 'tmhedberg/matchit'
 
+"" vim-easymotion
+NeoBundle 'Lokaltog/vim-easymotion'
+
+"" vim-repeat
+NeoBundle 'tpope/vim-repeat'
+
 
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
@@ -864,10 +870,12 @@ endif
 let g:neosnippet#snippets_directory=expand('~/dotfiles/.vim/snippets')
 
 "" vim-over
+nnoremap [vim-over] <Nop>
+nmap <Leader>m [vim-over]
 " over.vimの起動
-nnoremap <silent> <Leader>m :OverCommandLine<CR>
+nnoremap <silent> [vim-over]s :OverCommandLine<CR>
 " カーソル下の単語をハイライト付きで置換
-nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+nnoremap <silent> [vim-over]c :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 " コピーした文字列をハイライト付きで置換
 "nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
@@ -928,7 +936,7 @@ let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
 " location_listをunite-quickfixで表示
 let g:syntastic_always_populate_loc_list = 1
 " ステータスライン表示を変更
-let g:syntastic_stl_format = '%E{[Syntax: line:%F (%t)]}'
+let g:syntastic_stl_format = '%E{[Syntax: line:%F (%e)]}'
 
 "" QFixHowm
 let QFixHowm_Key = 'g'
@@ -943,6 +951,25 @@ let QFixHowm_Template = [
       \ "%TITLE% ",
       \ ""
       \ ]
+
+"" vim-easymotion
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0
+let g:EasyMotion_use_upper = 0
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_use_migemo = 1
+" find motion
+map f <Plug>(easymotion-bd-fl)
+map F <Plug>(easymotion-bd-tl)
+" 2-keys find motion
+nmap s <Plug>(easymotion-s2)
+xmap s <Plug>(easymotion-s2)
+omap z <Plug>(easymotion-s)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 
 
 " プラグイン インデントをon
