@@ -96,7 +96,8 @@ setopt hist_no_store
 
 ## 補完関連
 # zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+#fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(~/.zsh/zsh-completions/src $fpath)
 
 # 自動インクリメンタル補完(incr.zsh)
 [ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
@@ -226,7 +227,7 @@ esac
 #        else
 #            tmux new-session && echo "tmux created new session"
 #        fi
-#    fi  
+#    fi
 #fi
 
 # tmux status
