@@ -37,6 +37,16 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "" vim-qfreplace
 NeoBundle 'thinca/vim-qfreplace'
 
+"" vimproc
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+      \ },
+      \ }
+
 "" itermcolors-vim
 " vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
@@ -580,15 +590,17 @@ let g:unite_source_buffer_time_format = '(%Y.%m.%d %H:%M:%S) '
 
 " history/yankの有効化
 let g:unite_source_history_yank_enable = 1
-" jvgrep
+" jvgrep/ag
 if has('win32')
-    let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '-i -8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
-    let g:unite_source_grep_recursive_opt = '-R'
-    "let g:unite_source_grep_command = 'ag'
-    "let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    "let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_command = 'jvgrep'
+  let g:unite_source_grep_default_opts = '-i -8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
+  let g:unite_source_grep_recursive_opt = '-R'
+elseif has('mac')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
 endif
+
 " file_rec/async
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
 let g:unite_source_rec_max_cache_files = 5000
