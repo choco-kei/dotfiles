@@ -621,6 +621,8 @@ let g:unite_quickfix_filename_is_pathshorten = 0
 let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/vimfiler')
 
 "" vim-instant-markdown
+set shell=bash\ -i
+
 "" previm
 if has('mac')
     "let g:instant_markdown_slow = 1
