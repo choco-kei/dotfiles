@@ -156,6 +156,9 @@ NeoBundle 'tpope/vim-repeat'
 "" ProjectLocal.vim
 NeoBundle 'supermomonga/projectlocal.vim'
 
+"" auto-ctags.vim
+"NeoBundle 'soramugi/auto-ctags.vim'
+
 
 "" vdebug
 "NeoBundle 'choco-kei/vdebug'
@@ -597,7 +600,7 @@ if has('win32')
   let g:unite_source_grep_recursive_opt = '-R'
 elseif has('mac')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column -s'
   let g:unite_source_grep_recursive_opt = ''
 endif
 
