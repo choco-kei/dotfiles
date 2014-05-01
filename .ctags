@@ -1,4 +1,3 @@
---append=yes
 --recurse=yes
 --langmap=PHP:+.in
 --php-kinds=cfdi
