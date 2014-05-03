@@ -600,7 +600,7 @@ if has('win32')
   let g:unite_source_grep_recursive_opt = '-R'
 elseif has('mac')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column -s'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column -S'
   let g:unite_source_grep_recursive_opt = ''
 endif
 
@@ -698,6 +698,9 @@ if !exists('g:neocomplete#sources#include#paths')
 endif
 let g:neocomplete#sources#include#patterns = {}
 let g:neocomplete#filename#include#exprs = {}
+
+" Member
+let g:neocomplete#sources#member#prefix_patterns.php = '->\|::'
 
 " Ctags
 let g:neocomplete#ctags_arguments = {
