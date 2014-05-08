@@ -700,6 +700,9 @@ let g:neocomplete#sources#include#patterns = {}
 let g:neocomplete#filename#include#exprs = {}
 
 " Member
+if !exists('g:neocomplete#sources#member#prefix_patterns')
+    let g:neocomplete#sources#member#prefix_patterns = {}
+endif
 let g:neocomplete#sources#member#prefix_patterns.php = '->\|::'
 
 " Ctags
