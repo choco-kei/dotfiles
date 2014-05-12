@@ -16,4 +16,5 @@ set foldmethod=indent
 set foldlevel=2
 set foldnestmax=2
 
-
+" 単語からハイフンを除外
+setlocal iskeyword-=-
