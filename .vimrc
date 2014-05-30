@@ -10,7 +10,7 @@ if has('vim_starting')
 endif
 
 "" NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 "" unite.vim
