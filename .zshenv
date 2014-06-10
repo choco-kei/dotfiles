@@ -29,3 +29,5 @@ alias tree='/usr/local/bin/tree -N'
 # ls -GF
 alias ls='ls -GF'
 
+# svn
+export SVN_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
