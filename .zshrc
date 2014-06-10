@@ -35,7 +35,7 @@ setopt auto_param_keys
 setopt auto_param_slash
 
 # {a-c} を a b c に展開する機能を使えるようにする
-setopt brace_ccl
+#setopt brace_ccl
 
 # シンボリックリンクは実体を追うようになる
 #setopt chase_links
