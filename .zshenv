@@ -7,7 +7,7 @@ export LESSCHARSET=utf-8
 export EDITOR=vim
 
 # PATH
-PATH=/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:$HOME/local/bin:/usr/local/git/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:$HOME/bin:$HOME/local/bin:/usr/local/git/bin
 # PATH:Dotfiles
 PATH=$PATH:$HOME/dotfiles/bin
 # PATH:Npm
@@ -22,6 +22,7 @@ export MANPATH
 # Macvim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vimdiff='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/vimdiff'
 
 #tree -N
 alias tree='/usr/local/bin/tree -N'
