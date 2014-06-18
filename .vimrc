@@ -1057,6 +1057,9 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 " その他 {{{
 "----------------------------------------------------------
 
+" vimdiff
+set diffopt=iwhite
+
 " lua
 if has('mac')
     let $LUA_DLL='/usr/local/lib/liblua.dylib'
