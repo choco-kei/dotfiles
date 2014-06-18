@@ -850,6 +850,7 @@ let g:vimshell_force_overwrite_statusline = 0
 "" indentline
 let g:indentLine_char = '┊'
 let g:indentLine_bufNameExclude = ['\[unite\].*', 'vimfiler.*']
+let g:indentLine_faster = 1
 
 "" fonldCC
 set foldtext=foldCC#foldtext()
