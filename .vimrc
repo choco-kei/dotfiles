@@ -161,7 +161,7 @@ NeoBundle 'supermomonga/projectlocal.vim'
 
 
 "" vdebug
-"NeoBundle 'choco-kei/vdebug'
+NeoBundle 'joonty/vdebug'
 
 "" DBGPavim
 "NeoBundle 'choco-kei/DBGPavim'
@@ -857,20 +857,6 @@ set foldtext=foldCC#foldtext()
 let g:foldCCtext_maxchars = 120
 let g:foldCCtext_head = '"( ˘ω˘) "'
 let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
-
-"" vdebug
-let g:vdebug_options = {}
-let g:vdebug_options['port'] = 9001
-let g:vdebug_options['path_maps'] = {'/vagrant': '/Users/teco-otaki/work/001_nbadev'}
-let g:vdebug_options['break_on_open'] = 0
-
-"" DBGPavim
-"let g:dbgPavimPort = 9001
-"let g:dbgPavimBreakAtEntry = 0
-"let g:dbgPavimPathMap = [['/Users/teco-otaki/work/001_nbadev','/vagrant'],]
-"let g:dbgPavimKeyStepOver = '<F2>'
-"let g:dbgPavimKeyStepInto = '<F3>'
-"let g:dbgPavimKeyStepOut  = '<F4>'
 
 "" neosnippet
 let g:neosnippet#disable_runtime_snippets = {
