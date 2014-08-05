@@ -504,8 +504,8 @@ nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
 " vimが落ちるとmruが保存されないのでその対策
-nnoremap <silent> [unite]m :<C-u>call g:savemru()<CR>
-function! g:savemru()
+nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
+function! g:Savemru()
   if exists('b:projectlocal_root_dir')
     execute 'Unite neomru/file -input='.b:projectlocal_root_dir.'\ '
   else
