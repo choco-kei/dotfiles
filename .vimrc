@@ -710,6 +710,10 @@ let g:neocomplete#ctags_arguments = {
       \ 'php': '--regex-php="/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/"'
       \ }
 
+" 補完を止める
+call neocomplete#custom#source('include',
+      \ 'disabled_filetypes', {'php' : 1})
+
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -931,7 +935,7 @@ augroup vim-anzu
 augroup END
 
 "" vim-operator-replace
-map s <Plug>(operator-replace)
+"map s <Plug>(operator-replace)
 
 "" vim-textobj-user
 omap ab <Plug>(textobj-multiblock-a)
