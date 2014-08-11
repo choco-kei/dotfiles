@@ -206,9 +206,12 @@ NeoBundle 'jiangmiao/simple-javascript-indenter'
 
 "" No Repository
 NeoBundleLocal expand('~/dotfiles/.vim/bundle/user');
-"NeoBundle 'css-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
-"NeoBundle 'jquery-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
-"NeoBundle 'xhtml-vim', {'type' : 'nosync', 'base' : '~/dotfiles/.vim/bundle/user'}
+NeoBundle 'neocomplete-php-analyze.vim', {
+      \   'type' : 'nosync',
+      \   'base' : '~/dotfiles/.vim/bundle/user'
+      \ }
+
+call neobundle#end()
 
 "}}}
 
@@ -698,6 +701,10 @@ if !exists('g:neocomplete#sources#include#paths')
 endif
 let g:neocomplete#sources#include#patterns = {}
 let g:neocomplete#filename#include#exprs = {}
+if !exists('g:neocomplete#sources#include#functions')
+    let g:neocomplete#sources#include#functions = {}
+endif
+let g:neocomplete#sources#include#functions.php = 'neocomplete_php_analyze#zend_include_files'
 
 " Member
 if !exists('g:neocomplete#sources#member#prefix_patterns')
@@ -711,8 +718,8 @@ let g:neocomplete#ctags_arguments = {
       \ }
 
 " 補完を止める
-call neocomplete#custom#source('include',
-      \ 'disabled_filetypes', {'php' : 1})
+"call neocomplete#custom#source('include',
+"      \ 'disabled_filetypes', {'php' : 1})
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
