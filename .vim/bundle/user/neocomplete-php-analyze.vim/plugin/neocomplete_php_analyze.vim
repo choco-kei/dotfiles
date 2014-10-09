@@ -10,7 +10,7 @@ function! neocomplete_php_analyze#zend_include_files(lines, path) "{{{
   let include_files = []
   let dup_check = {}
   for line in a:lines
-    if line =~ '\(new\|extends\|=\) \+\<\u\w*\>'
+    if line =~ '\<\(new\|extends\|namespace\|use\)\>\|::'
       "echomsg line
       let filename = substitute(matchstr(line, '\<\u\w*\>'),
             \ '_', '/', 'g') . '.php'
