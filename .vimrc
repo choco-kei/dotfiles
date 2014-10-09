@@ -492,6 +492,13 @@ nnoremap <Leader>dt :<C-u>retab<CR>
 " TAB CR削除
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>gg
 
+"" タブ操作
+" tl 次のタブ
+map <silent> [Tag]l :tabnext<CR>
+" th 前のタブ
+map <silent> [Tag]h :tabprevious<CR>
+
+
 "" unite.vim
 nnoremap [unite] <Nop>
 nmap <Leader>u [unite]
