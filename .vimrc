@@ -1062,11 +1062,23 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 "----------------------------------------------------------
 
 " vimdiff
-set diffopt=iwhite
+if &diff
+  filetype off
+endif
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = ""
+  if &diffopt =~ "iwhite"
+    let opt = opt . "-b "
+  endif
+  silent execute "!git-diff-normal " . opt . v:fname_in . " " . v:fname_new . " > " . v:fname_out
+  redraw!
+endfunction
 
 " lua
 if has('mac')
-    let $LUA_DLL='/usr/local/lib/liblua.dylib'
+  let $LUA_DLL='/usr/local/lib/liblua.dylib'
 endif
 
 " 保存時に行末スペースを削除
