@@ -6,7 +6,7 @@ set nocompatible
 
 if has('vim_starting')
     set runtimepath+=~/dotfiles/.vim/bundle/auto/neobundle.vim
-    call neobundle#begin(expand('~/dotfiles/.vim/bundle/auto/'))
+    call neobundle#rc(expand('~/dotfiles/.vim/bundle/auto/'))
 endif
 
 "" NeoBundle
@@ -871,7 +871,7 @@ let g:indentLine_bufNameExclude = ['\[unite\].*', 'vimfiler.*']
 let g:indentLine_faster = 1
 
 "" fonldCC
-set foldtext=FoldCCtext()
+set foldtext=foldCC#foldtext()
 let g:foldCCtext_maxchars = 120
 let g:foldCCtext_head = '"( ˘ω˘) "'
 let g:foldCCtext_tail = '" ".(v:foldend-v:foldstart+1)." (˘ω˘ )"'
@@ -1044,7 +1044,6 @@ endif
 
 " カラースキーム
 set background=dark
-
 "let scheme = 'solarized'
 "augroup guicolorscheme
 "    autocmd!
@@ -1063,28 +1062,11 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 "----------------------------------------------------------
 
 " vimdiff
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=21
-
-if &diff
-  filetype off
-endif
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = ""
-  if &diffopt =~ "iwhite"
-    let opt = opt . "-b "
-  endif
-  silent execute "!git-diff-normal " . opt . v:fname_in . " " . v:fname_new . " > " . v:fname_out
-  redraw!
-endfunction
+set diffopt=iwhite
 
 " lua
 if has('mac')
-  let $LUA_DLL='/usr/local/lib/liblua.dylib'
+    let $LUA_DLL='/usr/local/lib/liblua.dylib'
 endif
 
 " 保存時に行末スペースを削除
