@@ -1064,6 +1064,7 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 " vimdiff
 if &diff
   filetype off
+  set diffopt+=iwhite
 endif
 
 set diffexpr=MyDiff()
