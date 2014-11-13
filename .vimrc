@@ -153,9 +153,6 @@ NeoBundle 'Lokaltog/vim-easymotion'
 "" vim-repeat
 NeoBundle 'tpope/vim-repeat'
 
-"" ProjectLocal.vim
-"NeoBundle 'supermomonga/projectlocal.vim'
-
 "" auto-ctags.vim
 "NeoBundle 'soramugi/auto-ctags.vim'
 
@@ -520,11 +517,7 @@ call unite#custom#source(
 " vimが落ちるとmruが保存されないのでその対策
 nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
 function! g:Savemru()
-  if exists('b:projectlocal_root_dir')
-    execute 'Unite neomru/file -input='.b:projectlocal_root_dir.'\ '
-  else
-    Unite neomru/file
-  endif
+  Unite neomru/file
   call neomru#_save()
 endfunction
 nnoremap <silent> [unite]d :<C-u>Unite neomru/directory<CR>
@@ -1014,9 +1007,6 @@ xmap s <Plug>(easymotion-s2)
 omap z <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-
-"" ProjectLocal.vim
-let g:projectlocal#default_filetypes = []
 
 
 " プラグイン インデントをon
