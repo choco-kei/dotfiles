@@ -513,6 +513,10 @@ nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
+" プロジェクトごとに出し分ける
+call unite#custom#source(
+      \ 'neomru/file', 'matchers',
+      \ ['matcher_project_files', 'matcher_fuzzy', 'matcher_hide_hidden_files'])
 " vimが落ちるとmruが保存されないのでその対策
 nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
 function! g:Savemru()
