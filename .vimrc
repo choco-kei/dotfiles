@@ -34,6 +34,9 @@ NeoBundle 'osyo-manga/unite-quickfix'
 "" unite-qfixhowm
 NeoBundle 'osyo-manga/unite-qfixhowm'
 
+"" unite-matchers
+NeoBundle 'basyura/unite-matchers'
+
 "" vim-qfreplace
 NeoBundle 'thinca/vim-qfreplace'
 
@@ -512,15 +515,20 @@ nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
 " プロジェクトごとに出し分ける
 call unite#custom#source(
-      \ 'neomru/file', 'matchers',
-      \ ['matcher_project_files', 'matcher_fuzzy', 'matcher_hide_hidden_files'])
+      \ 'file_mru', 'matchers',
+      \ ['matcher_project_files', 'matcher_default', 'matcher_hide_hidden_files'])
+" 表示変更
+"call unite#custom#source(
+"      \ 'file_mru', 'matchers',
+"      \ ['matcher_file_name', 'sorter_default', 'converter_file_directory'])
+
 " vimが落ちるとmruが保存されないのでその対策
 nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
 function! g:Savemru()
-  Unite neomru/file
+  Unite file_mru
   call neomru#_save()
 endfunction
-nnoremap <silent> [unite]d :<C-u>Unite neomru/directory<CR>
+nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 " yankround
 nnoremap <silent> [unite]y :<C-u>Unite yankround<CR>
 " grep
