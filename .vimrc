@@ -116,6 +116,10 @@ NeoBundle 'kana/vim-operator-replace'
 "" vim-textobj-user
 NeoBundle 'kana/vim-textobj-user'
 
+" 関数内
+" af, if
+NeoBundle 'kana/vim-textobj-function'
+
 " カーソル行
 " al, il
 NeoBundle 'kana/vim-textobj-line'
@@ -954,7 +958,7 @@ augroup vim-anzu
 augroup END
 
 "" vim-operator-replace
-"map s <Plug>(operator-replace)
+map R <Plug>(operator-replace)
 
 "" vim-textobj-user
 omap ab <Plug>(textobj-multiblock-a)
