@@ -1070,8 +1070,8 @@ if &diff
   set diffopt+=iwhite
 endif
 
-set diffexpr=MyDiff()
-function MyDiff()
+set diffexpr=s:Mydiff()
+function s:Mydiff()
   let opt = ""
   if &diffopt =~ "iwhite"
     let opt = opt . "-b "
