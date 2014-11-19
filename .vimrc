@@ -982,6 +982,7 @@ let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
 let g:syntastic_always_populate_loc_list = 1
 " ステータスライン表示を変更
 let g:syntastic_stl_format = '%E{[Syntax: line:%F (%e)]}'
+let g:syntastic_enable_highlighting = 0
 
 "" QFixHowm
 let QFixHowm_Key = 'g'
