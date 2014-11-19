@@ -112,6 +112,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-operator-user'
 "" vim-operator-replace
 NeoBundle 'kana/vim-operator-replace'
+"" vim-operator-search
+NeoBundle 'osyo-manga/vim-operator-search'
 
 "" vim-textobj-user
 NeoBundle 'kana/vim-textobj-user'
@@ -119,6 +121,7 @@ NeoBundle 'kana/vim-textobj-user'
 " 関数内
 " af, if
 NeoBundle 'kana/vim-textobj-function'
+NeoBundle 'kentaro/vim-textobj-function-php'
 
 " カーソル行
 " al, il
@@ -966,6 +969,10 @@ omap ib <Plug>(textobj-multiblock-i)
 vmap ab <Plug>(textobj-multiblock-a)
 vmap ib <Plug>(textobj-multiblock-i)
 
+"" vim-operator-search
+nmap <Space>s <Plug>(operator-search)
+nmap <Space>/ <Plug>(operator-search)if
+
 "" syntastic
 "nmap <Leader>sc :SyntasticCheck<CR>
 " とりあえずactive
@@ -1074,8 +1081,8 @@ if &diff
   set diffopt+=iwhite
 endif
 
-set diffexpr=s:Mydiff()
-function s:Mydiff()
+set diffexpr=s:MyDiff()
+function! s:MyDiff()
   let opt = ""
   if &diffopt =~ "iwhite"
     let opt = opt . "-b "
