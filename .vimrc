@@ -312,7 +312,7 @@ set list
 if has('win32')
     set listchars=tab:>\ ,trail:-,extends:>,precedes:<,eol:\ ,nbsp:%
 else
-    set listchars=tab:▸\ ,trail:-,extends:»,precedes:«,eol:\ ,nbsp:%
+    set listchars=tab:▹\ ,trail:-,extends:»,precedes:«,eol:\ ,nbsp:%
 endif
 
 " 開始時の挨拶を表示しない
@@ -992,6 +992,11 @@ let g:syntastic_always_populate_loc_list = 1
 " ステータスライン表示を変更
 let g:syntastic_stl_format = '%E{[Syntax: line:%F (%e)]}'
 let g:syntastic_enable_highlighting = 0
+" シンボルを変更
+let g:syntastic_error_symbol         = "▸"
+let g:syntastic_warning_symbol       = "▹"
+let g:syntastic_style_error_symbol   = "▸"
+let g:syntastic_style_warning_symbol = "▹"
 
 "" QFixHowm
 let QFixHowm_Key = 'g'
