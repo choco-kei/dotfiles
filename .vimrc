@@ -251,8 +251,9 @@ set runtimepath+=~/dotfiles/.vim/after/
 " バックスペースでなんでも消せるように
 set backspace=indent,eol,start
 
-" テキスト整形オプション マルチバイト系を追加
-set formatoptions=lmoq
+" テキスト整形オプション
+set formatoptions=lmq
+autocmd Filetype * setlocal formatoptions-=ro
 
 " ビープ無効
 set vb t_vb=
@@ -374,9 +375,6 @@ set softtabstop=4
 
 " 自動で挿入/削除されるインデントの量
 set shiftwidth=4
-
-" paste時にコメントのインデントをやめる
-autocmd Filetype * set formatoptions-=ro
 
 " 折りたたみ
 set foldmethod=marker
