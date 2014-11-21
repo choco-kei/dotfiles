@@ -1078,6 +1078,10 @@ autocmd Colorscheme * highlight SpecialKey term=none gui=none
 " その他 {{{
 "----------------------------------------------------------
 
+" 現在のファイルパスをコピー
+command! CopyPath
+      \ let @*=expand('%') | echo 'copied'
+
 " vimdiff
 if &diff
   filetype off
