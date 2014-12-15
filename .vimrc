@@ -210,6 +210,7 @@ NeoBundle 'paulyg/Vim-PHP-Stuff'
 "" indent
 NeoBundle 'othree/html5.vim'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle '2072/PHP-Indenting-for-VIm'
 
 "" No Repository
 NeoBundleLocal expand('~/dotfiles/.vim/bundle/user');
