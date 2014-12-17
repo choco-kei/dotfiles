@@ -54,15 +54,6 @@ NeoBundle 'Shougo/vimproc', {
 " vim syntaxからiTermのカラー設定を作成
 NeoBundle 'akiomik/itermcolors-vim'
 
-"" vim-instant-markdown
-" マークダウンリアルタイムプレビュー
-if has('mac')
-    NeoBundle 'suan/vim-instant-markdown'
-    "let g:instant_markdown_slow = 1
-elseif has('win32')
-    NeoBundle 'kannokanno/previm'
-endif
-
 "" vim-gitgutter
 " windowsで動かないっぽい？
 if has('mac')
@@ -643,16 +634,6 @@ let g:unite_quickfix_filename_is_pathshorten = 0
 "" vimfiler
 " ディレクトリ変更
 let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/vimfiler')
-
-"" vim-instant-markdown
-"set shell=bash\ -i
-
-"" previm
-if has('mac')
-    "let g:instant_markdown_slow = 1
-elseif has('win32')
-    let g:previm_open_cmd = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-endif
 
 "" vim-gitgutter
 " windowsで動かないっぽい？
