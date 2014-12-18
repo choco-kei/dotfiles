@@ -1099,11 +1099,6 @@ function! MyDiff()
   redraw!
 endfunction
 
-" lua
-if has('mac')
-  let $LUA_DLL='/usr/local/lib/liblua.dylib'
-endif
-
 " 保存時に行末スペースを削除
 autocmd BufWritePre * %s/\s\+$//e
 
