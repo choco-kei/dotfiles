@@ -605,6 +605,7 @@ let g:unite_source_buffer_time_format = '(%Y.%m.%d %H:%M:%S) '
 
 " history/yankの有効化
 let g:unite_source_history_yank_enable = 1
+
 " jvgrep/ag
 if has('win32')
   let g:unite_source_grep_command = 'jvgrep'
@@ -615,6 +616,10 @@ elseif has('mac')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor -S'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+" unite-grep
+let g:unite_source_grep_max_candidates = 500
+
 
 " file_rec/async
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
