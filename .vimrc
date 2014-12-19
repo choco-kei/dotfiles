@@ -37,6 +37,12 @@ NeoBundle 'osyo-manga/unite-qfixhowm'
 "" unite-matchers
 NeoBundle 'basyura/unite-matchers'
 
+"" codic-vim
+NeoBundle 'koron/codic-vim'
+
+"" unite-codic
+NeoBundle 'rhysd/unite-codic.vim'
+
 "" vim-qfreplace
 NeoBundle 'thinca/vim-qfreplace'
 
