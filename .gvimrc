@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " タブ表示
 set showtabline=2
 

@@ -1,11 +1,17 @@
 "----------------------------------------------------------
+" encoding {{{
+"----------------------------------------------------------
+set encoding=utf-8
+scriptencoding utf-8
+
+"}}}
+
+"----------------------------------------------------------
 " プラグイン読み込み {{{
 "----------------------------------------------------------
 
-set nocompatible
-
 if has('vim_starting')
-    set runtimepath+=~/dotfiles/.vim/bundle/auto/neobundle.vim
+    set runtimepath+=~/dotfiles/.vim/bundle/auto/neobundle.vim/
     call neobundle#begin(expand('~/dotfiles/.vim/bundle/auto/'))
 endif
 
@@ -14,7 +20,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 "" unite.vim
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite.vim', {'rev': 'b5be7ad434e12bfe48d3339838c6c95e1f92f45b'}
 
 "" neomru
 NeoBundle 'Shougo/neomru.vim'
@@ -225,7 +231,7 @@ call neobundle#end()
 "----------------------------------------------------------
 
 " キーマップリーダーを変更
-let mapleader = ","
+let mapleader = ','
 
 " 編集中でもファイルを開けるように
 set hidden
@@ -254,7 +260,7 @@ set formatoptions=lmq
 autocmd Filetype * setlocal formatoptions-=ro
 
 " ビープ無効
-set vb t_vb=
+set visualbell t_vb=
 
 " 現在のディレクトリから開始
 set browsedir=buffer
@@ -434,7 +440,6 @@ set wildoptions=tagfile
 "----------------------------------------------------------
 
 " 文字コード関係
-set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
 set fileformats=unix
@@ -551,8 +556,6 @@ function! s:UniteMapping()
   nmap <silent> <buffer> K <Plug>(unite_toggle_mark_current_candidate_up)
 endfunction
 
-autocmd FileType unite call s:UniteMapping()
-
 function! s:VimFilerMapping()
   " マークを変更
   nmap <buffer> J <Plug>(vimfiler_toggle_mark_current_line)
@@ -561,7 +564,11 @@ function! s:VimFilerMapping()
   nmap <buffer> vu <Plug>(vimfiler_clear_mark_all_lines)
 endfunction
 
-autocmd FileType vimfiler call s:VimFilerMapping()
+augroup mapping
+  autocmd!
+  autocmd FileType unite call s:UniteMapping()
+  autocmd FileType vimfiler call s:VimFilerMapping()
+augroup END
 
 
 "
@@ -690,12 +697,15 @@ let g:neocomplete#delimiter_patterns.php = ['->', '::', '\']
 let g:neocomplete#delimiter_patterns.ruby = ['.', '::']
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType php setlocal omnifunc=phpomplete#CompletePHP
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup neocompleteOmni
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  "autocmd FileType php setlocal omnifunc=phpomplete#CompletePHP
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -800,26 +810,26 @@ let g:lightline = {
       \ }
 
 function! LlModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &filetype =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LlReadonly()
-  return &ft !~? 'help' && &readonly ? '⭤' : ''
+  return &filetype !~? 'help' && &readonly ? '⭤' : ''
 endfunction
 
 function! LlFilename()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? g:lightline.fname :
         \ fname =~ '__Gundo' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ &filetype == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype == 'unite' ? unite#get_status_string() :
+        \ &filetype == 'vimshell' ? vimshell#get_status_string() :
         \ ('' != fname ? fname : '[No Name]')
 endfunction
 
 function! LlFugitive()
   try
-    if expand('%:t') !~? 'Tagbar\|Gundo' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+    if expand('%:t') !~? 'Tagbar\|Gundo' && &filetype !~? 'vimfiler' && exists('*fugitive#head')
       let mark = ''  " edit here for cool mark
       let _ = fugitive#head()
       return strlen(_) ? mark._ : ''
@@ -838,7 +848,7 @@ function! LlFiletype()
 endfunction
 
 function! LlFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  return winwidth(0) > 70 ? (strlen(&fileencoding) ? &fileencoding : &encoding) : ''
 endfunction
 
 function! LlMode()
@@ -847,9 +857,9 @@ function! LlMode()
         \ fname == 'ControlP' ? 'CtrlP' :
         \ fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
+        \ &filetype == 'unite' ? 'Unite' :
+        \ &filetype == 'vimfiler' ? 'VimFiler' :
+        \ &filetype == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
@@ -986,10 +996,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_stl_format = '%E{[Syntax: line:%F (%e)]}'
 let g:syntastic_enable_highlighting = 0
 " シンボルを変更
-let g:syntastic_error_symbol         = "▸"
-let g:syntastic_warning_symbol       = "▹"
-let g:syntastic_style_error_symbol   = "▸"
-let g:syntastic_style_warning_symbol = "▹"
+let g:syntastic_error_symbol         = '▸'
+let g:syntastic_warning_symbol       = '▹'
+let g:syntastic_style_error_symbol   = '▸'
+let g:syntastic_style_warning_symbol = '▹'
 
 "" QFixHowm
 let QFixHowm_Key = 'g'
@@ -1038,15 +1048,15 @@ filetype plugin indent on
 syntax enable
 
 " ターミナルタイプによるカラー設定
-if &term =~ "xterm-256color" || "screen-256color"
+if &term =~ 'xterm-256color' || 'screen-256color'
     set t_Co=256
     set t_Sf=[3%dm
     set t_Sb=[4%dm
-elseif &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+elseif &term =~ 'xterm-debian' || &term =~ 'xterm-xfree86'
     set t_Co=16
     set t_Sf=[3%dm
     set t_Sb=[4%dm
-elseif &term =~ "xterm-color"
+elseif &term =~ 'xterm-color'
     set t_Co=8
     set t_Sf=[3%dm
     set t_Sb=[4%dm
@@ -1083,16 +1093,19 @@ endif
 
 set diffexpr=MyDiff()
 function! MyDiff()
-  let opt = ""
-  if &diffopt =~ "iwhite"
-    let opt = opt . "-b "
+  let opt = ''
+  if &diffopt =~ 'white'
+    let opt = opt . '-b '
   endif
-  silent execute "!git-diff-normal " . opt . v:fname_in . " " . v:fname_new . " > " . v:fname_out
+  silent execute '!git-diff-normal ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
   redraw!
 endfunction
 
 " 保存時に行末スペースを削除
-autocmd BufWritePre * %s/\s\+$//e
+augroup saveFile
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+augroup END
 
 " .vimrcや.gvimrcを編集するためのKey-mappingを定義する
 nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
