@@ -18,9 +18,8 @@ endif
 "" NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-
 "" unite.vim
-NeoBundle 'Shougo/unite.vim', {'rev': 'b5be7ad434e12bfe48d3339838c6c95e1f92f45b'}
+NeoBundle 'Shougo/unite.vim'
 
 "" neomru
 NeoBundle 'Shougo/neomru.vim'
