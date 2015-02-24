@@ -512,11 +512,11 @@ nmap <Leader>u [unite]
 " buffer
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 " file
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+"nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " file_rec
-nnoremap <silent> [unite]fr :<C-u>Unite file_rec<CR>
+"nnoremap <silent> [unite]fr :<C-u>Unite file_rec<CR>
 " file_rec/async
-nnoremap <silent> [unite]fa :<C-u>Unite file_rec/async<CR>
+nnoremap <silent> [unite]f :<C-u>Unite file_rec/async<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
@@ -524,11 +524,21 @@ nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 call unite#custom#source(
       \ 'file_mru', 'matchers',
       \ ['matcher_project_files', 'matcher_default', 'matcher_hide_hidden_files'])
+
 " 表示変更
 "call unite#custom#source(
 "      \ 'file_mru', 'matchers',
 "      \ ['matcher_file_name', 'sorter_default', 'converter_file_directory'])
 
+" file_rec
+let g:unite_source_rec_max_cache_files = 20000
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+" 除外パターン追加
+"let s:unite_file_rec_ignore_globs = unite#sources#rec#define()[0]['ignore_globs'] + ['framework']
+"call unite#custom#source('file_rec', 'ignore_globs', s:unite_file_rec_ignore_globs)
+
+" Unite file_mru
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 " vimが落ちるとmruが保存されないのでその対策
 nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
 function! g:Savemru()
@@ -631,11 +641,6 @@ endif
 
 " unite-grep
 let g:unite_source_grep_max_candidates = 500
-
-
-" file_rec/async
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
-let g:unite_source_rec_max_cache_files = 5000
 
 "" neomru
 let g:neomru#file_mru_path      = expand('~/dotfiles/.vim/tmp/neomru/file')
