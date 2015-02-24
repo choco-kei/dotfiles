@@ -17,6 +17,10 @@ old
 vagrant
 node_modules
 
+*.jpg
+*.png
+*.gif
+
 jquery.js
 jquery*.js
 zepto.js
