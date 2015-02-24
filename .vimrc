@@ -540,11 +540,11 @@ let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden
 " Unite file_mru
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 " vimが落ちるとmruが保存されないのでその対策
-nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
-function! g:Savemru()
-  Unite file_mru
-  call neomru#_save()
-endfunction
+"nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
+"function! g:Savemru()
+"  Unite file_mru
+"  call neomru#_save()
+"endfunction
 nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 " yankround
 nnoremap <silent> [unite]y :<C-u>Unite yankround<CR>
@@ -647,6 +647,7 @@ let g:neomru#file_mru_path      = expand('~/dotfiles/.vim/tmp/neomru/file')
 let g:neomru#directory_mru_path = expand('~/dotfiles/.vim/tmp/neomru/directory')
 let g:neomru#time_format        = '(%Y.%m.%d %H:%M:%S) '
 let g:neomru#filename_format    = ':~:.'
+let g:neomru#file_mru_limit     = 2000
 "let g:neomru#update_interval    = 300
 
 "" unite-quickfix
