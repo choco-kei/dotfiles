@@ -643,7 +643,7 @@ elseif has('mac')
 endif
 
 " unite-grep
-let g:unite_source_grep_max_candidates = 500
+let g:unite_source_grep_max_candidates = 10000
 
 "" neomru
 let g:neomru#file_mru_path      = expand('~/dotfiles/.vim/tmp/neomru/file')
