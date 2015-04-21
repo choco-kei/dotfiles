@@ -1042,6 +1042,9 @@ omap z <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+"" elzr/vim-json
+let g:vim_json_syntax_conceal = 0
+
 
 " プラグイン インデントをon
 filetype plugin indent on
