@@ -168,6 +168,9 @@ NeoBundle 'tpope/vim-repeat'
 "" auto-ctags.vim
 "NeoBundle 'soramugi/auto-ctags.vim'
 
+"" elzr/vim-json
+NeoBundle 'elzr/vim-json'
+
 
 "" vdebug
 NeoBundle 'joonty/vdebug'
