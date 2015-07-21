@@ -171,6 +171,8 @@ NeoBundle 'tpope/vim-repeat'
 "" elzr/vim-json
 NeoBundle 'elzr/vim-json'
 
+"" vim-php-cs-fixer
+NeoBundle 'stephpy/vim-php-cs-fixer'
 
 "" vdebug
 NeoBundle 'joonty/vdebug'
@@ -1045,6 +1047,15 @@ map <Leader>k <Plug>(easymotion-k)
 "" elzr/vim-json
 let g:vim_json_syntax_conceal = 0
 
+"" vim-php-cs-fixer
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "psr2"
+let g:php_cs_fixer_config = "default"
+let g:php_cs_fixer_php_path = "php"
+"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+let g:php_cs_fixer_enable_default_mapping = 1
+let g:php_cs_fixer_dry_run = 0
+let g:php_cs_fixer_verbose = 0
 
 " プラグイン インデントをon
 filetype plugin indent on
