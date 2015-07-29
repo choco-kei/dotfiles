@@ -211,7 +211,7 @@ NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'StanAngeloff/php.vim'
+"NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'paulyg/Vim-PHP-Stuff'
 
 "" indent
