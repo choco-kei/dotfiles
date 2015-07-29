@@ -5,4 +5,5 @@
 
 TARGET=`pwd`
 #cho $TARGET
-ctags --append=yes  --languages=php  --exclude=vagrant --regex-php="/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/" -f $TARGET/.tags $TARGET/
+#ctags --append=yes --fields=+aimS --languages=php --exclude=vagrant --regex-php="/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/" -f $TARGET/.tags $TARGET/
+ctags --append=yes --fields=+aimS --languages=php --exclude=vagrant -f $TARGET/.tags $TARGET/
