@@ -40,7 +40,7 @@ NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundle 'osyo-manga/unite-qfixhowm'
 
 "" unite-matchers
-NeoBundle 'basyura/unite-matchers'
+"NeoBundle 'basyura/unite-matchers'
 
 "" codic-vim
 NeoBundle 'koron/codic-vim'
@@ -560,7 +560,26 @@ nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-
 " grep検索結果を再呼び出し
 nnoremap <silent> [unite]vg :<C-u>UniteResume search-buffer<CR>
 " unite-tag
+let g:unite_source_tag_max_name_length = 30
+let g:unite_source_tag_max_fname_length = 40
 nnoremap <silent> [unite]t :<C-u>UniteWithCursorWord -buffer-name=tag tag tag/include<CR>
+
+" unite-tag wordにファイルパスを追加
+let s:filters = {
+      \   "name" : "converter_add_filepath_word",
+      \}
+function! s:filters.filter(candidates, context)
+  let candidates = copy(a:candidates)
+  let max = 0
+  for candidate in candidates
+    let abbr = split(candidate.abbr, '')
+    let candidate.word = candidate.word . abbr[1]
+  endfor
+  return candidates
+endfunction
+call unite#define_filter(s:filters)
+unlet s:filters
+call unite#custom#source('tag', 'matchers', ["converter_add_filepath_word", "matcher_default"])
 
 function! s:UniteMapping()
   " C-gで閉じる
