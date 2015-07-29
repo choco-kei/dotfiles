@@ -14,6 +14,9 @@ PATH=$PATH:$HOME/dotfiles/bin
 PATH=$PATH:/sbin:/usr/local/share/npm/bin
 export PATH
 
+# LESS
+LESS=-qR
+
 # MANPATH
 MANPATH=$MANPATH:/opt/local/man:/usr/local/share/man
 export MANPATH
