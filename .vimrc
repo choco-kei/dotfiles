@@ -211,7 +211,7 @@ NeoBundle 'othree/html5-syntax.vim'
 NeoBundle 'othree/javascript-syntax.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
-"NeoBundle 'StanAngeloff/php.vim'
+NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'paulyg/Vim-PHP-Stuff'
 
 "" indent
@@ -1075,6 +1075,17 @@ let g:php_cs_fixer_php_path = "php"
 let g:php_cs_fixer_enable_default_mapping = 1
 let g:php_cs_fixer_dry_run = 0
 let g:php_cs_fixer_verbose = 0
+
+"" StanAngeloff/php.vim
+"function! PhpSyntaxOverride()
+"  hi! def link phpDocTags  phpDefine
+"  hi! def link phpDocParam phpType
+"endfunction
+"
+"augroup phpSyntaxOverride
+"  autocmd!
+"  autocmd FileType php call PhpSyntaxOverride()
+"augroup END
 
 " プラグイン インデントをon
 filetype plugin indent on
