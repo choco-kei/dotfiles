@@ -74,6 +74,15 @@ endif
 "" neocomplete
 NeoBundle 'Shougo/neocomplete.vim'
 
+"" neoinclude
+NeoBundle 'Shougo/neoinclude.vim'
+
+"" neco-syntax
+NeoBundle 'Shougo/neco-syntax'
+
+"" neco-vim
+NeoBundle 'Shougo/neco-vim'
+
 "" neosnippet
 NeoBundle 'Shougo/neosnippet'
 
@@ -701,7 +710,7 @@ let g:neocomplete#max_list = 20
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:necosyntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
@@ -745,15 +754,15 @@ endif
 let g:neocomplete#sources#omni#input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 " Include
-if !exists('g:neocomplete#sources#include#paths')
-    let g:neocomplete#sources#include#paths = {}
+if !exists('g:neoinclude#paths')
+    let g:neoinclude#paths = {}
 endif
-let g:neocomplete#sources#include#patterns = {}
-let g:neocomplete#filename#include#exprs = {}
-if !exists('g:neocomplete#sources#include#functions')
-    let g:neocomplete#sources#include#functions = {}
+let g:neoinclude#patterns = {}
+let g:neoinclude#exprs = {}
+if !exists('g:neoinclude#functions')
+    let g:neoinclude#functions = {}
 endif
-let g:neocomplete#sources#include#functions.php = 'neocomplete_php_analyze#zend_include_files'
+let g:neoinclude#functions.php = 'neocomplete_php_analyze#zend_include_files'
 
 " Member
 if !exists('g:neocomplete#sources#member#prefix_patterns')
@@ -762,7 +771,7 @@ endif
 let g:neocomplete#sources#member#prefix_patterns.php = '->\|::'
 
 " Ctags
-let g:neocomplete#ctags_arguments = {
+let g:neoinclude#ctags_arguments = {
       \ 'php': '--regex-php="/^[ \t]*const[ \t]+([[:alnum:]_]+)/\1/d/"'
       \ }
 
