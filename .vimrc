@@ -546,10 +546,11 @@ call unite#custom#source(
 
 " file_rec
 let g:unite_source_rec_max_cache_files = 20000
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
-" 除外パターン追加
-"let s:unite_file_rec_ignore_globs = unite#sources#rec#define()[0]['ignore_globs'] + ['framework']
-"call unite#custom#source('file_rec', 'ignore_globs', s:unite_file_rec_ignore_globs)
+let g:unite_source_rec_async_command = [
+      \ 'ag', '--follow', '--nocolor', '--nogroup', '--hidden',
+      \ '--ignore-dir', 'framework',
+      \ '--ignore-dir', 'translate',
+      \ '-g', '']
 
 " Unite file_mru
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
