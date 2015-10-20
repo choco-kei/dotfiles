@@ -662,15 +662,32 @@ let g:unite_source_buffer_time_format = '(%Y.%m.%d %H:%M:%S) '
 " history/yankの有効化
 let g:unite_source_history_yank_enable = 1
 
-" jvgrep/ag
-if has('win32')
-  let g:unite_source_grep_command = 'jvgrep'
-  let g:unite_source_grep_default_opts = '-i -8 --exclude ''\.(git|svn|hg|tags|vagrant)|.\.(jpg|png|gif|log)|(vagrant|tmp)'''
-  let g:unite_source_grep_recursive_opt = '-R'
-elseif has('mac')
+" grep commands
+if executable('ag')
+  " Use ag in unite grep source.
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor -S'
+  let g:unite_source_grep_default_opts =
+        \ '-i --vimgrep --hidden --ignore ' .
+        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
   let g:unite_source_grep_recursive_opt = ''
+"elseif executable('pt')
+"  " Use pt in unite grep source.
+"  " https://github.com/monochromegane/the_platinum_searcher
+"  let g:unite_source_grep_command = 'pt'
+"  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+"  let g:unite_source_grep_recursive_opt = ''
+"elseif executable('ack-grep')
+"  " Use ack in unite grep source.
+"  let g:unite_source_grep_command = 'ack-grep'
+"  let g:unite_source_grep_default_opts =
+"        \ '-i --no-heading --no-color -k -H'
+"  let g:unite_source_grep_recursive_opt = ''
+elseif executable('jvgrep')
+  " For jvgrep.
+  let g:unite_source_grep_command = 'jvgrep'
+  let g:unite_source_grep_default_opts =
+        \ '-i --exclude ''\.(git|svn|hg|bzr)'''
+  let g:unite_source_grep_recursive_opt = '-R'
 endif
 
 " unite-grep
