@@ -530,7 +530,8 @@ nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 " file_rec
 "nnoremap <silent> [unite]fr :<C-u>Unite file_rec<CR>
 " file_rec/async
-nnoremap <silent> [unite]f :<C-u>Unite file_rec/async<CR>
+nnoremap <silent> [unite]f :<C-u>Unite file_rec/async -buffer-name=file-async<CR>
+nnoremap <silent> [unite]vf :<C-u>UniteResume file-async<CR>
 " register
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " neomru
