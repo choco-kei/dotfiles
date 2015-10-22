@@ -663,6 +663,10 @@ let g:unite_source_buffer_time_format = '(%Y.%m.%d %H:%M:%S) '
 let g:unite_source_history_yank_enable = 1
 
 " grep commands
+"if executable('hw')
+"  let g:unite_source_grep_command = 'hw'
+"  let g:unite_source_grep_default_opts = '--no-group --no-color'
+"  let g:unite_source_grep_recursive_opt = ''
 if executable('ag')
   " Use ag in unite grep source.
   let g:unite_source_grep_command = 'ag'
