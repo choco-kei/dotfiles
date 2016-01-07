@@ -34,7 +34,10 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'ujihisa/unite-colorscheme'
 
 "" unite-quickfix
-NeoBundle 'osyo-manga/unite-quickfix'
+"NeoBundle 'osyo-manga/unite-quickfix'
+NeoBundleLazy 'osyo-manga/unite-quickfix', {
+      \ 'on_unite': ['quickfix', 'location_list']
+      \ }
 
 "" unite-qfixhowm
 NeoBundle 'osyo-manga/unite-qfixhowm'
