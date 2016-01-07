@@ -148,7 +148,7 @@ NeoBundle 'thinca/vim-textobj-comment'
 
 " ASCII文字とマルチバイト文字の境界を区切り
 " am, im
-NeoBundle 'deton/textobj-mbboundary.vim'
+"NeoBundle 'deton/textobj-mbboundary.vim'
 
 " URL
 " au, iu
