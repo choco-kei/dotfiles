@@ -68,7 +68,8 @@ NeoBundle 'akiomik/itermcolors-vim'
 "" vim-gitgutter
 " windowsで動かないっぽい？
 if has('mac')
-    NeoBundle 'airblade/vim-gitgutter'
+  " macvimで表示がおかしいのでとりあえずコメントアウト
+  "NeoBundle 'airblade/vim-gitgutter'
 endif
 
 "" neocomplete
