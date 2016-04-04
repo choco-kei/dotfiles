@@ -198,7 +198,9 @@ NeoBundle 'joonty/vdebug'
 "" colors
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'illicium/vim-colors-solarized'
+NeoBundle 'illicium/vim-colors-solarized', {
+      \ 'rev': 'cb5b184d05dece1b7ed74ad2313f009bb18f63fc'
+      \}
 NeoBundle 'sjl/badwolf'
 NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'junegunn/seoul256.vim'
