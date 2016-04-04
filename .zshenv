@@ -13,6 +13,8 @@ PATH=$PATH:$HOME/dotfiles/bin
 # PATH:Npm
 PATH=$PATH:/sbin:/usr/local/share/npm/bin
 export PATH
+# PATH:Composer
+PATH=$PATH:$HOME/.composer/vendor/bin
 
 # LESS
 LESS=-qR
