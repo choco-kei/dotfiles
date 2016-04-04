@@ -452,8 +452,6 @@ set showfulltag
 set wildoptions=tagfile
 
 
-
-
 " }}}
 
 "----------------------------------------------------------
@@ -1127,10 +1125,17 @@ let g:php_cs_fixer_verbose = 0
 "  autocmd FileType php call PhpSyntaxOverride()
 "augroup END
 
+"" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " プラグイン インデントをon
 filetype plugin indent on
 
 " }}}
+
 
 "----------------------------------------------------------
 " カラー {{{
@@ -1168,6 +1173,7 @@ highlight SpecialKey term=none gui=none cterm=none
 autocmd Colorscheme * highlight SpecialKey term=none gui=none
 
 " }}}
+
 
 "----------------------------------------------------------
 " その他 {{{
