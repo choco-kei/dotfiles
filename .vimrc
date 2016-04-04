@@ -184,6 +184,9 @@ NeoBundle 'elzr/vim-json'
 "" vim-php-cs-fixer
 NeoBundle 'stephpy/vim-php-cs-fixer'
 
+"" junegunn/vim-easy-align
+NeoBundle 'junegunn/vim-easy-align'
+
 "" vdebug
 NeoBundle 'joonty/vdebug'
 
