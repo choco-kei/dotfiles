@@ -228,6 +228,7 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
 "NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'paulyg/Vim-PHP-Stuff'
+NeoBundle 'jwalton512/vim-blade'
 
 "" indent
 NeoBundle 'othree/html5.vim'
@@ -436,6 +437,7 @@ if has('win32')
 endif
 
 " }}}
+
 
 "----------------------------------------------------------
 " タグ {{{
