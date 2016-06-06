@@ -126,6 +126,9 @@ zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 
+# 補完で大文字小文字を無視
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # セパレータを設定する
 zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
