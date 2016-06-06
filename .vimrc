@@ -1131,6 +1131,11 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+"" vdebug
+let g:vdebug_options= {
+      \ 'port': 9001,
+      \}
+
 " プラグイン インデントをon
 filetype plugin indent on
 
