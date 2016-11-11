@@ -834,14 +834,8 @@ inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : "<CR>"
 nnoremap <Leader>gd :GundoToggle<CR>
 
 "" lightline.vim
-" winのdark設定が反映しないので決め打ち
-if has('win32')
-  let llcolor = 'solarized_dark'
-else
-  let llcolor = 'solarized'
-endif
 let g:lightline = {
-      \ 'colorscheme': llcolor,
+      \ 'colorscheme': 'solarized',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
