@@ -99,10 +99,13 @@ setopt hist_no_store
 
 ## 補完関連
 # zsh-completions
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fpath=(/usr/local/share/zsh-completions ~/.zsh/zsh-completions/src $fpath)
 
 # 自動インクリメンタル補完(incr.zsh)
 [ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=24'
 
 # 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
 setopt auto_menu
@@ -120,11 +123,12 @@ zstyle ':completion:*' special-dirs true
 # 補完の表示を強化する
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list
-zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
-zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:messages' format $'\e[33m%d\e39m'
+zstyle ':completion:*:warnings' format $'\e[31mNo matches for:\e[33m %d\e[39m'
+#zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+zstyle ':completion:*:descriptions' format $'\e[33m -- %d --\e[39m'
+#zstyle ':completion:*:corrections' format $'\e[33m%B%d \e[31m(errors: %e)%b\e[39m'
 zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 
 # 補完で大文字小文字を無視
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -133,9 +137,16 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 
-# 強力な補完を有効にする
-autoload -Uz compinit
-compinit
+# 補完候補をキャッシュする
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# 補完を有効にする
+autoload -U compinit
+compinit -u
+
+# git補完が重いので停止
+__git_ls_files_helper() {}
 
 
 ###-begin-npm-completion-###
