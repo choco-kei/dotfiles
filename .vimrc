@@ -370,7 +370,7 @@ set lazyredraw
 set ttyfast
 
 " 全角記号を1バイトとして扱う
-set ambiwidth=single
+"set ambiwidth=single
 
 " IMオン時にカーソルの色を変える
 "if has('multi_byte_ime') || has('xim')
@@ -968,7 +968,8 @@ let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
 "" indentline
-let g:indentLine_char = '┊'
+"let g:indentLine_char = '┊'
+let g:indentLine_char = '¦'
 let g:indentLine_bufNameExclude = ['\[unite\].*', 'vimfiler.*']
 let g:indentLine_faster = 1
 
