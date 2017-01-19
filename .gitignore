@@ -2,6 +2,8 @@
 .vim/tmp/*
 .vim/.netrwhist
 .zsh/.zsh_history
+.zsh/cache/*
+.gitkeep
 
 # Compiled source #
 ###################
