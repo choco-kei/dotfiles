@@ -69,8 +69,11 @@ NeoBundle 'akiomik/itermcolors-vim'
 " windowsで動かないっぽい？
 if has('mac')
   " macvimで表示がおかしいのでとりあえずコメントアウト
-  "NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'airblade/vim-gitgutter'
 endif
+
+"" vim-fugitive
+NeoBundle 'tpope/vim-fugitive'
 
 "" neocomplete
 NeoBundle 'Shougo/neocomplete.vim'
@@ -723,6 +726,9 @@ let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/vimfiler')
 "" vim-gitgutter
 " windowsで動かないっぽい？
 if has('mac')
+    let g:gitgutter_sign_added = '+'
+    let g:gitgutter_sign_modified = '⇒'
+    let g:gitgutter_sign_removed = '-'
     nnoremap <silent> <Leader>gg :<C-u>GitGutterToggle<CR>
     nnoremap <silent> <Leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 endif
@@ -840,7 +846,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['readonly', 'filename', 'modified'],
+      \     ['readonly', 'fugitive', 'gitgutter', 'filename', 'modified'],
       \     ['anzu']
       \   ],
       \   'right':[
@@ -858,7 +864,8 @@ let g:lightline = {
       \   'filetype': 'LlFiletype',
       \   'fileencoding': 'LlFileencoding',
       \   'mode': 'LlMode',
-      \   'anzu': 'anzu#search_status'
+      \   'anzu': 'anzu#search_status',
+      \   'gitgutter': 'LlGitGutter'
       \ },
       \ 'component_expand': {
       \   'syntastic': 'SyntasticStatuslineFlag',
@@ -891,7 +898,7 @@ endfunction
 function! LlFugitive()
   try
     if expand('%:t') !~? 'Tagbar\|Gundo' && &filetype !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
+      let mark = '⭠'  " edit here for cool mark
       let _ = fugitive#head()
       return strlen(_) ? mark._ : ''
     endif
@@ -922,6 +929,27 @@ function! LlMode()
         \ &filetype == 'vimfiler' ? 'VimFiler' :
         \ &filetype == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! LlGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+        \ || ! get(g:, 'gitgutter_enabled', 0)
+        \ || winwidth('.') <= 90
+    return ''
+  endif
+  let symbols = [
+        \ g:gitgutter_sign_added . ' ',
+        \ g:gitgutter_sign_modified . ' ',
+        \ g:gitgutter_sign_removed . ' '
+        \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
 endfunction
 
 augroup AutoSyntastic
