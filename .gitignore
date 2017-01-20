@@ -1,9 +1,7 @@
-.vim/bundle/auto/*
-.vim/tmp/*
-.vim/.netrwhist
-.zsh/.zsh_history
-.zsh/cache/*
-.gitkeep
+# tmp
+tmp/zsh/*
+tmp/nvim/*
+!.gitkeep
 
 # Compiled source #
 ###################

@@ -78,7 +78,7 @@ bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
 # ヒストリー設定
-HISTFILE=~/.zsh/.zsh_history
+HISTFILE=~/dotfiles/tmp/zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -100,12 +100,10 @@ setopt hist_no_store
 ## 補完関連
 # zsh-completions
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-fpath=(/usr/local/share/zsh-completions ~/.zsh/zsh-completions/src $fpath)
+fpath=(/usr/local/share/zsh-completions ~/dotfiles/config/zsh/zsh-completions/src $fpath)
 
 # 自動インクリメンタル補完(incr.zsh)
-[ -f ~/.zsh/incr*.zsh ] && source ~/.zsh/incr*.zsh
-#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=24'
+[ -f ~/dotfiles/config/zsh/incr*.zsh ] && source ~/dotfiles/config/zsh/incr*.zsh
 
 # 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
 setopt auto_menu
@@ -124,7 +122,7 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list
 zstyle ':completion:*:messages' format $'\e[33m%d\e39m'
-zstyle ':completion:*:warnings' format $'\e[31mNo matches for:\e[33m %d\e[39m'
+#zstyle ':completion:*:warnings' format $'\e[31mNo matches for:\e[33m %d\e[39m'
 #zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
 zstyle ':completion:*:descriptions' format $'\e[33m -- %d --\e[39m'
 #zstyle ':completion:*:corrections' format $'\e[33m%B%d \e[31m(errors: %e)%b\e[39m'
@@ -139,7 +137,7 @@ zstyle ':completion:*:manuals' separate-sections true
 
 # 補完候補をキャッシュする
 zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' cache-path ~/dotfiles/tmp/zsh/cache
 
 # 補完を有効にする
 autoload -U compinit
@@ -343,5 +341,4 @@ zle -N zle-keymap-select
 setopt prompt_subst
 
 # プロンプトのテーマ設定
-source ~/dotfiles/.zshrc.theme
-
+source ~/dotfiles/config/zsh/.zshrc.theme
