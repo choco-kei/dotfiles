@@ -729,6 +729,7 @@ if has('mac')
     let g:gitgutter_sign_added = '+'
     let g:gitgutter_sign_modified = '⇒'
     let g:gitgutter_sign_removed = '-'
+    let g:gitgutter_sign_modified_removed = '⇒'
     nnoremap <silent> <Leader>gg :<C-u>GitGutterToggle<CR>
     nnoremap <silent> <Leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 endif
@@ -938,9 +939,9 @@ function! LlGitGutter()
     return ''
   endif
   let symbols = [
-        \ g:gitgutter_sign_added . ' ',
-        \ g:gitgutter_sign_modified . ' ',
-        \ g:gitgutter_sign_removed . ' '
+        \ g:gitgutter_sign_added . '',
+        \ g:gitgutter_sign_modified . '',
+        \ g:gitgutter_sign_removed . ''
         \ ]
   let hunks = GitGutterGetHunkSummary()
   let ret = []
