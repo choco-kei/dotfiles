@@ -1,0 +1,169 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+### colorscheme {{{
+#[[plugins]]
+#repo = 'illicium/vim-colors-solarized'
+#rev = 'cb5b184d05dece1b7ed74ad2313f009bb18f63fc'
+#hook_add = '''
+#source ~/.config/nvim/plugins/color_solarized.rc.vim
+#'''
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/color_iceberg.rc.vim
+'''
+
+#[[plugins]]
+#repo = 'joshdick/onedark.vim'
+#hook_add = '''
+#source ~/.config/nvim/plugins/color_onedark.rc.vim
+#'''
+
+#[[plugins]]
+#repo = 'jacoborus/tender.vim'
+#hook_add = '''
+#source ~/.config/nvim/plugins/color_tender.rc.vim
+#'''
+### }}}
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-gitgutter.rc.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-fugitive.rc.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/lightline.rc.vim
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+source ~/.config/nvim/plugins/indentLine.rc.vim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-over'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-over.rc.vim
+'''
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/yankround.rc.vim
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-quickhl.rc.vim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-anzu.rc.vim
+'''
+
+[[plugins]]
+repo = 'tmhedberg/matchit'
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-easymotion.rc.vim
+'''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-json.rc.vim
+'''
+
+[[plugins]]
+repo = 'stephpy/vim-php-cs-fixer'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-php-cs-fixer.rc.vim
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-easy-align.rc.vim
+'''
+
+[[plugins]]
+repo = 'LeafCage/foldCC.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/foldCC.rc.vim
+'''
+
+### vim-operator-user {{{
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-operator-replace.rc.vim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search'
+depends = 'vim-operator-user'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-operator-search.rc.vim
+'''
+### }}}
+
+### vim-textobj {{{
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+# af, if
+repo = 'kana/vim-textobj-function'
+
+[[plugins]]
+repo = 'kentaro/vim-textobj-function-php'
+depends = 'vim-textobj-function'
+
+[[plugins]]
+# al, il
+repo = 'kana/vim-textobj-line'
+
+[[plugins]]
+# ada, ida
+repo = 'kana/vim-textobj-datetime'
+
+[[plugins]]
+# ac, ic
+repo = 'thinca/vim-textobj-comment'
+
+[[plugins]]
+# asb, isb
+repo = 'osyo-manga/vim-textobj-multiblock'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-textobj-multiblock.rc.vim
+'''
+
+[[plugins]]
+# ao, io
+repo = 'glts/vim-textobj-indblock'
+### }}}
