@@ -12,9 +12,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:$HOME/bin:$HOM
 PATH=$PATH:$HOME/dotfiles/bin
 # PATH:Npm
 PATH=$PATH:/sbin:/usr/local/share/npm/bin
-export PATH
 # PATH:Composer
 PATH=$PATH:$HOME/.composer/vendor/bin
+export PATH
 
 # LESS
 LESS=-qR
