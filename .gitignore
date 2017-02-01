@@ -1,6 +1,12 @@
+# nvim
+config/nvim/.netrwhist
+config/nvim/snippet/*
+
+#vim
+
 # tmp
 tmp/zsh/*
-tmp/nvim/*
+
 !.gitkeep
 
 # Compiled source #
