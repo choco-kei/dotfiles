@@ -96,12 +96,6 @@ source ~/.config/nvim/plugins/vim-json.rc.vim
 '''
 
 [[plugins]]
-repo = 'stephpy/vim-php-cs-fixer'
-hook_add = '''
-source ~/.config/nvim/plugins/vim-php-cs-fixer.rc.vim
-'''
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
 source ~/.config/nvim/plugins/vim-easy-align.rc.vim
@@ -140,9 +134,9 @@ repo = 'kana/vim-textobj-user'
 # af, if
 repo = 'kana/vim-textobj-function'
 
-[[plugins]]
-repo = 'kentaro/vim-textobj-function-php'
-depends = 'vim-textobj-function'
+#[[plugins]]
+#repo = 'kentaro/vim-textobj-function-php'
+#depends = 'vim-textobj-function'
 
 [[plugins]]
 # al, il
