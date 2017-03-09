@@ -45,7 +45,9 @@ set modelines=0
 set notitle
 
 " ヤンクでクリップボードを使用
-set clipboard=unnamed
+" バグがあるのでコメントアウト
+" https://github.com/neovim/neovim/issues/1822
+"set clipboard=unnamed
 
 " コマンドモードで補完を使用
 set wildmode=longest:full,full
@@ -54,9 +56,6 @@ set wildignorecase
 
 " スワップファイルを作らない
 set noswapfile
-
-" undofile
-set undodir=~/.cache/nvim/undo
 
 " 折り返さない
 set nowrap
@@ -153,3 +152,23 @@ set wildoptions=tagfile
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin,sjis
 set fileformats=unix
+
+" undofile
+set undofile
+
+
+" 現在のファイルパスをコピー
+command! CopyPath
+      \ let @*=expand('%') | echo 'copied'
+
+" jsonを整形
+command! JsonFormat :execute '%!python -m json.tool'
+      \ | :execute '%!python -c "import re,sys;chr=__builtins__.__dict__.get(\"unichr\", chr);sys.stdout.write(re.sub(r\"\\\\u[0-9a-f]{4}\", lambda x: chr(int(\"0x\" + x.group(0)[2:], 16)).encode(\"utf-8\"), sys.stdin.read()))"'
+      \ | :set ft=json
+      \ | :1
+
+" 保存時に行末スペースを削除
+augroup saveFile
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+augroup END
