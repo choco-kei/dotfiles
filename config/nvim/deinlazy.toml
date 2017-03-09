@@ -38,27 +38,39 @@ repo = 'thinca/vim-qfreplace'
 on_source = 'unite.vim'
 ### }}}
 
-
-### deoplete {{{
+### completion {{{
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
+build = ':UpdateRemotePlugins'
 if = "has('nvim')"
 on_i = 1
 hook_source = '''
 source ~/.config/nvim/plugins/deoplete.rc.vim
 '''
+[[plugins]]
+repo = 'Shougo/neco-vim'
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+on_if = 1
 
 #[[plugins]]
-#repo = 'php-vim/phpcd.vim'
-#on_source = 'deoplete.nvim'
-#on_ft = 'php'
-#build = 'composer update'
+#repo = 'autozimu/LanguageClient-neovim'
+#build = ':UpdateRemotePlugins'
 #hook_source = '''
-#source ~/.config/nvim/plugins/deoplete-padawan.rc.vim
+#source ~/.config/nvim/plugins/LanguageServer-php-neovim.rc.vim
+#'''
+#
+#[[plugins]]
+#repo = 'roxma/LanguageServer-php-neovim'
+#on_ft = 'php'
+#build = 'composer install && composer run-script parse-stubs'
+#hook_source = '''
+#source ~/.config/nvim/plugins/LanguageServer-php-neovim.rc.vim
 #'''
 
 #[[plugins]]
