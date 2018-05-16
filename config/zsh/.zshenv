@@ -14,6 +14,8 @@ PATH=$PATH:$HOME/dotfiles/bin
 PATH=$PATH:/sbin:/usr/local/share/npm/bin
 # PATH:Composer
 PATH=$PATH:$HOME/.composer/vendor/bin
+# PATH:Golang
+PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH
 
 # LESS
