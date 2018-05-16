@@ -200,6 +200,7 @@ NeoBundle 'joonty/vdebug'
 
 "" colors
 NeoBundle 'tomasr/molokai'
+NeoBundle 'cocopon/iceberg.vim'
 "NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'illicium/vim-colors-solarized', {
       \ 'rev': 'cb5b184d05dece1b7ed74ad2313f009bb18f63fc'
@@ -842,7 +843,7 @@ nnoremap <Leader>gd :GundoToggle<CR>
 
 "" lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'iceberg',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
@@ -1196,7 +1197,7 @@ set background=dark
 "    execute 'autocmd GUIEnter * colorscheme' scheme
 "augroup END
 "execute 'colorscheme' scheme
-colorscheme solarized
+colorscheme iceberg
 let g:solarized_italic=0
 highlight SpecialKey term=none gui=none cterm=none
 autocmd Colorscheme * highlight SpecialKey term=none gui=none
