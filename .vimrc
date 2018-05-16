@@ -167,7 +167,7 @@ NeoBundle 'osyo-manga/vim-textobj-multiblock'
 NeoBundle 'glts/vim-textobj-indblock'
 
 "" QFixHowm
-NeoBundle 'fuenor/qfixhowm'
+"NeoBundle 'fuenor/qfixhowm'
 
 "" mtachit
 NeoBundle 'tmhedberg/matchit'
