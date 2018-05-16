@@ -65,6 +65,7 @@ filetype plugin indent on
 syntax enable
 
 runtime! ./options.rc.vim
+runtime! ./functions.rc.vim
 runtime! ./keymap.rc.vim
 
 " ローカル設定
