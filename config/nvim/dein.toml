@@ -116,7 +116,6 @@ source ~/.config/nvim/plugins/foldCC.rc.vim
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
-# 今度調整
 #[[plugins]]
 #repo = 'w0rp/ale'
 #hook_add = '''

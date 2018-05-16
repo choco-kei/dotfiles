@@ -91,15 +91,16 @@ source ~/.config/nvim/plugins/gundo.rc.vim
 '''
 ### }}}
 
+### PHP {{{
 [[plugins]]
 repo = 'stephpy/vim-php-cs-fixer'
 on_ft = 'php'
 on_source = '''
 source ~/.config/nvim/plugins/vim-php-cs-fixer.rc.vim
 '''
+### }}}
 
-
-### go {{{
+### Golang {{{
 [[plugins]]
 repo = 'fatih/vim-go'
 on_ft = 'go'
