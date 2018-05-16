@@ -10,9 +10,7 @@ augroup END
 let mapleader = ','
 
 " True Color対応
-if has('patch-7.4.1778')
-  set guicolors
-elseif has('nvim')
+if has('nvim')
   " For Neovim 0.1.3 and 0.1.4
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -20,6 +18,8 @@ elseif has('nvim')
   if (has("termguicolors"))
     set termguicolors
   endif
+elseif has('patch-7.4.1778')
+  set guicolors
 endif
 
 if exists('g:nyaovim_version')
@@ -66,3 +66,21 @@ syntax enable
 
 runtime! ./options.rc.vim
 runtime! ./keymap.rc.vim
+
+" ローカル設定
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+
+" プロジェクト設定
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction

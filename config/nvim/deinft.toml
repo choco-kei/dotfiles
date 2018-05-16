@@ -73,3 +73,9 @@ else
     setlocal path+=/usr/local/include;/usr/include
 endif
 '''
+
+go = '''
+setlocal noexpandtab
+highlight default link goErr WarningMsg
+match goErr /\<err\>/
+'''

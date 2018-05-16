@@ -34,6 +34,9 @@ build = 'make'
 
 [[plugins]]
 repo = 'Shougo/neco-syntax'
+hook_add = '''
+source ~/.config/nvim/plugins/neco-syntax.rc.vim
+'''
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -103,12 +106,27 @@ repo = 'junegunn/vim-easy-align'
 hook_add = '''
 source ~/.config/nvim/plugins/vim-easy-align.rc.vim
 '''
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-easy-align.rc.vim
+'''
 
 [[plugins]]
 repo = 'LeafCage/foldCC.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/foldCC.rc.vim
 '''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# 今度調整
+#[[plugins]]
+#repo = 'w0rp/ale'
+#hook_add = '''
+#source ~/.config/nvim/plugins/ale.rc.vim
+#'''
 
 ### vim-operator-user {{{
 [[plugins]]

@@ -47,7 +47,7 @@ set notitle
 " ヤンクでクリップボードを使用
 " バグがあるのでコメントアウト
 " https://github.com/neovim/neovim/issues/1822
-"set clipboard=unnamed
+set clipboard=unnamed
 
 " コマンドモードで補完を使用
 set wildmode=longest:full,full
