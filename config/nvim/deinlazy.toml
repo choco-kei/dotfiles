@@ -82,6 +82,14 @@ hook_source = '''
 source ~/.config/nvim/plugins/neosnippet.rc.vim
 '''
 
+[[plugins]]
+repo = 'lvht/phpcd.vim'
+on_ft = 'php'
+build = 'composer install'
+hook_source = '''
+source ~/.config/nvim/plugins/phpcd.rc.vim
+'''
+
 ## }}}
 
 ### Gundo {{{
