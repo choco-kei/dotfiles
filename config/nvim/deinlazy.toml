@@ -59,8 +59,10 @@ on_if = 1
 
 #[[plugins]]
 #repo = 'autozimu/LanguageClient-neovim'
+#rev = 'next'
+#build = 'bash install.sh'
 #hook_source = '''
-#source ~/.config/nvim/plugins/LanguageServer-php-neovim.rc.vim
+#source ~/.config/nvim/plugins/LanguageClient-neovim.rc.vim
 #'''
 #
 #[[plugins]]
