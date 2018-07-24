@@ -46,15 +46,15 @@ call deoplete#custom#source('_', 'converters', [
       \ 'converter_auto_delimiter',
       \ ])
 
-let g:deoplete#auto_complete_delay = 20
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#enable_camel_case = 0
-"let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-
-let g:deoplete#delimiters = ['/', '.', '::', ':', '#', '->', '\']
+" options
+call deoplete#custom#option({
+      \ 'auto_complete_delay': 20,
+      \ 'refresh_always': v:true,
+      \ })
 
 call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
+"call deoplete#custom#source('_', 'matchers', ['matcher_cpsm'])
+"call deoplete#custom#source('_', 'sorters', [])
+
+"call deoplete#custom#option('profile', v:true)
+"call deoplete#enable_logging('DEBUG', 'deoplete.log')
