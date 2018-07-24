@@ -49,6 +49,8 @@ call deoplete#custom#source('_', 'converters', [
 " options
 call deoplete#custom#option({
       \ 'auto_complete_delay': 20,
+      \ 'ignore_case': v:true,
+      \ 'smart_case': v:true,
       \ 'refresh_always': v:true,
       \ })
 
