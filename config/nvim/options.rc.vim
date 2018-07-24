@@ -32,9 +32,6 @@ set showcmd
 " 現在のモードを表示
 set showmode
 
-" 現在のモードを表示
-set showmode
-
 " viminfoの設定
 set viminfo='50,<1000,s100,\"50
 
@@ -87,7 +84,7 @@ set matchtime=3
 " 行番号を表示
 set number
 
-" 行番号を絶対値で表示
+" 行番号を相対値で表示
 set relativenumber
 
 " コマンド実行中は再描画しない
