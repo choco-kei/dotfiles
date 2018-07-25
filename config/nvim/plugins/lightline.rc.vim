@@ -8,7 +8,8 @@ let g:lightline = {
       \     ['anzu']
       \   ],
       \   'right':[
-      \     ['syntastic', 'lineinfo'],
+      \     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
+      \     ['lineinfo'],
       \     ['percent'],
       \     ['fileformat', 'fileencoding', 'filetype']
       \   ]
@@ -24,12 +25,6 @@ let g:lightline = {
       \   'mode': 'LlMode',
       \   'anzu': 'anzu#search_status',
       \   'gitgutter': 'LlGitGutter'
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '»', 'right': '«' }
@@ -108,18 +103,6 @@ function! LlGitGutter()
     endif
   endfor
   return join(ret, ' ')
-endfunction
-
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost,BufReadPost *.php,*.js,*.css,*.html call s:syntastic()
-augroup END
-
-function! s:syntastic()
-  if exists('SyntasticCheck')
-    SyntasticCheck
-    call lightline#update()
-  endif
 endfunction
 
 " 他プラグインのステータスライン上書き

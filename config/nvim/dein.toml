@@ -121,11 +121,17 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'ptzz/cpsm'
 build = 'env PY3=ON ./install.sh'
 
-#[[plugins]]
-#repo = 'w0rp/ale'
-#hook_add = '''
-#source ~/.config/nvim/plugins/ale.rc.vim
-#'''
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+source ~/.config/nvim/plugins/ale.rc.vim
+'''
+
+[[plugins]]
+repo = 'maximbaz/lightline-ale'
+hook_add = '''
+source ~/.config/nvim/plugins/lightline-ale.rc.vim
+'''
 
 ### vim-operator-user {{{
 [[plugins]]
