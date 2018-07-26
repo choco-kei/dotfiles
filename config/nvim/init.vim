@@ -22,9 +22,7 @@ elseif has('patch-7.4.1778')
   set guicolors
 endif
 
-if exists('g:nyaovim_version')
-  let s:dein_cache_path = expand('~/.cache/nyaovim/dein')
-elseif has('nvim')
+if has('nvim')
   let s:dein_cache_path = expand('~/.cache/nvim/dein')
 else
   let s:dein_cache_path = expand('~/.cache/vim/dein')
@@ -46,12 +44,6 @@ if dein#load_state(s:dein_cache_path)
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy' : 0})
   call dein#load_toml('~/.config/nvim/deinlazy.toml', {'lazy' : 1})
   call dein#load_toml('~/.config/nvim/deinft.toml')
-
-  if exists('g:nyaovim_version')
-    call dein#add('rhysd/nyaovim-popup-tooltip')
-    call dein#add('rhysd/nyaovim-markdown-preview')
-    call dein#add('rhysd/nyaovim-mini-browser')
-  endif
 
   call dein#end()
   call dein#save_state()
