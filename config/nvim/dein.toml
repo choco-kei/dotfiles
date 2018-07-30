@@ -134,6 +134,9 @@ hook_add = '''
 source ~/.config/nvim/plugins/lightline-ale.rc.vim
 '''
 
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
 ### vim-operator-user {{{
 [[plugins]]
 repo = 'kana/vim-operator-user'
