@@ -137,6 +137,9 @@ source ~/.config/nvim/plugins/lightline-ale.rc.vim
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
 ### vim-operator-user {{{
 [[plugins]]
 repo = 'kana/vim-operator-user'
