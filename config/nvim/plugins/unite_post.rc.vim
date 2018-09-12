@@ -1,21 +1,13 @@
 " neomru
 " プロジェクトごとに出し分ける
 call unite#custom#source(
-      \ 'file_mru', 'matchers',
-      \ ['matcher_project_files', 'matcher_default', 'matcher_hide_hidden_files'])
+      \ 'neomru/file,file_mru', 'matchers',
+      \ ['matcher_project_files', 'matcher_default'])
 
 " 表示変更
 "call unite#custom#source(
 "      \ 'file_mru', 'matchers',
 "      \ ['matcher_file_name', 'sorter_default', 'converter_file_directory'])
-
-" vimが落ちるとmruが保存されないのでその対策
-"nnoremap <silent> [unite]m :<C-u>call g:Savemru()<CR>
-"function! g:Savemru()
-"  Unite file_mru
-"  call neomru#_save()
-"endfunction
-"
 
 " unite-tag wordにファイルパスを追加
 let s:filters = {
@@ -32,8 +24,7 @@ function! s:filters.filter(candidates, context)
 endfunction
 call unite#define_filter(s:filters)
 unlet s:filters
-call unite#custom#source('tag', 'matchers', ["converter_add_filepath_word", "matcher_default"])
-
+call unite#custom#source('tag', 'matchers', ['converter_add_filepath_word', 'matcher_default'])
 
 function! s:UniteMapping()
   " C-gで閉じる

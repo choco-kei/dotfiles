@@ -26,7 +26,7 @@ let g:unite_source_rec_async_command = [
       \ '-g', '']
 
 " file_mru
-nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]m :<C-u>Unite neomru/file<CR>
 
 " directory_mru
 nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
