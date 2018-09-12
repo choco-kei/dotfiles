@@ -65,6 +65,10 @@ source ~/.config/nvim/plugins/echodoc.rc.vim
 '''
 
 #[[plugins]]
+#repo = 'cohama/lexima.vim'
+#on_i = 1
+
+#[[plugins]]
 #repo = 'autozimu/LanguageClient-neovim'
 #rev = 'next'
 #build = 'bash install.sh'
