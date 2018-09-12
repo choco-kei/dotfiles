@@ -6,6 +6,7 @@ set autoread
 
 " スクロール時の余白行数
 set scrolloff=5
+set sidescrolloff=6
 
 " バックアップを作成しない
 set nobackup
