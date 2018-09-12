@@ -154,6 +154,9 @@ augroup phpSyntaxOverride
   autocmd FileType php call PhpSyntaxOverride()
 augroup END
 '''
+[[plugins]]
+repo = 'jwalton512/vim-blade'
+on_ft='blade'
 ### }}}
 
 ### indent {{{
