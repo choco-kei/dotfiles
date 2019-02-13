@@ -173,6 +173,6 @@ hook_add = '''
 source ~/.config/nvim/plugins/PHP-Indenting-for-VIm.rc.vim
 '''
 [[plugins]]
-repo = 'chase/vim-ansible-yaml'
+repo = 'stephpy/vim-yaml'
 on_ft = 'yml,yaml'
 ### }}}
