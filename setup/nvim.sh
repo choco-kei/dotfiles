@@ -1,14 +1,13 @@
 #!/bin/sh
 
-TYPE="misc"
-LN_FILES=(.agignore .ctags bin)
+LN_FILES=(nvim)
 
 for file in ${LN_FILES[@]}
 do
-    if [ -a $HOME/$file ]; then
+    if [ -a $HOME/.config/$file ]; then
         echo "既にファイルが存在します: $file"
     else
-        ln -s $HOME/dotfiles/config/$TYPE/$file $HOME/$file
+        ln -s $HOME/dotfiles/config/$file $HOME/.config/$file
         echo "シンボリックリンクを貼りました: $file"
     fi
 done
