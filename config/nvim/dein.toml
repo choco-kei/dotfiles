@@ -116,10 +116,10 @@ source ~/.config/nvim/plugins/foldCC.rc.vim
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]]
+#[[plugins]]
 #repo = 'nixprime/cpsm'
-repo = 'ptzz/cpsm'
-build = 'env PY3=ON ./install.sh'
+#repo = 'ptzz/cpsm'
+#build = 'env PY3=ON ./install.sh'
 
 [[plugins]]
 repo = 'w0rp/ale'
