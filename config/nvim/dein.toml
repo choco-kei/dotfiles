@@ -140,6 +140,12 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]]
 repo = 'cohama/lexima.vim'
 
+[[plugins]]
+repo     = 'ryanoasis/vim-devicons'
+hook_add = '''
+source ~/.config/nvim/plugins/vim-devicons.rc.vim
+'''
+
 ### vim-operator-user {{{
 [[plugins]]
 repo = 'kana/vim-operator-user'

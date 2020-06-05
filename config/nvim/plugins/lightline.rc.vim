@@ -35,7 +35,8 @@ function! LlModified()
 endfunction
 
 function! LlReadonly()
-  return &filetype !~? 'help' && &readonly ? '⭤' : ''
+  "  U+f542
+  return &filetype !~? 'help' && &readonly ? "\uf542" : ''
 endfunction
 
 function! LlFilename()
@@ -51,7 +52,8 @@ endfunction
 function! LlFugitive()
   try
     if expand('%:t') !~? 'Tagbar\|Gundo' && &filetype !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = '⭠'  " edit here for cool mark
+      "  u+e725
+      let mark = "\ue0a0"
       let _ = fugitive#head()
       return strlen(_) ? mark._ : ''
     endif
