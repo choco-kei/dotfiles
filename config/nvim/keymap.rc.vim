@@ -50,12 +50,15 @@ nnoremap <Leader>dt :<C-u>retab<CR>
 nnoremap <Leader>dc :<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>gg
 
 "" タブ操作
+nnoremap [tab] <Nop>
+nmap t [tab]
+
 " tn 新規タブ
-map <silent> [Tag]n :tabnew<CR>
+map <silent> [tab]n :tabnew<CR>
 " tl 次のタブ
-map <silent> [Tag]l :tabnext<CR>
+map <silent> [tab]l :tabnext<CR>
 " th 前のタブ
-map <silent> [Tag]h :tabprevious<CR>
+map <silent> [tab]h :tabprevious<CR>
 
 " 検索で自動エスケープ
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
