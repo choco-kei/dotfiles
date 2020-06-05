@@ -6,17 +6,25 @@ export LESSCHARSET=utf-8
 # EDITOR
 export EDITOR=vim
 
-# PATH
-PATH=/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:$HOME/bin:$HOME/local/bin:/usr/local/git/bin
+# disable path_helper
+setopt no_global_rcs
+
+# PATH:default
+path=(/usr/local/bin(N-/) /Library/Frameworks/Mono.framework/Versions/Current/Commands(N-/) /Applications/Wireshark.app/Contents/MacOS(N-/) $path)
+# PATH:local
+path=(/usr/local/sbin(N-/) $HOME/bin(N-/) $HOME/local/bin(N-/) /usr/local/git/bin(N-/) $path)
 # PATH:Dotfiles
-PATH=$PATH:$HOME/dotfiles/bin
+path=($HOME/dotfiles/bin(N-/) $path)
 # PATH:Npm
-PATH=$PATH:/sbin:/usr/local/share/npm/bin
+path=(/sbin:/usr/local/share/npm/bin(N-/) $path)
 # PATH:Composer
-PATH=$PATH:$HOME/.composer/vendor/bin
+path=($HOME/.composer/vendor/bin(N-/) $path)
 # PATH:Golang
-PATH=$PATH:/usr/local/opt/go/libexec/bin
-export PATH
+path=(/usr/local/opt/go/libexec/bin $path)
+# PATH:rbenv
+[[ -d ~/.rbenv  ]] && \
+    path=($HOME/.rbenv/shims $path)
+    eval "$(rbenv init -)"
 
 # LESS
 LESS=-qR
