@@ -4,7 +4,7 @@ let g:ale_sign_warning = "\uf071"
 let g:ale_sign_error = "\uf05e"
 
 let g:ale_linters = {
-      \'php': ['phpcs']
+      \'php': ['phpcs', 'php']
       \}
 
 let g:ale_fixers = {
