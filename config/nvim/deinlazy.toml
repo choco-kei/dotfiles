@@ -12,39 +12,11 @@ source ~/.config/nvim/plugins/denite.nvim_post.rc.vim
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
-### }}}
 
-### Unite {{{
-#[[plugins]]
-#repo = 'Shougo/unite.vim'
-#depends = 'neomru.vim'
-#on_cmd = 'Unite'
-#hook_add = '''
-#source ~/.config/nvim/plugins/unite.rc.vim
-#'''
-#hook_post_source = '''
-#source ~/.config/nvim/plugins/unite_post.rc.vim
-#'''
-
-#[[plugins]]
-#repo = 'Shougo/neomru.vim'
-#
 [[plugins]]
 repo = 'Shougo/unite-outline'
 on_source = 'denite.nvim'
-#
-#[[plugins]]
-#repo = 'tsukkee/unite-tag'
-#on_source = 'unite.vim'
-#
-#[[plugins]]
-#repo = 'osyo-manga/unite-quickfix'
-#on_source = 'unite.vim'
-#
-[[plugins]]
-repo = 'thinca/vim-qfreplace'
-on_source = 'denite.nvim'
-## }}}
+### }}}
 
 ### Defx {{{
 [[plugins]]
