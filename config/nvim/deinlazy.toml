@@ -104,7 +104,7 @@ repo ='kristijanhusak/defx-git'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
-on_i  = 1
+on_i = 1
 on_cmd = 'CocList'
 merged=0
 hook_source = '''
@@ -124,6 +124,16 @@ repo = 'sjl/gundo.vim'
 on_cmd = 'GundoToggle'
 hook_add = '''
 source ~/.config/nvim/plugins/gundo.rc.vim
+'''
+### }}}
+
+### markdown-preview {{{
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+build = 'sh -c "cd app && yarn install"'
+hook_add = '''
+source ~/.config/nvim/plugins/markdown-preview.nvim.rc.vim
 '''
 ### }}}
 
@@ -172,6 +182,9 @@ augroup END
 [[plugins]]
 repo = 'jwalton512/vim-blade'
 on_ft='blade'
+[[plugins]]
+repo = 'uarun/vim-protobuf'
+on_ft='proto'
 ### }}}
 
 ### indent {{{
