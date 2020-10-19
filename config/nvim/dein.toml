@@ -113,8 +113,8 @@ hook_add = '''
 source ~/.config/nvim/plugins/foldCC.rc.vim
 '''
 
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
 
 #[[plugins]]
 #repo = 'nixprime/cpsm'
@@ -137,8 +137,8 @@ source ~/.config/nvim/plugins/lightline-ale.rc.vim
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-[[plugins]]
-repo = 'cohama/lexima.vim'
+#[[plugins]]
+#repo = 'cohama/lexima.vim'
 
 [[plugins]]
 repo     = 'ryanoasis/vim-devicons'

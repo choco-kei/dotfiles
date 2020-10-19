@@ -1,0 +1,27 @@
+{
+    "phpactor.enable": true,
+    "phpactor.path": "/usr/local/bin/phpactor",
+    "phpactor.config": {
+        "language_server_completion.trim_leading_dollar": true,
+        "completion_worse.disabled_completors": []
+    },
+
+    "cSpell.enabled": true,
+    "cSpell.allowCompoundWords": true,
+    "cSpell.words": [
+        "hoge",
+        "phpactor",
+        "completors"
+    ],
+
+    "html.enable": true,
+    "html.filetypes": [
+        "html",
+        "handlebars",
+        "htmldjango"
+    ],
+
+    "css.enable": true,
+
+    "yaml.format.enable": true
+}
