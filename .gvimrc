@@ -27,6 +27,9 @@ set background=dark
 " ノーマルモード ESC2回でIMEをOFF
 nnoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
+" 行間を狭く(macvimに変更後に調整)
+set linespace=-1
+
 
 "" MacVim
 if has('gui_macvim')
@@ -37,7 +40,7 @@ if has('gui_macvim')
     " 入力モードでIMを自動ON
     "set iminsert
     " モード切替でIMを自動ON/OFF
-    set noimdisableactivate
+    "set noimdisableactivate
     " 行間
     set linespace=0 "SorceCodePro
     " フォント
