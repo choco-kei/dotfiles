@@ -73,7 +73,7 @@ if has('mac')
 endif
 
 "" vim-fugitive
-NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'tpope/vim-fugitive'
 
 "" neocomplete
 NeoBundle 'Shougo/neocomplete.vim'

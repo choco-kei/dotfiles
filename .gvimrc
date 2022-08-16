@@ -47,7 +47,7 @@ if has('gui_macvim')
     "set guifont=Menlo-Regular:h14
     "set guifont=Osaka-Mono:h15
     "set guifont=Consolas:h14
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+    set guifont=SauceCodePro\ NF:h13
     "set guifont=Osaka-Mono:h15
     set guifontwide=ヒラギノ丸ゴ\ ProN\ W4:h13
 

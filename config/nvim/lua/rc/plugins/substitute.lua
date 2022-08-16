@@ -1,0 +1,5 @@
+require('substitute').setup()
+vim.keymap.set('n', 'R', "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+vim.keymap.set('n', 'Rr', "<cmd>lua require('substitute').line()<cr>", { noremap = true })
+vim.keymap.set('n', 'RR', "<cmd>lua require('substitute').eol()<cr>", { noremap = true })
+vim.keymap.set('x', 'R', "<cmd>lua require('substitute').visual()<cr>", { noremap = true })

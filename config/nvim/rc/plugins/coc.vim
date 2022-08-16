@@ -47,5 +47,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+" codeaction
+nmap <silent> <space>ga <Plug>(coc-codeaction-line)
+
 " debug
 let g:node_client_debug = 0

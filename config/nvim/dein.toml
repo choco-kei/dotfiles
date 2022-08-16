@@ -38,17 +38,17 @@ hook_add = '''
 source ~/.config/nvim/plugins/neco-syntax.rc.vim
 '''
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-hook_add = '''
-source ~/.config/nvim/plugins/vim-gitgutter.rc.vim
-'''
+#[[plugins]]
+#repo = 'airblade/vim-gitgutter'
+#hook_add = '''
+#source ~/.config/nvim/plugins/vim-gitgutter.rc.vim
+#'''
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-source ~/.config/nvim/plugins/vim-fugitive.rc.vim
-'''
+#[[plugins]]
+#repo = 'tpope/vim-fugitive'
+#hook_add = '''
+#source ~/.config/nvim/plugins/vim-fugitive.rc.vim
+#'''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -80,11 +80,11 @@ hook_add = '''
 source ~/.config/nvim/plugins/vim-quickhl.rc.vim
 '''
 
-[[plugins]]
-repo = 'osyo-manga/vim-anzu'
-hook_add = '''
-source ~/.config/nvim/plugins/vim-anzu.rc.vim
-'''
+#[[plugins]]
+#repo = 'osyo-manga/vim-anzu'
+#hook_add = '''
+#source ~/.config/nvim/plugins/vim-anzu.rc.vim
+#'''
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
@@ -107,11 +107,11 @@ hook_add = '''
 source ~/.config/nvim/plugins/vim-easy-align.rc.vim
 '''
 
-[[plugins]]
-repo = 'LeafCage/foldCC.vim'
-hook_add = '''
-source ~/.config/nvim/plugins/foldCC.rc.vim
-'''
+#[[plugins]]
+#repo = 'LeafCage/foldCC.vim'
+#hook_add = '''
+#source ~/.config/nvim/plugins/foldCC.rc.vim
+#'''
 
 #[[plugins]]
 #repo = 'Shougo/neosnippet-snippets'

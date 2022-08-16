@@ -38,6 +38,10 @@ if &runtimepath !~ '/dein.vim'
   execute 'set runtimepath+=' . fnamemodify(s:dein_dir, ':p')
 endif
 
+" Python
+let g:python_host_prog = $PYENV_ROOT.'/versions/neovim2/bin/python'
+let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim3/bin/python'
+
 if dein#load_state(s:dein_cache_path)
   call dein#begin(s:dein_cache_path)
 

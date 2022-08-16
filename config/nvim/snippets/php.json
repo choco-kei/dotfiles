@@ -1,0 +1,29 @@
+{
+  "getter fucntion …": {
+    "prefix": "getter",
+    "body": [
+      "/**",
+      " * @return ${3:type}",
+      " */",
+      "public function get${1:propertyName}(): ${3:type}",
+      "{",
+      "\treturn \\$this->${2:variable};",
+      "}"
+    ],
+    "description": "Getter function"
+  },
+  "setter fucntion …": {
+    "prefix": "setter",
+    "body": [
+      "/**",
+      " * @param ${2:type} \\$${3:variable}",
+      " * @return void",
+      " */",
+      "public function set${1:propertyName}(${2:type} \\$${3:variable}): void",
+      "{",
+      "\t\\$this->${4:column} = \\$${3:variable};",
+      "}"
+    ],
+    "description": "Setter function"
+  }
+}

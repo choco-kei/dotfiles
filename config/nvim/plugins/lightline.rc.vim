@@ -4,7 +4,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['readonly', 'fugitive', 'gitgutter', 'filename', 'modified'],
+      \     ['readonly', 'gitbranch', 'gitgutter', 'filename', 'modified'],
       \     ['anzu']
       \   ],
       \   'right':[
@@ -17,7 +17,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'readonly': 'LlReadonly',
       \   'modified': 'LlModified',
-      \   'fugitive': 'LlFugitive',
+      \   'gitbranch': 'LlFugitive',
       \   'filename': 'LlFilename',
       \   'fileformat': 'LlFileformat',
       \   'filetype': 'LlFiletype',
@@ -51,7 +51,8 @@ endfunction
 
 function! LlFugitive()
   try
-    if expand('%:t') !~? 'Tagbar\|Gundo' && &filetype !~? 'vimfiler' && exists('*fugitive#head')
+    "if expand('%:t') !~? 'Tagbar\|Gundo' && &filetype !~? 'vimfiler' && exists('*fugitive#head')
+    if exists('*FugitiveHead')
       "  u+e725
       let mark = "\ue0a0"
       let _ = fugitive#head()
