@@ -443,9 +443,20 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Markdown
     ----------------------------------------------------------------------------------------------------------------------------------
+    --use({
+    --    'skanehira/preview-markdown.vim',
+    --    ft = { 'markdown' },
+    --    config = function()
+    --        vim.cmd('source ~/.config/nvim/rc/plugins/preview-markdown.vim')
+    --    end,
+    --})
     use({
-        'skanehira/preview-markdown.vim',
-        ft = { 'markdown' },
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+        ft = { 'markdown', 'pandoc.markdown', 'rmd' },
+        config = function()
+            vim.cmd('source ~/.config/nvim/rc/plugins/markdown-preview.vim')
+        end,
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
