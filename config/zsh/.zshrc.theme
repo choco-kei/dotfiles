@@ -21,13 +21,14 @@ case ${UID} in
     RED="%{${fg[red]}%}"
     CYAN="%{${fg[cyan]}%}"
     WHITE="%{${fg[white]}%}"
+    NAME=${USER%.*}
     SUYA="( ˘ω˘)"
     POH="ｽﾔｧ"
 
     #
     # Prompt
     #
-    PROMPT='%{$fg[cyan]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}'
+    PROMPT='%{$fg[cyan]%}${NAME}@${SUYA}${RESET}${WHITE}${POH} ${RESET}'
     RPROMPT='${RESET}${WHITE}[${BLUE}%(5~,%-2~/.../%2~,%~)% ${WHITE}]${RESET}'
 
     #
@@ -36,10 +37,10 @@ case ${UID} in
     function zle-line-init zle-keymap-select {
       case $KEYMAP in
         vicmd)
-        PROMPT="%{$fg[magenta]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
+        PROMPT="%{$fg[magenta]%}${NAME}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
         ;;
         main|viins)
-        PROMPT="%{$fg[cyan]%}${USER}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
+        PROMPT="%{$fg[cyan]%}${NAME}@${SUYA}${RESET}${WHITE}${POH} ${RESET}"
         ;;
       esac
       zle reset-prompt

@@ -140,8 +140,12 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/dotfiles/tmp/zsh/cache
 
 # 補完を有効にする
-autoload -U compinit
-compinit -u
+if type brew &>/dev/null; then
+    #FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -U compinit
+    compinit -u
+fi
 
 # git補完が重いので停止
 __git_ls_files_helper() {}
@@ -342,3 +346,8 @@ setopt prompt_subst
 
 # プロンプトのテーマ設定
 source ~/dotfiles/config/zsh/.zshrc.theme
+
+# zprof
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi

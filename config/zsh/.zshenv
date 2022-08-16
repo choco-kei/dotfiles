@@ -21,10 +21,20 @@ path=(/sbin:/usr/local/share/npm/bin(N-/) $path)
 path=($HOME/.composer/vendor/bin(N-/) $path)
 # PATH:Golang
 path=(/usr/local/opt/go/libexec/bin $path)
-# PATH:rbenv
-[[ -d ~/.rbenv  ]] && \
-    path=($HOME/.rbenv/shims $path)
-    eval "$(rbenv init -)"
+# PATH:ruby
+path=(/usr/local/opt/ruby/bin $path)
+path=(/usr/local/lib/ruby/gems/2.7.0/bin $path)
+
+# PATH:pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+path=("$PYENV_ROOT/bin" $path)
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
+fi
+
+# rbenv
+path=($HOME/.rbenv/bin $path)
+path=($HOME/.rbenv/shims $path)
 
 # LESS
 LESS=-qR
@@ -33,11 +43,13 @@ LESS=-qR
 MANPATH=$MANPATH:/opt/local/man:/usr/local/share/man
 export MANPATH
 
+# openssl
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl@1.1/lib/
 
 # Macvim
-alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vimdiff='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/vimdiff'
+#alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+#alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+#alias vimdiff='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/vimdiff'
 
 #tree -N
 alias tree='/usr/local/bin/tree -N'
@@ -50,3 +62,7 @@ alias cp="gcp"
 
 # svn
 export SVN_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+
+# zprof
+#zmodload zsh/zprof && zprof
