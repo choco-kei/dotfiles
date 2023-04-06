@@ -10,7 +10,7 @@ export EDITOR=vim
 setopt no_global_rcs
 
 # PATH:default
-path=(/usr/local/bin(N-/) /Library/Frameworks/Mono.framework/Versions/Current/Commands(N-/) /Applications/Wireshark.app/Contents/MacOS(N-/) $path)
+path=(/sbin(N-/) /usr/local/bin(N-/) /Library/Frameworks/Mono.framework/Versions/Current/Commands(N-/) /Applications/Wireshark.app/Contents/MacOS(N-/) $path)
 # PATH:local
 path=(/usr/local/sbin(N-/) $HOME/bin(N-/) $HOME/local/bin(N-/) /usr/local/git/bin(N-/) $path)
 # PATH:Dotfiles
@@ -24,6 +24,14 @@ path=(/usr/local/opt/go/libexec/bin $path)
 # PATH:ruby
 path=(/usr/local/opt/ruby/bin $path)
 path=(/usr/local/lib/ruby/gems/2.7.0/bin $path)
+# PATH:java
+# JDK19
+#path=(/usr/local/opt/openjdk/bin $path)
+# JDK17
+#path=(/usr/local/opt/openjdk@17/bin $path)
+# JDK11
+path=(/usr/local/opt/openjdk@11/bin $path)
+
 
 # PATH:pyenv
 export PYENV_ROOT="$HOME/.pyenv"

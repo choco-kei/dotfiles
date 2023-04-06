@@ -351,3 +351,5 @@ source ~/dotfiles/config/zsh/.zshrc.theme
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
+
+source ~/.docker/init-zsh.sh || true # Added by Docker Desktop
