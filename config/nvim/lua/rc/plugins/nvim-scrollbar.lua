@@ -61,6 +61,7 @@ require('scrollbar').setup({
         'prompt',
         'TelescopePrompt',
         'NvimTree',
+        'neo-tree',
     },
     autocmd = {
         render = {

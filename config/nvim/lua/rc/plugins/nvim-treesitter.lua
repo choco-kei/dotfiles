@@ -18,7 +18,7 @@ require('nvim-treesitter.configs').setup({
             node_decremental = '<S-TAB>',
         },
     },
-    indent = { enable = false, disable = {} },
+    indent = { enable = true, disable = { } },
     textobjects = { -- syntax-aware textobjects
         select = {
             enable = true,

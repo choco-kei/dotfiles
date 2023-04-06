@@ -54,14 +54,25 @@ vim.o.showmode = true -- 現在のモードを非表示
 vim.o.wildmode = 'longest:full,full' -- コマンドモードで補完を使用
 vim.o.wildmenu = true -- コマンドモードで補完を使用
 vim.o.wildignorecase = true -- 補完で大文字小文字を無視
+vim.o.cmdheight = 0 -- コマンドラインの高さ
 
 -- タグ
 vim.o.tags = 'tags,./.tags' .. vim.o.tags -- タグファイルを指定
 vim.o.showfulltag = true -- 補完時に1行まるごと補完
 vim.o.wildoptions = 'tagfile' -- タグから補完リストに追加
 
+-- LSP
+--vim.diagnostic.config({
+--  virtual_text = false,
+--  signs = true,
+--  underline = true,
+--  update_in_insert = false,
+--  severity_sort = false,
+--})
+
 -- 他
 vim.o.title = false -- タイトルを変更させない
 vim.o.errorbells = false -- ビープ無効
 vim.o.visualbell = false -- ビープ無効
 vim.o.ttyfast = true -- 高速ターミナル接続を行う
+vim.cmd('set sessionoptions+=globals')

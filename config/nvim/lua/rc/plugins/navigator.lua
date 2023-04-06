@@ -119,8 +119,10 @@ require'navigator'.setup({
         treesitter_defult = '🌲',
         doc_symbols = '',
     },
-    lsp_installer = true, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
+    --lsp_installer = true, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
+    mason = true, -- set to true if you would like use the lsp installed by williamboman/mason
     lsp = {
+        enable = true,
         code_action = {enable = true, sign = true, sign_priority = 40, virtual_text = false},
         code_lens_action = {enable = true, sign = true, sign_priority = 40, virtual_text = false},
         format_on_save = false, -- set to false to disable lsp code format on save (if you are using prettier/efm/formater etc)
@@ -156,10 +158,10 @@ require'navigator'.setup({
                 gopls = {gofumpt = false} -- disable gofumpt etc,
             }
         },
-        sumneko_lua = {
-            sumneko_root_path = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server',
-            sumneko_binary = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server/bin/macOS/lua-language-server',
-        },
+        --sumneko_lua = {
+        --    sumneko_root_path = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server',
+        --    sumneko_binary = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server/bin/macOS/lua-language-server',
+        --},
         servers = {'cmake', 'ltex'}, -- by default empty, and it should load all LSP clients avalible based on filetype
         -- but if you whant navigator load  e.g. `cmake` and `ltex` for you , you
         -- can put them in the `servers` list and navigator will auto load them.
@@ -168,6 +170,5 @@ require'navigator'.setup({
     }
 })
 
--- keymapがうまくいかない・・
---vim.keymap.set('n', '<space>f', '<cmd>lua vim.lsp.buf.format({async = false})<CR>', { noremap = true, silent = true });
---vim.keymap.set('v', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting({async = false})<CR>', { noremap = true, silent = true });
+vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
+vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")

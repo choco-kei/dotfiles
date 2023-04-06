@@ -43,10 +43,10 @@ require('nvim-tree').setup({
         --    open_win_config = {
         --        relative = 'editor',
         --        border = 'rounded',
-        --        width = 30,
-        --        height = 30,
-        --        row = 1,
-        --        col = 1,
+        --        width = 50,
+        --        height = 50,
+        --        row = 2,
+        --        col = 5,
         --    },
         --},
     },
@@ -148,7 +148,7 @@ require('nvim-tree').setup({
             },
         },
         open_file = {
-            quit_on_open = false,
+            quit_on_open = true,
             resize_window = true,
             window_picker = {
                 enable = true,

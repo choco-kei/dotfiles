@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     use({ 'MunifTanjim/nui.nvim' })
 
     ----------------------------------------------------------------------------------------------------------------------------------
-    -- SolorScheme
+    -- ColorScheme
     ----------------------------------------------------------------------------------------------------------------------------------
     --local colorscheme = 'iceberg.nvim'
     --use({
@@ -40,6 +40,13 @@ return require('packer').startup(function(use)
         config = function()
             require('rc/plugins/nightfox')
         end,
+    })
+
+    use({
+        'ray-x/aurora',
+        --config = function()
+        --    require('rc/plugins/aurora')
+        --end,
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -74,16 +81,19 @@ return require('packer').startup(function(use)
     use({ 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' })
     --use({ 'ray-x/cmp-treesitter', after = 'nvim-cmp' })
     use({ 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' })
+    --use({
+    --    'tzachar/cmp-tabnine',
+    --    run = './install.sh',
+    --    after = 'nvim-cmp',
+    --    config = function()
+    --        require('rc/plugins/cmp-tabnine')
+    --    end,
+    --})
 
     --use({ 'zbirenbaum/copilot-cmp', after = { 'nvim-cmp', 'copilot.lua' } })
     --use({ 'hrsh7th/cmp-copilot', after = 'nvim-cmp' })
     --use({ 'hrsh7th/cmp-calc', after = 'nvim-cmp' })
 
-    --use({
-    --    'tzachar/cmp-tabnine',
-    --    run = './install.sh',
-    --    after = 'nvim-cmp',
-    --})
 
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Snippet
@@ -110,13 +120,14 @@ return require('packer').startup(function(use)
     use({
         'neovim/nvim-lspconfig',
         after = 'cmp-nvim-lsp',
+        commit = '3d67dfd8a6d7fb8f1ded38f0f8b6a51f5cec3225',
         config = function()
             require('rc/plugins/nvim-lspconfig')
         end,
     })
     use({
         'williamboman/nvim-lsp-installer',
-        requires = { { 'RRethy/vim-illuminate', opt = true } },
+        requires = { { 'RRethy/vim-illuminate' } },
         after = { 'nvim-lspconfig', 'vim-illuminate', 'nlsp-settings.nvim' },
         config = function()
             require('rc/plugins/nvim-lsp-installer')
@@ -139,33 +150,50 @@ return require('packer').startup(function(use)
     })
 
     -- UI
-    --use({
-    --    'tami5/lspsaga.nvim',
-    --    after = 'nvim-lsp-installer',
-    --    config = function()
-    --        require('rc/plugins/lspsaga')
-    --    end,
-    --})
-    --use {
-    --    'folke/trouble.nvim',
-    --    requires = 'kyazdani42/nvim-web-devicons',
-    --    config = function()
-    --        require('rc/plugins/trouble')
-    --    end,
-    --}
+    -- disabled
     use({
         'ray-x/guihua.lua',
+        --disable = true,
         run = 'cd lua/fzy && make',
+        --commit = 'd3f6d01639b52e6a83ea98dd6ca244c9aa98b79b',
         config = function()
             require('rc/plugins/guihua')
         end,
     })
+    -- disabled
     use({
         'ray-x/navigator.lua',
+        --disable = true,
         requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
         after = { 'nvim-lsp-installer'},
+        commit = 'ed53571834c0d8bad4c9293974326d399bda2892',
         config = function()
             require('rc/plugins/navigator')
+        end,
+    })
+    use({
+        'glepnir/lspsaga.nvim',
+        disable = true,
+        branch = 'main',
+        after = { 'nvim-lsp-installer'},
+        config = function()
+            require('rc/plugins/lspsaga')
+        end,
+    })
+    --use({
+    --    'SmiteshP/nvim-navic',
+    --    disable = true,
+    --    requires = { 'nvim-lsp-installer'},
+    --    config = function()
+    --        require('rc/plugins/nvim-navic')
+    --    end,
+    --})
+    use({
+        'utilyre/barbecue.nvim',
+        --disable = true,
+        requires = { 'nvim-lspconfig', 'SmiteshP/nvim-navic', 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('rc/plugins/barbecue')
         end,
     })
     use({
@@ -224,8 +252,20 @@ return require('packer').startup(function(use)
     use({ 'yioneko/nvim-yati', after = 'nvim-treesitter' })
 
     -- UI
-    use({ 'p00f/nvim-ts-rainbow', after = { 'nvim-treesitter' } })
-    use({ 'haringsrob/nvim_context_vt', after = { 'nvim-treesitter', colorscheme } })
+    use({
+        'p00f/nvim-ts-rainbow',
+        after = { 'nvim-treesitter' },
+        config = function()
+            require('rc/plugins/nvim-ts-rainbow')
+        end,
+    })
+    use({
+        'haringsrob/nvim_context_vt',
+        after = { 'nvim-treesitter', colorscheme },
+        config = function()
+            require('rc/plugins/nvim_context_vt')
+        end,
+    })
     use({
         'm-demare/hlargs.nvim',
         after = { 'nvim-treesitter' },
@@ -233,8 +273,10 @@ return require('packer').startup(function(use)
             require('rc/plugins/hlargs')
         end,
     })
+    -- disabled
     use({
         'romgrk/nvim-treesitter-context',
+        disable = true,
         after = {'nvim-treesitter'},
         cmd = { 'TSContextEnable' },
         config = function()
@@ -278,6 +320,8 @@ return require('packer').startup(function(use)
     })
     use({
         'folke/todo-comments.nvim',
+        after = { 'telescope.nvim' },
+
         --event = 'VimEnter',
         config = function()
             require('rc/plugins/todo-comments')
@@ -309,12 +353,22 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- UI
     ----------------------------------------------------------------------------------------------------------------------------------
+    --use ({
+    --    'kyazdani42/nvim-tree.lua',
+    --    commit = '68a2a0971eb50f13e4d54498a2add73f131b9a85',
+    --    requires = { 'kyazdani42/nvim-web-devicons' },
+    --    event = 'VimEnter',
+    --    config = function()
+    --        require('rc/plugins/nvim-tree')
+    --    end,
+    --})
     use ({
-        'kyazdani42/nvim-tree.lua',
-        requires = { 'kyazdani42/nvim-web-devicons' },
+        'nvim-neo-tree/neo-tree.nvim',
+        branch = 'v2.x',
+        requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' },
         event = 'VimEnter',
         config = function()
-            require('rc/plugins/nvim-tree')
+            require('rc/plugins/neo-tree')
         end,
     })
     use({
@@ -322,7 +376,7 @@ return require('packer').startup(function(use)
         --event = 'VimEnter',
     })
     use({
-        'kyazdani42/nvim-web-devicons',
+        'nvim-tree/nvim-web-devicons',
         --event = 'VimEnter',
         config = function()
             require('rc/plugins/nvim-web-devicons')
@@ -346,7 +400,7 @@ return require('packer').startup(function(use)
         'lukas-reineke/indent-blankline.nvim',
         --event = 'VimEnter',
         config = function()
-            --require('rc/plugins/indent-blankline')
+            require('rc/plugins/indent-blankline')
         end,
     })
     use({
@@ -364,6 +418,21 @@ return require('packer').startup(function(use)
             require('rc/plugins/bufferline')
         end,
     })
+    use({
+        'mvllow/modes.nvim',
+        after = colorscheme,
+        tag = 'v0.2.0',
+        config = function()
+            require('rc/plugins/modes')
+        end,
+    })
+    use({
+        'sidebar-nvim/sidebar.nvim',
+        config = function()
+            require('rc/plugins/sidebar')
+        end,
+    })
+    --use({'ojroques/nvim-bufdel'})
 
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Insert/Edit
@@ -415,7 +484,6 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Lint
     ----------------------------------------------------------------------------------------------------------------------------------
-    -- まだ
     use({
         'jose-elias-alvarez/null-ls.nvim',
         after = 'nvim-lsp-installer',
@@ -437,7 +505,11 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'jwalton512/vim-blade',
-        ft = { 'php', 'blade', 'blade.php' },
+        ft = { 'blade', 'blade.php' },
+    })
+
+    use({
+        'MTDL9/vim-log-highlighting',
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -462,5 +534,8 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Misc
     ----------------------------------------------------------------------------------------------------------------------------------
-    use({'dstein64/vim-startuptime'})
+    use({
+        'dstein64/vim-startuptime',
+        disable = true,
+    })
 end)

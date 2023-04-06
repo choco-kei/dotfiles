@@ -143,7 +143,7 @@ local my_toggleterm = {
 
 local my_extension = {
     sections = { lualine_b = { 'filetype' } },
-    filetypes = { 'packager', 'vista', 'NvimTree', 'coc-explorer' },
+    filetypes = { 'packager', 'vista', 'NvimTree', 'neo-tree', 'coc-explorer' },
 }
 
 require('lualine').setup({
