@@ -270,7 +270,13 @@ return require('packer').startup(function(use)
         end,
     })
     use({ 'JoosepAlviste/nvim-ts-context-commentstring', after = { 'nvim-treesitter' } })
-    use({ 'yioneko/nvim-yati', after = 'nvim-treesitter' })
+    use({
+        'yioneko/nvim-yati',
+        after = 'nvim-treesitter',
+        config = function()
+            require('rc/plugins/nvim-yati')
+        end,
+    })
 
     -- UI
     use({
