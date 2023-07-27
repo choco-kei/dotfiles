@@ -213,7 +213,8 @@ require('neo-tree').setup({
             event = 'file_opened',
             handler = function(file_path)
                 --auto close
-                require('neo-tree').close_all()
+                --require('neo-tree').close_all()
+                require('neo-tree.command').execute({ action = 'close' })
             end
         },
     }

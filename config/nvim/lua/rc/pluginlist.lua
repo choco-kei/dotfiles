@@ -385,7 +385,7 @@ return require('packer').startup(function(use)
     --})
     use ({
         'nvim-neo-tree/neo-tree.nvim',
-        branch = 'v2.x',
+        branch = 'main',
         requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' },
         event = 'VimEnter',
         config = function()
