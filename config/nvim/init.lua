@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 vim.o.langmenu = os.getenv('LANG')
 
 vim.o.encoding = 'utf-8'

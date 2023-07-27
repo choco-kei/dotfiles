@@ -176,17 +176,18 @@ return require('packer').startup(function(use)
             require('rc/plugins/guihua')
         end,
     })
-    -- disabled
     use({
         'ray-x/navigator.lua',
         --disable = true,
         requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-        after = { 'nvim-lsp-installer'},
-        commit = 'ed53571834c0d8bad4c9293974326d399bda2892',
+        --after = { 'nvim-lsp-installer'},
+        after = { 'mason.nvim'},
+        --commit = 'ed53571834c0d8bad4c9293974326d399bda2892',
         config = function()
             require('rc/plugins/navigator')
         end,
     })
+    -- disabled
     use({
         'glepnir/lspsaga.nvim',
         disable = true,
@@ -524,6 +525,13 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- FileType
     ----------------------------------------------------------------------------------------------------------------------------------
+    use({
+        'nathom/filetype.nvim',
+        config = function()
+            require('rc/plugins/filetype')
+        end,
+    })
+
     use({
         'jwalton512/vim-blade',
         ft = { 'blade', 'blade.php' },

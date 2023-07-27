@@ -1,5 +1,6 @@
 require('guihua.maps').setup({
-  maps = {
-    close_view = '<C-g>',
-  }
+    maps = {
+        close_view = '<C-g>',
+    },
+    title = false,
 })
