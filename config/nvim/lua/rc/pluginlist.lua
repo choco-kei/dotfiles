@@ -120,17 +120,33 @@ return require('packer').startup(function(use)
     use({
         'neovim/nvim-lspconfig',
         after = 'cmp-nvim-lsp',
-        commit = '3d67dfd8a6d7fb8f1ded38f0f8b6a51f5cec3225',
+        --commit = '3d67dfd8a6d7fb8f1ded38f0f8b6a51f5cec3225',
         config = function()
             require('rc/plugins/nvim-lspconfig')
         end,
     })
     use({
-        'williamboman/nvim-lsp-installer',
+        'williamboman/mason-lspconfig.nvim',
+        after = 'mason.nvim',
+        config = function()
+            require('rc/plugins/mason-lspconfig')
+        end,
+    })
+    --use({
+    --    'williamboman/nvim-lsp-installer',
+    --    requires = { { 'RRethy/vim-illuminate' } },
+    --    after = { 'nvim-lspconfig', 'vim-illuminate', 'nlsp-settings.nvim' },
+    --    config = function()
+    --        require('rc/plugins/nvim-lsp-installer')
+    --    end,
+    --})
+    use({
+        'williamboman/mason.nvim',
         requires = { { 'RRethy/vim-illuminate' } },
         after = { 'nvim-lspconfig', 'vim-illuminate', 'nlsp-settings.nvim' },
+        run = ':MasonUpdate',
         config = function()
-            require('rc/plugins/nvim-lsp-installer')
+            require('rc/plugins/mason')
         end,
     })
     use({
@@ -175,7 +191,8 @@ return require('packer').startup(function(use)
         'glepnir/lspsaga.nvim',
         disable = true,
         branch = 'main',
-        after = { 'nvim-lsp-installer'},
+        --after = { 'nvim-lsp-installer'},
+        --after = { 'mason.nvim' },
         config = function()
             require('rc/plugins/lspsaga')
         end,
@@ -184,6 +201,7 @@ return require('packer').startup(function(use)
     --    'SmiteshP/nvim-navic',
     --    disable = true,
     --    requires = { 'nvim-lsp-installer'},
+    --    requires = { 'mason.nvim'},
     --    config = function()
     --        require('rc/plugins/nvim-navic')
     --    end,
@@ -198,7 +216,9 @@ return require('packer').startup(function(use)
     })
     use({
         'j-hui/fidget.nvim',
-        after = { 'nvim-lsp-installer' },
+        --after = { 'nvim-lsp-installer' },
+        after = { 'mason.nvim' },
+        tag = 'legacy',
         config = function()
             require('rc/plugins/fidget')
         end,
@@ -486,7 +506,8 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'jose-elias-alvarez/null-ls.nvim',
-        after = 'nvim-lsp-installer',
+        --after = 'nvim-lsp-installer',
+        after = 'mason.nvim',
         config = function()
             require('rc/plugins/null-ls')
         end,
