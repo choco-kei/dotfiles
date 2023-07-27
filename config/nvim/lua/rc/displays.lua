@@ -23,7 +23,7 @@ then
 end
 
 -- 表示
-vim.o.modelines = false -- モードラインを無効
+--vim.o.modelines = false -- モードラインを無効
 vim.o.wrap = false -- 折り返さない
 vim.o.ruler = true -- ルーラーを表示
 vim.o.cursorline = false -- カレント行のハイライト
@@ -38,7 +38,7 @@ vim.o.relativenumber = true -- 行番号を相対値で表示
 --vim.o.foldlevel = 1
 --vim.o.foldmethod = 'expr'
 --vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
---vim.o.foldlevel = 20 
+--vim.o.foldlevel = 20
 
 -- ステータスライン
 --vim.o.laststatus = 2

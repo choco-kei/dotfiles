@@ -3,7 +3,7 @@ vim.g.maplocalleader = '\\'
 
 vim.o.shada = "'50,<1000,s100,\"1000,!"
 vim.o.shadafile = vim.fn.stdpath('data') .. '/shada/main.shada'
-vim.o.shellslash = true
+--vim.o.shellslash = true
 vim.o.completeopt = 'menuone,noselect,noinsert'
 
 -- タブ
@@ -33,7 +33,7 @@ vim.o.backup = false -- バックアップを作成しない
 vim.o.swapfile = false -- スワップファイルを作成しない
 vim.o.hidden = true -- 編集中でもファイルを開けるように
 vim.o.autoread = true -- 他で編集したファイルを自動で再読み込み
-vim.o.browsedir = 'buffer' -- 現在のディレクトリから開始
+--vim.o.browsedir = 'buffer' -- 現在のディレクトリから開始
 vim.o.undofile = true -- undofile
 
 -- 操作
@@ -76,3 +76,6 @@ vim.o.errorbells = false -- ビープ無効
 vim.o.visualbell = false -- ビープ無効
 vim.o.ttyfast = true -- 高速ターミナル接続を行う
 vim.cmd('set sessionoptions+=globals')
+
+-- lang
+vim.g.loaded_perl_provider = 0 -- perldoを無効
