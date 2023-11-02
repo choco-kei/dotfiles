@@ -37,3 +37,8 @@ require('rc/command')
 if vim.fn.filereadable(vim.fn.expand('~/.nvim.local.lua')) ~= 0 then
     dofile(vim.fn.expand('~/.nvim.local.lua'))
 end
+
+-- プロジェクト設定
+if vim.fn.filereadable('.nvim.project.lua') ~= 0 then
+    dofile('.nvim.project.lua')
+end
