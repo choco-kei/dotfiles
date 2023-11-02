@@ -47,7 +47,7 @@ require('nightfox').setup({
       search = false,
     },
     modules = {             -- List of various plugins and additional options
-      -- ...
+      dapui = false,
     },
   },
   palettes = palettes,

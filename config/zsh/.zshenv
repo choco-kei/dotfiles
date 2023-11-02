@@ -20,10 +20,11 @@ path=(/sbin:/usr/local/share/npm/bin(N-/) $path)
 # PATH:Composer
 path=($HOME/.composer/vendor/bin(N-/) $path)
 # PATH:Golang
-path=(/usr/local/opt/go/libexec/bin $path)
+path=(/usr/local/opt/go/libexec/bin(N-/) $path)
+path=($HOME/go/bin(N-/) $path)
 # PATH:ruby
-path=(/usr/local/opt/ruby/bin $path)
-path=(/usr/local/lib/ruby/gems/2.7.0/bin $path)
+path=(/usr/local/opt/ruby/bin(N-/) $path)
+path=(/usr/local/lib/ruby/gems/2.7.0/bin(N-/) $path)
 # PATH:java
 # JDK19
 #path=(/usr/local/opt/openjdk/bin $path)

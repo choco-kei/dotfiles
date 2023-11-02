@@ -1,6 +1,7 @@
 # nvim
-config/nvim/.netrwhist
-config/nvim/snippet/*
+/config/nvim/.netrwhist
+/config/nvim/snippet/*
+/config/nvim/plugin/packer_compiled.lua
 
 #vim
 

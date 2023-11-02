@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TYPE="misc"
-LN_FILES=(.agignore .ctags bin)
+LN_FILES=(.agignore .editorconfig)
 
 for file in ${LN_FILES[@]}
 do

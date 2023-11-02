@@ -1,11 +1,11 @@
 require('nvim-treesitter.configs').setup({
     ensure_installed = 'all', -- one of 'all', 'language', or a list of languages
 
-    ignore_install = { 'javascript' },
+    --ignore_install = { 'javascript' },
 
     highlight = {
         enable = true, -- false will disable the whole extension
-        disable = {}, -- list of language that will be disabled
+        disable = { }, -- list of language that will be disabled
         additional_vim_regex_highlighting = false,
     },
     incremental_selection = {
@@ -71,12 +71,12 @@ require('nvim-treesitter.configs').setup({
     --        ['<S-Tab>'] = 'textsubjects-container-inner',
     --    },
     --},
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = 300,
-        disable = { 'cpp' }, -- please disable lua and bash for now
-    },
+    --rainbow = {
+    --    enable = true,
+    --    extended_mode = true,
+    --    max_file_lines = 300,
+    --    disable = { 'cpp' }, -- please disable lua and bash for now
+    --},
     --pairs = {
     --    enable = false,
     --    disable = {},

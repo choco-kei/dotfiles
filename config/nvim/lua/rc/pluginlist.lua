@@ -9,8 +9,7 @@ end
 --end
 
 vim.cmd([[packadd packer.nvim]])
-
---require('rc/packer')
+require('rc/packer')
 
 return require('packer').startup(function(use)
     use({ 'wbthomason/packer.nvim', opt = true })
@@ -40,13 +39,6 @@ return require('packer').startup(function(use)
         config = function()
             require('rc/plugins/nightfox')
         end,
-    })
-
-    use({
-        'ray-x/aurora',
-        --config = function()
-        --    require('rc/plugins/aurora')
-        --end,
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -142,11 +134,18 @@ return require('packer').startup(function(use)
     --})
     use({
         'williamboman/mason.nvim',
-        requires = { { 'RRethy/vim-illuminate' } },
+        requires = { 'RRethy/vim-illuminate' },
         after = { 'nvim-lspconfig', 'vim-illuminate', 'nlsp-settings.nvim' },
         run = ':MasonUpdate',
         config = function()
             require('rc/plugins/mason')
+        end,
+    })
+    use({
+        'jay-babu/mason-nvim-dap.nvim',
+        after = { 'mason.nvim', 'nvim-dap' },
+        config = function()
+            require('rc/plugins/mason-nvim-dap')
         end,
     })
     use({
@@ -257,6 +256,14 @@ return require('packer').startup(function(use)
             require('telescope').load_extension('file_browser')
         end,
     })
+    use({
+        'nvim-telescope/telescope-dap.nvim',
+        after = { 'telescope.nvim' },
+        config = function()
+            require('telescope').load_extension('dap')
+        end,
+    })
+
 
     ----------------------------------------------------------------------------------------------------------------------------------
     -- nvim-treesitter
@@ -285,6 +292,7 @@ return require('packer').startup(function(use)
         config = function()
             require('rc/plugins/nvim-ts-rainbow')
         end,
+        disable = true
     })
     use({
         'haringsrob/nvim_context_vt',
@@ -426,6 +434,7 @@ return require('packer').startup(function(use)
     use({
         'lukas-reineke/indent-blankline.nvim',
         --event = 'VimEnter',
+        after = { colorscheme },
         config = function()
             require('rc/plugins/indent-blankline')
         end,
@@ -459,6 +468,13 @@ return require('packer').startup(function(use)
             require('rc/plugins/sidebar')
         end,
     })
+    --use({
+    --    'folke/noice.nvim',
+    --    requires = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' },
+    --    config = function()
+    --        require('rc/plugins/notice')
+    --    end,
+    --})
     --use({'ojroques/nvim-bufdel'})
 
     ----------------------------------------------------------------------------------------------------------------------------------
@@ -521,6 +537,31 @@ return require('packer').startup(function(use)
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
+    -- Terminal
+    ----------------------------------------------------------------------------------------------------------------------------------
+    use({
+        'akinsho/toggleterm.nvim',
+        config = function()
+            require('rc/plugins/toggleterm')
+        end,
+    })
+
+    ----------------------------------------------------------------------------------------------------------------------------------
+    -- Debugger
+    ----------------------------------------------------------------------------------------------------------------------------------
+    use({
+        'mfussenegger/nvim-dap',
+        requires = { 'nvim-dap-ui' },
+        config = function()
+            require('rc/plugins/nvim-dap')
+        end,
+    })
+
+    use({
+        'rcarriga/nvim-dap-ui',
+    })
+
+    ----------------------------------------------------------------------------------------------------------------------------------
     -- Indent
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
@@ -536,6 +577,7 @@ return require('packer').startup(function(use)
         config = function()
             require('rc/plugins/filetype')
         end,
+        disable = true
     })
 
     use({
@@ -571,6 +613,6 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'dstein64/vim-startuptime',
-        disable = true,
+        --disable = true,
     })
 end)

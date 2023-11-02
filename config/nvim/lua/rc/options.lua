@@ -48,13 +48,14 @@ vim.o.incsearch = true -- インクリメンタルサーチ
 vim.o.hlsearch = true -- 検索文字列をハイライト表示
 
 -- コマンド
-vim.o.lazyredraw = true -- コマンド実行中は再描画しない
+vim.o.lazyredraw = false -- コマンド実行中は再描画しない(false)
 vim.o.showcmd = true-- コマンドをステータスに表示
 vim.o.showmode = true -- 現在のモードを非表示
 vim.o.wildmode = 'longest:full,full' -- コマンドモードで補完を使用
 vim.o.wildmenu = true -- コマンドモードで補完を使用
 vim.o.wildignorecase = true -- 補完で大文字小文字を無視
-vim.o.cmdheight = 0 -- コマンドラインの高さ
+--vim.o.cmdheight = 0 -- コマンドラインの高さ
+vim.o.cmdheight = 1 -- コマンドラインの高さ
 
 -- タグ
 vim.o.tags = 'tags,./.tags' .. vim.o.tags -- タグファイルを指定
