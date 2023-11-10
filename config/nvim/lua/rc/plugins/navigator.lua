@@ -17,24 +17,40 @@ require'navigator'.setup({
     default_mapping = false,  -- set to false if you will remap every key
     keymaps = {
         -- basic
+        -- 参照先を検索
         { key = 'gh', func = require('navigator.reference').async_ref, desc = 'async_ref' },
+        -- ドキュメントシンボル表示
         { key = 'g0', func = require('navigator.symbols').document_symbols, desc = 'document_symbols', },
-        { key = 'gW', func = require('navigator.workspace').workspace_symbol_live, desc = 'workspace_symbol_live', },
+        -- ワークスペースシンボル検索
+        { key = 'gw', func = require('navigator.workspace').workspace_symbol_live, desc = 'workspace_symbol_live', },
+        -- 定義先にジャンプ
         { key = 'gd', func = require('navigator.definition').definition, desc = 'definition' },
+        -- 宣言元にジャンプ
         { key = 'gD', func = vim.lsp.buf.declaration, desc = 'declaration' },
+        -- 定義プレビュー
         { key = 'gp', func = require('navigator.definition').definition_preview, desc = 'definition_preview', },
+        -- 定義タイププレビュー
         { key = 'gP', func = require('navigator.definition').type_definition_preview, desc = 'type_definition_preview', },
+        -- コードアクション
         { key = 'gx', mode = 'n', func = require('navigator.codeAction').code_action, desc = 'code_action', },
+        -- コードアクション(range)
         { key = 'gx', mode = 'v', func = require('navigator.codeAction').range_code_action, desc = 'range_code_action', },
+        -- 実装先を検索
         { key = 'gi', func = vim.lsp.buf.implementation, desc = 'implementation' },
+        -- リネーム
         { key = 'gr', func = require('navigator.rename').rename, desc = 'rename' },
+        -- ドキュメント表示
         { key = '?', func = vim.lsp.buf.hover, desc = 'hover' },
         --{ key = '<Leader>k', func = "require('navigator.dochighlight').hi_symbol()" },
 
         -- treesitter ()
+        -- symbol
         { key = '<Leader>gt', func = require('navigator.treesitter').buf_ts, desc = 'buf_ts' },
+        -- symbol(bufs)
         { key = '<Leader>gT', func = require('navigator.treesitter').bufs_ts, desc = 'bufs_ts' },
+        -- 次の定義
         { key = ']r', func = require('navigator.treesitter').goto_next_usage, desc = 'goto_next_usage' },
+        -- 前の定義
         { key = '[r', func = require('navigator.treesitter').goto_previous_usage, desc = 'goto_previous_usage', },
 
         -- tag
@@ -45,26 +61,40 @@ require'navigator'.setup({
         { key = 'g?', func = vim.lsp.buf.signature_help, desc = 'signature_help', },
 
         -- diagnostic
+        -- diagnostic
         { key = 'gl', func = require('navigator.diagnostics').show_diagnostics, desc = 'show_diagnostics', },
+        -- diagnostic(bufs)
         { key = 'gL', func = require('navigator.diagnostics').show_buf_diagnostics, desc = 'show_buf_diagnostics', },
+        -- diagnostic toggle
         { key = '<Leader>gg', func = require('navigator.diagnostics').toggle_diagnostics, desc = 'toggle_diagnostics', },
+        -- 次の警告箇所
         { key = ']d', func = vim.diagnostic.goto_next, desc = 'next diagnostics', },
+        -- 前の警告箇所
         { key = '[d', func = vim.diagnostic.goto_prev, desc = 'prev diagnostics', },
+        -- loclistで開く(うごかん?)
         { key = ']O', func = vim.diagnostic.set_loclist, desc = 'diagnostics set loclist', },
 
         -- formating
         { key = '<Space>f', mode = 'n', func = vim.lsp.buf.format, desc = 'format' },
+        -- formating(range)
         { key = '<Space>f', mode = 'v', func = vim.lsp.buf.range_formatting, desc = 'range format' },
 
         -- workspace
+        -- 追加
         { key = '<Space>wa', func = require('navigator.workspace').add_workspace_folder, desc = 'add_workspace_folder', },
+        -- 削除
         { key = '<Space>wr', func = require('navigator.workspace').remove_workspace_folder, desc = 'remove_workspace_folder', },
+        -- リスト
         { key = '<Space>wl', func = require('navigator.workspace').list_workspace_folders, desc = 'list_workspace_folders', },
 
         -- other
+        -- codelens
         { key = '<Space>la', mode = 'n', func = require('navigator.codelens').run_action, desc = 'run code lens action', },
+        -- call(in)
         { key = '<Leader>gi', func = require('navigator.cclshierarchy').incoming_calls, desc = 'incoming_calls', },
+        -- call(out)
         { key = '<Leader>go', func = require('navigator.cclshierarchy').outgoing_calls, desc = 'outgoing_calls', },
+        --定義ジャンプ？
         { key = '<Space>D', func = vim.lsp.buf.type_definition, desc = 'type_definition' },
     },
     -- a list of key maps
