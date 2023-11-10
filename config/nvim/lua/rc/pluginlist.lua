@@ -494,6 +494,7 @@ return require('packer').startup(function(use)
             require('rc/plugins/nvim-autopairs')
         end,
     })
+    use({ 'nicwest/vim-camelsnek' })
 
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Yank
