@@ -78,50 +78,61 @@ require'navigator'.setup({
     signature_help_cfg = nil, -- if you would like to init ray-x/lsp_signature plugin in navigator, and pass in your own config to signature help
     icons = {
         -- Code action
-        code_action_icon = '',
+        code_action_icon = '󰌶 ',
         -- code lens
-        code_lens_action_icon = '',
+        code_lens_action_icon = '󰧶 ',
         -- Diagnostics
-        diagnostic_head = '',
-        diagnostic_err = '',
-        diagnostic_warn = '',
-        diagnostic_info = '',
-        diagnostic_hint = '',
+        diagnostic_head = ' ',
+        diagnostic_err = ' ',
+        diagnostic_warn = ' ',
+        diagnostic_info = ' ',
+        diagnostic_hint = '󰌶 ',
 
-        diagnostic_head_severity_1 = '',
-        diagnostic_head_severity_2 = '',
-        diagnostic_head_severity_3 = '',
+        diagnostic_head_severity_1 = ' ',
+        diagnostic_head_severity_2 = ' ',
+        diagnostic_head_severity_3 = ' ',
         diagnostic_head_description = ' ',
         diagnostic_virtual_text = '',
         diagnostic_file = '',
 
-        -- Values
-        value_changed = '',
-        value_definition = '', -- it is easier to see than 🦕
+        -- Values (floating window)
+        value_definition = ' ', -- identifier defined
+        value_changed = ' ', -- identifier modified
+        context_separator = '  ', -- separator between text and value
+
+        -- Formatting for Side Panel
         side_panel = {
-            section_separator = '',
-            line_num_left = '',
-            line_num_right = '',
-            inner_node = '├○',
-            outer_node = '╰○',
-            bracket_left = '⟪',
-            bracket_right = '⟫',
+          section_separator = '󰇜',
+          line_num_left = '',
+          line_num_right = '',
+          inner_node = '├○',
+          outer_node = '╰○',
+          bracket_left = '⟪',
+          bracket_right = '⟫',
+        },
+        fold = {
+          prefix = '⚡',
+          separator = ' ',
         },
         -- Treesitter
         match_kinds = {
-            var = '', -- "👹", -- Vampaire
-            method = '', --  "🍔", -- mac
-            ['function'] = ' ', -- "🤣", -- Fun
-            parameter = '  ', -- Pi
-            associated = '🤝',
-            namespace = '🚀',
-            type = ' ',
-            field = '🏈',
-            module = '📦',
-            flag = '🎏',
+            var                = '󰀫 ', -- variable
+            const              = '󰏿 ',
+            method             = '󰆧 ', -- method
+            -- function is a keyword so wrap in ['key'] syntax
+            ['function']       = '󰊕 ', -- function
+            parameter          = ' ', -- param/arg
+            parameters         = ' ', -- param/arg
+            required_parameter = ' ', -- param/arg -- Pi
+            associated         = '󱈘 ', -- linked/related
+            namespace          = ' ', -- namespace
+            type               = '󰉿', -- type definition
+            field              = '󰜢 ', -- field definition
+            module             = ' ', -- module
+            flag               = ' ', -- flag
         },
-        treesitter_defult = '🌲',
-        doc_symbols = '',
+        treesitter_defult = ' ',
+        doc_symbols = '󰈙 ',
     },
     --lsp_installer = true, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
     mason = true, -- set to true if you would like use the lsp installed by williamboman/mason
@@ -137,9 +148,19 @@ require'navigator'.setup({
         -- disable_lsp = 'all'
         -- Default {}
         diagnostic = {
+            enable = true,
             underline = true,
             virtual_text = false, -- show virtual for diagnostic message
             update_in_insert = false, -- update diagnostic message in insert mode
+            severity_sort = { reverse = true },
+            float = {
+                focusable = false,
+                sytle = 'minimal',
+                border = 'rounded',
+                source = 'always',
+                header = '',
+                prefix = ' ',
+            },
         },
 
         diagnostic_scrollbar_sign = false, -- experimental:  diagnostic status in scroll bar area; set to false to disable the diagnostic sign,
@@ -149,6 +170,10 @@ require'navigator'.setup({
         display_diagnostic_qf = false, -- always show quickfix if there are diagnostic errors, set to false if you  want to ignore it
         tsserver = {
             filetypes = {'typescript'} -- disable javascript etc,
+            -- set to {} to disable the lspclient for all filetypes
+        },
+        bufls = {
+            filetypes = {'proto'} -- disable javascript etc,
             -- set to {} to disable the lspclient for all filetypes
         },
         gopls = {   -- gopls setting
@@ -166,7 +191,7 @@ require'navigator'.setup({
         --    sumneko_root_path = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server',
         --    sumneko_binary = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server/bin/macOS/lua-language-server',
         --},
-        servers = {'cmake', 'ltex'}, -- by default empty, and it should load all LSP clients avalible based on filetype
+        servers = {'bufls', 'cmake', 'ltex'}, -- by default empty, and it should load all LSP clients avalible based on filetype
         -- but if you whant navigator load  e.g. `cmake` and `ltex` for you , you
         -- can put them in the `servers` list and navigator will auto load them.
         -- you could still specify the custom config  like this
