@@ -5,7 +5,8 @@ packer.init({
   git = {
     cmd = 'git', -- The base command for git operations
     subcommands = { -- Format strings for git subcommands
-      update = 'pull --ff-only --progress --rebase --force',
+      --update = 'pull --ff-only --progress --rebase=false --force',
+      update = 'pull --progress --rebase --force',
     },
   },
 })
