@@ -93,8 +93,3 @@ require('nvim-treesitter.configs').setup({
     context_commentstring = { enable = true },
     yati = { enable = true },
 })
-
--- folding
-vim.o.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevel = 20 

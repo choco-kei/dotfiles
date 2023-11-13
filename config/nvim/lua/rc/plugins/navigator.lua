@@ -14,6 +14,12 @@ require'navigator'.setup({
     -- end,
     -- The attach code will apply to all LSP clients
 
+    ts_fold = {
+        enable = true,
+        comment = true, -- fold with comment string
+        max_lines_scan_comments = 20, -- only fold when the fold level higher than this value
+        disable_filetypes = {'help', 'guihua', 'text'}, -- list of filetypes which doesn't fold using treesitter
+    },
     default_mapping = false,  -- set to false if you will remap every key
     keymaps = {
         -- basic
@@ -141,8 +147,8 @@ require'navigator'.setup({
           bracket_right = '⟫',
         },
         fold = {
-          prefix = '⚡',
-          separator = ' ',
+            prefix = '󰹹',  -- icon to show before the folding need to be 2 spaces in display width
+            separator = '',  -- e.g. shows   3 lines 
         },
         -- Treesitter
         match_kinds = {
@@ -231,3 +237,7 @@ require'navigator'.setup({
 
 vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
 vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")
+
+-- folding
+vim.o.foldlevel  = 2
+vim.opt.fillchars = { foldclose = '', foldopen = '', fold = ' ' }

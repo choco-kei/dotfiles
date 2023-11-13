@@ -91,7 +91,8 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'L3MON4D3/LuaSnip',
-        event = { 'InsertEnter', 'CmdlineEnter' },
+        --event = { 'InsertEnter', 'CmdlineEnter' },
+        event =  'VimEnter',
         config = function()
             require('rc/plugins/LuaSnip')
         end,
@@ -177,7 +178,7 @@ return require('packer').startup(function(use)
     use({
         'ray-x/navigator.lua',
         --disable = true,
-        requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+        --requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
         --after = { 'nvim-lsp-installer'},
         after = { 'mason.nvim'},
         --commit = 'ed53571834c0d8bad4c9293974326d399bda2892',
@@ -228,8 +229,8 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'nvim-telescope/telescope.nvim',
-        --cmd = { 'Telescope' },
-        keys = { '<Leader>f' },
+        cmd = { 'Telescope' },
+        --event = 'VimEnter',
         config = function()
             require('rc/plugins/telescope')
         end,
