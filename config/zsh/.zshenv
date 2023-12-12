@@ -15,6 +15,8 @@ path=(/sbin(N-/) /usr/local/bin(N-/) /Library/Frameworks/Mono.framework/Versions
 path=(/usr/local/sbin(N-/) $HOME/bin(N-/) $HOME/local/bin(N-/) /usr/local/git/bin(N-/) $path)
 # PATH:Dotfiles
 path=($HOME/dotfiles/bin(N-/) $path)
+# PATH:nvim.mason
+path=($HOME/.local/share/nvim/mason/bin, $path)
 # PATH:Npm
 path=(/sbin:/usr/local/share/npm/bin(N-/) $path)
 # PATH:Composer

@@ -180,7 +180,7 @@ return require('packer').startup(function(use)
         --disable = true,
         --requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
         --after = { 'nvim-lsp-installer'},
-        after = { 'mason.nvim'},
+        after = { 'mason.nvim', 'nvim-treesitter'},
         --commit = 'ed53571834c0d8bad4c9293974326d399bda2892',
         config = function()
             require('rc/plugins/navigator')
@@ -229,7 +229,7 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     use({
         'nvim-telescope/telescope.nvim',
-        cmd = { 'Telescope' },
+        keys = { '<Leader>f' },
         --event = 'VimEnter',
         config = function()
             require('rc/plugins/telescope')
@@ -528,12 +528,19 @@ return require('packer').startup(function(use)
     ----------------------------------------------------------------------------------------------------------------------------------
     -- Lint
     ----------------------------------------------------------------------------------------------------------------------------------
+    --use({
+    --    'jose-elias-alvarez/null-ls.nvim',
+    --    --after = 'nvim-lsp-installer',
+    --    after = 'mason.nvim',
+    --    config = function()
+    --        require('rc/plugins/null-ls')
+    --    end,
+    --})
     use({
-        'jose-elias-alvarez/null-ls.nvim',
-        --after = 'nvim-lsp-installer',
+        'nvimtools/none-ls.nvim',
         after = 'mason.nvim',
         config = function()
-            require('rc/plugins/null-ls')
+            require('rc/plugins/none-ls')
         end,
     })
 
