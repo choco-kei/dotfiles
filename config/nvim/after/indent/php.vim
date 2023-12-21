@@ -1,3 +1,3 @@
 "setlocal indentexpr =
-setlocal autoindent
-setlocal smartindent
+"setlocal autoindent
+"setlocal smartindent

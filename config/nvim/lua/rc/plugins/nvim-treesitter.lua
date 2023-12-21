@@ -90,6 +90,5 @@ require('nvim-treesitter.configs').setup({
     --    enable = false,
     --    disable = {},
     --},
-    context_commentstring = { enable = true },
     yati = { enable = true },
 })

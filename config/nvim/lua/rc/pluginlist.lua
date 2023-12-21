@@ -401,7 +401,8 @@ return require('packer').startup(function(use)
         'nvim-neo-tree/neo-tree.nvim',
         branch = 'main',
         requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' },
-        event = 'VimEnter',
+        keys = { '<Leader>t' },
+        --event = 'VimEnter',
         config = function()
             require('rc/plugins/neo-tree')
         end,
@@ -575,6 +576,9 @@ return require('packer').startup(function(use)
     use({
         '2072/PHP-Indenting-for-VIm',
         ft = { 'php' },
+        config = function()
+            vim.cmd('source ~/.config/nvim/rc/plugins/PHP-Indenting-for-VIm.vim')
+        end,
     })
 
     ----------------------------------------------------------------------------------------------------------------------------------
