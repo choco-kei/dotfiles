@@ -20,8 +20,8 @@ return {
         "ray-x/cmp-treesitter",
         "saadparwaiz1/cmp_luasnip",
     },
-    event = { "InsertEnter", "CmdlineChanged"},
-    --event = { "InsertEnter" },
+    --event = { "InsertEnter", "CmdlineChanged"},
+    event = { "VimEnter" },
     config = function()
         vim.g.completeopt = "menu,menuone,noselect"
 
@@ -176,7 +176,13 @@ return {
                         end,
                     },
                 },
-                { name = "omni",       priority = 40 },
+                {
+                    name = "omni",
+                    priority = 40,
+                    option = {
+                        disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
+                    },
+                },
                 { name = "spell",      priority = 40 },
                 { name = "calc",       priority = 50 },
                 { name = "treesitter", priority = 50 },

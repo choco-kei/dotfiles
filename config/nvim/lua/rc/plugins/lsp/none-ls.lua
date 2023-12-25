@@ -38,6 +38,7 @@ return {
 
         null_ls.setup({
             sources = sources,
+            debug = false,
             --on_attach = function(client)
             --  if client.resolved_capabilities.document_formatting then
             --      vim.cmd([[
