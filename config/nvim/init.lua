@@ -14,24 +14,10 @@ require('rc/displays')
 require('rc/keymaps')
 
 require('rc/pluginlist')
+--require('rc/pluginlist_minimal')
+
 require('rc/command')
--- require('rc/autocmd')
-
--- Configuration
---vim.api.nvim_exec([[
---    for f in split(glob('~/.config/nvim/rc/plugins/*.vim'), '\n')
---      execute 'source ' . f
---    endfor
---    ]], true
---)
---for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/rc/plugins', [[v:val =~ '\.lua$']])) do
---    require('rc/plugins/' .. file:gsub('%.lua$', ''))
---end
-
--- VSCode
---if vim.g.vscode then
---    require('rc/vscode-neovim/mappings')
---end
+require('rc/autocmd')
 
 -- ローカル設定
 if vim.fn.filereadable(vim.fn.expand('~/.nvim.local.lua')) ~= 0 then

@@ -1,3 +1,3 @@
-"setlocal indentexpr =
+"setlocal indentexpr = GetPhpIndent()
 "setlocal autoindent
 "setlocal smartindent
