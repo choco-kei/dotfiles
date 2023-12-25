@@ -1,5 +1,6 @@
 return {
     "mvllow/modes.nvim",
+    event = "VimEnter",
     dependencies = COLOR_SCHEME,
     tag = "v0.2.0",
     config = function()

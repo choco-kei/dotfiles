@@ -1,6 +1,6 @@
 return {
     "RRethy/vim-illuminate",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         --vim.g.Illuminate_useDeprecated = 1
 

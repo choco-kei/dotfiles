@@ -1,7 +1,6 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "main",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", "MunifTanjim/nui.nvim" },
     keys = { "<Leader>t" },
     --event = "VimEnter",
     config = function()

@@ -1,4 +1,4 @@
 return {
     "machakann/vim-sandwich",
-    --event = "VimEnter",
+    event = "VimEnter",
 }

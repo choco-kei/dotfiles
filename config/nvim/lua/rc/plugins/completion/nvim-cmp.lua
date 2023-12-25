@@ -1,7 +1,26 @@
 return {
     "hrsh7th/nvim-cmp",
-    dependencies = { "lspkind-nvim", "LuaSnip", "nvim-autopairs" },
-    event = "InsertEnter",
+    dependencies = {
+        "lspkind-nvim",
+        "LuaSnip",
+        "nvim-autopairs",
+
+        "f3fora/cmp-spell",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-cmdline",
+        "uga-rosa/cmp-dictionary",
+        "hrsh7th/cmp-emoji",
+        "yutkat/cmp-mocword",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-omni",
+        "hrsh7th/cmp-path",
+        "ray-x/cmp-treesitter",
+        "saadparwaiz1/cmp_luasnip",
+    },
+    event = { "InsertEnter", "CmdlineChanged"},
     --event = { "InsertEnter" },
     config = function()
         vim.g.completeopt = "menu,menuone,noselect"

@@ -1,5 +1,6 @@
 return {
     "ray-x/guihua.lua",
+    lazy = true,
     build = "cd lua/fzy && make",
     config = function()
         require("guihua.maps").setup({

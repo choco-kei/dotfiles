@@ -1,6 +1,7 @@
 return {
     "uga-rosa/cmp-dictionary",
-    dependencies = "nvim-cmp",
+    lazy = true,
+    --dependencies = "nvim-cmp",
     config = function()
         local file = vim.fn.stdpath("data") .. "/zsh/dictionary/my.dict"
         local dic = {}

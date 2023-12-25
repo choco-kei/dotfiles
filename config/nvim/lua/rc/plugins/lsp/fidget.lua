@@ -1,6 +1,6 @@
 return {
     "j-hui/fidget.nvim",
-    dependencies = { "mason.nvim" },
+    event = "VimEnter",
     config = function()
         require("fidget").setup()
     end,

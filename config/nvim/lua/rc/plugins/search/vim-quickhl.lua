@@ -1,6 +1,6 @@
 return {
     "t9md/vim-quickhl",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         vim.keymap.set("n", "<Space>m", "<Plug>(quickhl-manual-this)", { noremap = true, silent = true })
         vim.keymap.set("x", "<Space>m", "<Plug>(quickhl-manual-this)", { noremap = true, silent = true })

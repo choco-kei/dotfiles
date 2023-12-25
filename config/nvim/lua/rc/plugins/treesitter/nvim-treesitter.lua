@@ -1,6 +1,16 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    --event = "VimEnter",
+    dependencies = {
+        COLOR_SCHEME,
+        "p00f/nvim-ts-rainbow",
+        "m-demare/hlargs.nvim",
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        "yioneko/nvim-yati",
+        "haringsrob/nvim_context_vt",
+        "David-Kunz/treesitter-unit",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    event = "VimEnter",
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter.configs").setup({
@@ -49,6 +59,58 @@ return {
             --    enable = false,
             --    disable = {},
             --},
+            rainbow = {
+                enable = true,
+                -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+                extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+                max_file_lines = 300, -- Do not enable for files with more than n lines, int
+                -- colors = {}, -- table of hex strings
+                -- termcolors = {} -- table of colour name strings
+            },
+            textobjects = { -- syntax-aware textobjects
+                select = {
+                    enable = true,
+                    disable = {},
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                        ["iB"] = "@block.inner",
+                        ["aB"] = "@block.outer",
+                        -- use sandwich
+                        -- ['i'] = '@call.inner',
+                        -- ['a'] = '@call.outer',
+                        -- ['a'] = '@comment.outer',
+                        -- ['iF'] = '@frame.inner',
+                        -- ['oF'] = '@frame.outer',
+                        ["ii"] = "@conditional.inner",
+                        ["ai"] = "@conditional.outer",
+                        ["il"] = "@loop.inner",
+                        ["al"] = "@loop.outer",
+                        ["ip"] = "@parameter.inner",
+                        ["ap"] = "@parameter.outer",
+                        -- ['iS'] = '@scopename.inner',
+                        -- ['aS'] = '@statement.outer',
+                    },
+                },
+                --swap = {
+                --    enable = true,
+                --    swap_next = { ["'>"] = '@parameter.inner' },
+                --    swap_previous = { ["'<"] = '@parameter.inner' },
+                --},
+                --move = {
+                --    enable = true,
+                --    goto_next_start = { [']m'] = '@function.outer', [']]'] = '@class.outer' },
+                --    goto_next_end = { [']M'] = '@function.outer', [']['] = '@class.outer' },
+                --    goto_previous_start = { ['[m'] = '@function.outer', ['[['] = '@class.outer' },
+                --    goto_previous_end = { ['[M'] = '@function.outer', ['[]'] = '@class.outer' },
+                --},
+            },
+            yati = {
+                enable = true,
+                suppress_conflict_warning = true,
+            },
         })
     end,
 }

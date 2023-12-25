@@ -1,5 +1,6 @@
 return {
     "nathom/filetype.nvim",
+    event = "VimEnter",
     config = function()
         -- In init.lua or filetype.nvim's config file
         require("filetype").setup({

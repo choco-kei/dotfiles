@@ -1,5 +1,6 @@
 return {
     "m-demare/hlargs.nvim",
+    lazy = true,
     dependencies = { "nvim-treesitter" },
     config = function()
         require("hlargs").setup({

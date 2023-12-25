@@ -1,6 +1,6 @@
 return {
     "gbprod/yanky.nvim",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         require("yanky").setup()
         vim.api.nvim_set_keymap("n", "p", "<Plug>(YankyPutAfter)", {})

@@ -1,6 +1,7 @@
 return {
     "utilyre/barbecue.nvim",
-    dependencies = { "nvim-lspconfig", "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" },
+    event = "VimEnter",
+    dependencies = { "nvim-lspconfig", "SmiteshP/nvim-navic" },
     config = function()
         require("barbecue").setup({
             ---whether to show/use navic in the winbar

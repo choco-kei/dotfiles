@@ -1,7 +1,6 @@
 return {
     "onsails/lspkind-nvim",
-    --event = "VimEnter",
-    dependencies = { "mason.nvim" },
+    lazy = true,
     config = function()
         require("lspkind").init({
             -- enables text annotations

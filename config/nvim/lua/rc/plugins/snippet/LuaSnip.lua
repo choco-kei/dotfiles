@@ -1,7 +1,7 @@
 return {
     "L3MON4D3/LuaSnip",
-    --event = { "InsertEnter", "CmdlineEnter" },
-    --event = "VimEnter",
+    lazy = true,
+    dependencies = "rafamadriz/friendly-snippets",
     config = function()
         local ls = require("luasnip")
         local types = require("luasnip.util.types")

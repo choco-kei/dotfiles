@@ -30,4 +30,10 @@ local plugins = {
     },
 }
 
-require("lazy").setup(plugins)
+local options = {
+    defaults = {
+        lazy = true,
+    },
+}
+
+require("lazy").setup(plugins, options)

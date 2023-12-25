@@ -1,7 +1,6 @@
 return {
     "folke/todo-comments.nvim",
-    dependencies = { "telescope.nvim" },
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         require("todo-comments").setup({
             signs = true,      -- show icons in the signs column

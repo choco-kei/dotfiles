@@ -1,6 +1,7 @@
 return {
     "ray-x/navigator.lua",
-    dependencies = { "mason.nvim", "nvim-treesitter" },
+    event = "VimEnter",
+    dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
     config = function()
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
@@ -50,7 +51,12 @@ return {
                     desc = "type_definition_preview",
                 },
                 -- コードアクション
-                { key = "gx",         mode = "n",                                             func = require("navigator.codeAction").code_action, desc = "code_action" },
+                {
+                    key = "gx",
+                    mode = "n",
+                    func = require("navigator.codeAction").code_action,
+                    desc = "code_action",
+                },
                 -- コードアクション(range)
                 {
                     key = "gx",
@@ -59,20 +65,24 @@ return {
                     desc = "range_code_action",
                 },
                 -- 実装先を検索
-                { key = "gi",         func = vim.lsp.buf.implementation,                      desc = "implementation" },
+                { key = "gi",         func = vim.lsp.buf.implementation,              desc = "implementation" },
                 -- リネーム
-                { key = "gr",         func = require("navigator.rename").rename,              desc = "rename" },
+                { key = "gr",         func = require("navigator.rename").rename,      desc = "rename" },
                 -- ドキュメント表示
-                { key = "?",          func = vim.lsp.buf.hover,                               desc = "hover" },
+                { key = "?",          func = vim.lsp.buf.hover,                       desc = "hover" },
                 --{ key = '<Leader>k', func = "require('navigator.dochighlight').hi_symbol()" },
 
                 -- treesitter ()
                 -- symbol
-                { key = "<Leader>gt", func = require("navigator.treesitter").buf_ts,          desc = "buf_ts" },
+                { key = "<Leader>gt", func = require("navigator.treesitter").buf_ts,  desc = "buf_ts" },
                 -- symbol(bufs)
-                { key = "<Leader>gT", func = require("navigator.treesitter").bufs_ts,         desc = "bufs_ts" },
+                { key = "<Leader>gT", func = require("navigator.treesitter").bufs_ts, desc = "bufs_ts" },
                 -- 次の定義
-                { key = "]r",         func = require("navigator.treesitter").goto_next_usage, desc = "goto_next_usage" },
+                {
+                    key = "]r",
+                    func = require("navigator.treesitter").goto_next_usage,
+                    desc = "goto_next_usage",
+                },
                 -- 前の定義
                 {
                     key = "[r",
@@ -84,12 +94,17 @@ return {
                 --{ key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'ctags' },
 
                 -- signature_help
-                { key = "<M-k>", mode = "i",                                               func = vim.lsp.buf.signature_help, desc = "signature_help" },
-                { key = "g?",    func = vim.lsp.buf.signature_help,                        desc = "signature_help" },
+                {
+                    key = "<M-k>",
+                    mode = "i",
+                    func = vim.lsp.buf.signature_help,
+                    desc = "signature_help",
+                },
+                { key = "g?", func = vim.lsp.buf.signature_help,                        desc = "signature_help" },
 
                 -- diagnostic
                 -- diagnostic
-                { key = "gl",    func = require("navigator.diagnostics").show_diagnostics, desc = "show_diagnostics" },
+                { key = "gl", func = require("navigator.diagnostics").show_diagnostics, desc = "show_diagnostics" },
                 -- diagnostic(bufs)
                 {
                     key = "gL",
@@ -103,16 +118,26 @@ return {
                     desc = "toggle_diagnostics",
                 },
                 -- 次の警告箇所
-                { key = "]d",       func = vim.diagnostic.goto_next,   desc = "next diagnostics" },
+                { key = "]d", func = vim.diagnostic.goto_next,   desc = "next diagnostics" },
                 -- 前の警告箇所
-                { key = "[d",       func = vim.diagnostic.goto_prev,   desc = "prev diagnostics" },
+                { key = "[d", func = vim.diagnostic.goto_prev,   desc = "prev diagnostics" },
                 -- loclistで開く(うごかん?)
-                { key = "]O",       func = vim.diagnostic.set_loclist, desc = "diagnostics set loclist" },
+                { key = "]O", func = vim.diagnostic.set_loclist, desc = "diagnostics set loclist" },
 
                 -- formmating
-                { key = "<Space>f", mode = "n",                        func = vim.lsp.buf.format,           desc = "format" },
+                {
+                    key = "<Space>f",
+                    mode = "n",
+                    func = vim.lsp.buf.format,
+                    desc = "format",
+                },
                 -- formmating(range)
-                { key = "<Space>f", mode = "v",                        func = vim.lsp.buf.range_formatting, desc = "range format" },
+                {
+                    key = "<Space>f",
+                    mode = "v",
+                    func = vim.lsp.buf.range_formatting,
+                    desc = "range format",
+                },
 
                 -- workspace
                 -- 追加

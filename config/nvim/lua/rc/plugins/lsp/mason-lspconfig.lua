@@ -1,6 +1,6 @@
 return {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = "mason.nvim",
+    lazy = true,
     config = function()
         local lspconfig = require("mason-lspconfig")
     end,

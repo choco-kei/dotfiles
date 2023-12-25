@@ -1,6 +1,6 @@
 return {
     "phaazon/hop.nvim",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         require("hop").setup({
             keys = "abcdefghijklmnopqrstuvwxyz",

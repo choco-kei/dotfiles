@@ -1,6 +1,6 @@
 return {
     "junegunn/vim-easy-align",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         vim.cmd("source ~/.config/nvim/rc/configs/vim-easy-align.vim")
         -- Start interactive EasyAlign in visual mode (e.g. vip<Enter>)

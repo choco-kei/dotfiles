@@ -1,6 +1,6 @@
 return {
     "tamago324/nlsp-settings.nvim",
-    dependencies = { "nvim-lspconfig" },
+    lazy = true,
     config = function()
         require("nlspsettings").setup({
             config_home = vim.fn.stdpath("config") .. "/nlsp-settings",

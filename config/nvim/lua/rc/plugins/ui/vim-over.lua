@@ -1,6 +1,6 @@
 return {
     "osyo-manga/vim-over",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         vim.keymap.set("n", "[vim-over]", "<Nop>", { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>m", "[vim-over]", { remap = true, silent = true })

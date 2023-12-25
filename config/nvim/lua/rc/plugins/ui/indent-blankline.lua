@@ -1,6 +1,6 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
-    --event = "VimEnter",
+    event = "VimEnter",
     dependencies = { COLOR_SCHEME },
     config = function()
         --require('ibl').setup({})

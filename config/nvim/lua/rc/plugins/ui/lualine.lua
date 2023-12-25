@@ -1,6 +1,6 @@
 return {
     "nvim-lualine/lualine.nvim",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         local function is_available_gps()
             local ok, _ = pcall(require, "nvim-gps")

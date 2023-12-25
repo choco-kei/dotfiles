@@ -1,6 +1,7 @@
 return {
     "williamboman/mason.nvim",
-    dependencies = { "nvim-lspconfig", "vim-illuminate", "nlsp-settings.nvim" },
+    event = "VimEnter",
+    dependencies = { "nvim-lspconfig", "mason-lspconfig.nvim", "nlsp-settings.nvim" },
     build = ":MasonUpdate",
     config = function()
         local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }

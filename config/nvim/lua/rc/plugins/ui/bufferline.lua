@@ -1,6 +1,7 @@
 return {
     "akinsho/bufferline.nvim",
     dependencies = COLOR_SCHEME,
+    event = "VimEnter",
     config = function()
         require("bufferline").setup({
             options = {

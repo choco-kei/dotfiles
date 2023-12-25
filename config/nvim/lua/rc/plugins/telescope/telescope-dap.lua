@@ -1,6 +1,6 @@
 return {
     "nvim-telescope/telescope-dap.nvim",
-    dependencies = { "telescope.nvim" },
+    lazy = true,
     config = function()
         require("telescope").load_extension("dap")
     end,

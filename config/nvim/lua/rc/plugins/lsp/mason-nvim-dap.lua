@@ -1,6 +1,6 @@
 return {
     "jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "mason.nvim", "nvim-dap" },
+    lazy = true,
     config = function()
         require("mason-nvim-dap").setup({
             ensure_installed = { "php" },

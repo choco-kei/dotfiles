@@ -1,6 +1,6 @@
 return {
     "kevinhwang91/nvim-hlslens",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         require("hlslens").setup()
 

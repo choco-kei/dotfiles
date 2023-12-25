@@ -1,6 +1,6 @@
 return {
     "gbprod/substitute.nvim",
-    --event = "VimEnter",
+    event = "VimEnter",
     config = function()
         require("substitute").setup()
         vim.keymap.set("n", "R", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })

@@ -1,6 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
-    dependencies = "cmp-nvim-lsp",
+    event = "VimEnter",
     config = function()
         local lspconfig = require("lspconfig")
 

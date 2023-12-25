@@ -1,6 +1,7 @@
 return {
     "haringsrob/nvim_context_vt",
-    dependencies = { "nvim-treesitter", COLOR_SCHEME },
+    lazy = true,
+    dependencies = { COLOR_SCHEME },
     config = function()
         require("nvim_context_vt").setup({
             -- Enable by default. You can disable and use :NvimContextVtToggle to maually enable.

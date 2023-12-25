@@ -1,5 +1,6 @@
 return {
     "petertriho/nvim-scrollbar",
+    event = "VimEnter",
     dependencies = { COLOR_SCHEME, "nvim-hlslens" },
     config = function()
         require("scrollbar.handlers.search").setup()

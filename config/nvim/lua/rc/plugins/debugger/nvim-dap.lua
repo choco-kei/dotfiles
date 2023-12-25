@@ -1,6 +1,7 @@
 return {
     "mfussenegger/nvim-dap",
-    dependencies = { "nvim-dap-ui" },
+    dependencies = { "nvim-dap-ui", "mason-nvim-dap.nvim" },
+    keys = { "<Leader>d" },
     config = function()
         local dap, dapui = require("dap"), require("dapui")
 

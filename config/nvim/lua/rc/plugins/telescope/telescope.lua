@@ -1,5 +1,9 @@
 return {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-telescope/telescope-dap.nvim",
+        "prochri/telescope-all-recent.nvim",
+    },
     keys = { "<Leader>f" },
     --event = "VimEnter",
     config = function()
