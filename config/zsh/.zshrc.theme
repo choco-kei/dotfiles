@@ -22,8 +22,8 @@ case ${UID} in
     CYAN="%{${fg[cyan]}%}"
     WHITE="%{${fg[white]}%}"
     NAME=${USER%.*}
-    SUYA="( ˘ω˘)"
-    POH="ｽﾔｧ"
+    SUYA="(｡⌓°꒦⎞"
+    POH="ﾄｹﾁｬｩ"
 
     #
     # Prompt
