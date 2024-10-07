@@ -7,7 +7,8 @@ return {
 
         local sources = {
             -- php diagnostics
-            null_ls.builtins.diagnostics.php,
+            -- duplicated
+            --null_ls.builtins.diagnostics.php,
 
             -- php formatter
             null_ls.builtins.formatting.phpcbf.with({ extra_args = { "--standard=PSR1,PSR12" } }),
@@ -21,7 +22,8 @@ return {
             null_ls.builtins.formatting.stylua,
 
             -- typos
-            null_ls.builtins.diagnostics.typos,
+            -- duplicated
+            --null_ls.builtins.diagnostics.typos,
         }
 
         -- phpcs diagnostics
