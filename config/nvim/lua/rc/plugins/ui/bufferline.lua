@@ -37,23 +37,23 @@ return {
                 sort_by = "insert_at_end",
                 --separator_style = 'thick'
                 offsets = {
-                    {
-                        filetype = "NvimTree",
-                        text = function()
-                            return vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
-                        end,
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
-                    {
-                        filetype = "neo-tree",
-                        --text = function()
-                        --    return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-                        --end,
-                        text = "neo-tree",
-                        highlight = "Directory",
-                        text_align = "left",
-                    },
+                    -- {
+                    --     filetype = "NvimTree",
+                    --     text = function()
+                    --         return vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+                    --     end,
+                    --     highlight = "Directory",
+                    --     text_align = "left",
+                    -- },
+                    -- {
+                    --     filetype = "neo-tree",
+                    --     --text = function()
+                    --     --    return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+                    --     --end,
+                    --     text = "neo-tree",
+                    --     highlight = "Directory",
+                    --     text_align = "left",
+                    -- },
                 },
             },
             highlights = {

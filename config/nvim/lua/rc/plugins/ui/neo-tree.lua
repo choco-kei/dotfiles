@@ -5,10 +5,10 @@ return {
     --event = "VimEnter",
     config = function()
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-        vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError"})
-        vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarn"})
-        vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInfo"})
-        vim.fn.sign_define("DiagnosticSignHint", {text = "󰌶", texthl = "DiagnosticSignHint"})
+        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+        vim.fn.sign_define("DiagnosticSignHint", { text = "󰌶", texthl = "DiagnosticSignHint" })
 
         require("neo-tree").setup({
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -26,6 +26,12 @@ return {
             --           return a.type > b.type
             --       end
             --   end , -- this sorts files and directories descendantly
+            source_selector = {
+                winbar = true,             -- toggle to show selector on winbar
+                statusline = true,         -- toggle to show selector on statusline
+                content_layout = "center", -- only with `tabs_layout` = "equal", "focus"
+                separator = "",            -- can be string or table, see below
+            },
             default_component_configs = {
                 container = {
                     enable_character_fade = true,
@@ -121,7 +127,7 @@ return {
                     ["C"] = "close_node",
                     -- ['C'] = 'close_all_subnodes',
                     ["z"] = "close_all_nodes",
-                    ['Z'] = 'expand_all_nodes',
+                    ["Z"] = "expand_all_nodes",
                     ["a"] = {
                         "add",
                         -- this command supports BASH style brace expansion ('x{a,b,c}' -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -303,5 +309,6 @@ return {
   hi NeoTreeNormal guibg=none
   hi NeoTreeNormalNC guibg=none
 ]])
+        vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { link = "BufferLineTab" })
     end,
 }
