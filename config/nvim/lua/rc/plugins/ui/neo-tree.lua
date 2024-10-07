@@ -4,24 +4,18 @@ return {
     keys = { "<Leader>t" },
     --event = "VimEnter",
     config = function()
-        -- Unless you are still migrating, remove the deprecated commands from v1.x
-        --vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-        vim.fn.sign_define("DiagnosticSignHint", { text = "󰌶", texthl = "DiagnosticSignHint" })
-
-        -- NOTE: this is changed from v1.x, which used the old style of highlight groups
-        -- in the form 'LspDiagnosticsSignWarning'
+        vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError"})
+        vim.fn.sign_define("DiagnosticSignWarn", {text = " ", texthl = "DiagnosticSignWarn"})
+        vim.fn.sign_define("DiagnosticSignInfo", {text = " ", texthl = "DiagnosticSignInfo"})
+        vim.fn.sign_define("DiagnosticSignHint", {text = "󰌶", texthl = "DiagnosticSignHint"})
 
         require("neo-tree").setup({
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
-            enable_normal_mode_for_inputs = true,                              -- Enable normal mode for input dialogs.
+            --enable_normal_mode_for_inputs = true,                              -- Enable normal mode for input dialogs.
             open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
             sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
             sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
@@ -49,6 +43,20 @@ return {
                     expander_collapsed = "",
                     expander_expanded = "",
                     expander_highlight = "NeoTreeExpander",
+                },
+                diagnostics = {
+                    symbols = {
+                        hint = "󰌶",
+                        info = " ",
+                        warn = " ",
+                        error = " ",
+                    },
+                    highlights = {
+                        hint = "DiagnosticSignHint",
+                        info = "DiagnosticSignInfo",
+                        warn = "DiagnosticSignWarn",
+                        error = "DiagnosticSignError",
+                    },
                 },
                 icon = {
                     folder_closed = "",
@@ -113,7 +121,7 @@ return {
                     ["C"] = "close_node",
                     -- ['C'] = 'close_all_subnodes',
                     ["z"] = "close_all_nodes",
-                    --['Z'] = 'expand_all_nodes',
+                    ['Z'] = 'expand_all_nodes',
                     ["a"] = {
                         "add",
                         -- this command supports BASH style brace expansion ('x{a,b,c}' -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -269,6 +277,14 @@ return {
                         --auto close
                         --require('neo-tree').close_all()
                         require("neo-tree.command").execute({ action = "close" })
+                    end,
+                },
+                {
+                    event = "neo_tree_popup_input_ready",
+                    ---@param args { bufnr: integer, winid: integer }
+                    handler = function(args)
+                        vim.cmd("stopinsert")
+                        vim.keymap.set("i", "<esc>", vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
                     end,
                 },
             },
