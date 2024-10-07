@@ -1,5 +1,5 @@
 {
-  "getter fucntion …": {
+  "getter function …": {
     "prefix": "getter",
     "body": [
       "/**",
@@ -12,7 +12,8 @@
     ],
     "description": "Getter function"
   },
-  "setter fucntion …": {
+
+  "setter function …": {
     "prefix": "setter",
     "body": [
       "/**",
@@ -25,5 +26,21 @@
       "}"
     ],
     "description": "Setter function"
+  },
+
+  "phpstan ignore-line": {
+    "prefix": "phpstan-ignore-line",
+    "body": [
+      "/* @phpstan-ignore-line */"
+    ],
+    "description": "PHPStan ignore-line"
+  },
+
+  "phpstan ignore-next-line": {
+    "prefix": "phpstan-ignore-next-line",
+    "body": [
+      "/* @phpstan-ignore-next-line */"
+    ],
+    "description": "PHPStan ignore-next-line"
   }
 }
