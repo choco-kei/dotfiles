@@ -105,6 +105,9 @@ fpath=(/usr/local/share/zsh-completions ~/dotfiles/config/zsh/zsh-completions/sr
 # 自動インクリメンタル補完(incr.zsh)
 [ -f ~/dotfiles/config/zsh/incr*.zsh ] && source ~/dotfiles/config/zsh/incr*.zsh
 
+# zsh-nvm
+[ -f ~/dotfiles/config/zsh/zsh-nvm.plugin.zsh ] && source ~/dotfiles/config/zsh/zsh-nvm.plugin.zsh
+
 # 補完キー（Tab,  Ctrl+I) を連打するだけで順に補完候補を自動で補完する
 setopt auto_menu
 

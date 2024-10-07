@@ -38,31 +38,30 @@ path=(/usr/local/opt/openjdk@11/bin $path)
 path=($HOME/development/flutter/bin $path)
 
 # PATH:nvm
-# 遅い?
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-#[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vi' 'vim' 'nvim' 'code')
+#export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# 仮の nvm コマンド
-nvm() {
-  # まず仮の nvm コマンドを unset
-  unset -f nvm
-  # nvm.sh をロード
-  # ここで本物の nvm コマンドが定義される
-  source "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-  # 仮の nvm コマンドに渡された引数を本物に受け渡す
-  nvm "$@"
-}
-# あらかじめ `nvm default vX.Y.Z` してエイリアス "default" を作っておく
-PATH=${NVM_DIR:-$HOME/.nvm}/default/bin:$PATH
-MANPATH=${NVM_DIR:-$HOME/.nvm}/default/share/man:$MANPATH
-export NODE_PATH=${NVM_DIR:-$HOME/.nvm}/default/lib/node_modules
-
-# （以下 Zsh のみ）
-# $NODE_PATH にバージョン番号が含まれていないと `yo doctor` が警告を出す
-# 次のように書くと $NODE_PATH のシンボリックリンクが展開され、警告が出なくなる
-# (Hint: .nvm/default は .nvm/vX.Y.Z へのシンボリックリンク)
-NODE_PATH=${NODE_PATH:A}
+## 仮の nvm コマンド
+#nvm() {
+#  # まず仮の nvm コマンドを unset
+#  unset -f nvm
+#  # nvm.sh をロード
+#  # ここで本物の nvm コマンドが定義される
+#  source "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
+#  # 仮の nvm コマンドに渡された引数を本物に受け渡す
+#  nvm "$@"
+#}
+## あらかじめ `nvm default vX.Y.Z` してエイリアス "default" を作っておく
+#PATH=${NVM_DIR:-$HOME/.nvm}/default/bin:$PATH
+#MANPATH=${NVM_DIR:-$HOME/.nvm}/default/share/man:$MANPATH
+#export NODE_PATH=${NVM_DIR:-$HOME/.nvm}/default/lib/node_modules
+## （以下 Zsh のみ）
+## $NODE_PATH にバージョン番号が含まれていないと `yo doctor` が警告を出す
+## 次のように書くと $NODE_PATH のシンボリックリンクが展開され、警告が出なくなる
+## (Hint: .nvm/default は .nvm/vX.Y.Z へのシンボリックリンク)
+#NODE_PATH=${NODE_PATH:A}
 
 # PATH:PATH:pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -98,6 +97,9 @@ alias ls='ls -GF'
 
 # gcp
 alias cp="gcp"
+
+# gsed
+alias sed="gsed"
 
 # svn
 export SVN_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
