@@ -1,4 +1,7 @@
 require('nvim-navic').setup({
+    lsp = {
+        auto_attach = true,
+    },
     icons = {
         File          = " ",
         Module        = " ",
@@ -31,5 +34,5 @@ require('nvim-navic').setup({
     separator = " > ",
     depth_limit = 0,
     depth_limit_indicator = "..",
-    safe_output = true
+    safe_output = true,
 })

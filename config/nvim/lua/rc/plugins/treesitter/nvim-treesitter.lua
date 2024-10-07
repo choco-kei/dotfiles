@@ -2,8 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         COLOR_SCHEME,
-        "p00f/nvim-ts-rainbow",
-        "m-demare/hlargs.nvim",
+        --"m-demare/hlargs.nvim",
         "JoosepAlviste/nvim-ts-context-commentstring",
         "yioneko/nvim-yati",
         "haringsrob/nvim_context_vt",
@@ -12,11 +11,12 @@ return {
     },
     event = "VimEnter",
     build = ":TSUpdate",
+    --commit = "24ddf60",
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = "all", -- one of 'all', 'language', or a list of languages
 
-            --ignore_install = { 'javascript' },
+            ignore_install = { 'javascript' },
 
             highlight = {
                 enable = true, -- false will disable the whole extension
@@ -36,7 +36,8 @@ return {
                     node_decremental = "<S-TAB>",
                 },
             },
-            indent = { enable = true, disable = { "php" } },
+            -- scssで@extendのインデントがおかしい？
+            indent = { enable = true, disable = { "php", "scss" } },
             --textsubjects = {
             --    enable = false,
             --    -- prev_selection = 'Q',
@@ -59,14 +60,6 @@ return {
             --    enable = false,
             --    disable = {},
             --},
-            rainbow = {
-                enable = true,
-                -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-                extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-                max_file_lines = 300, -- Do not enable for files with more than n lines, int
-                -- colors = {}, -- table of hex strings
-                -- termcolors = {} -- table of colour name strings
-            },
             textobjects = { -- syntax-aware textobjects
                 select = {
                     enable = true,

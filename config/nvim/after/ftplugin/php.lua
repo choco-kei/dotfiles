@@ -7,3 +7,7 @@ for i = #sources, 1, -1 do
     end
 end
 cmp.setup.buffer({ sources = sources })
+
+
+-- commentstringを変更
+vim.bo.commentstring = "//%s"

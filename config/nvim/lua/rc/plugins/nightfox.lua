@@ -1,6 +1,6 @@
 return {
     "EdenEast/nightfox.nvim",
-    event = "VimEnter",
+    --event = "VimEnter",
     config = function()
         local palettes = {
             nordfox = {

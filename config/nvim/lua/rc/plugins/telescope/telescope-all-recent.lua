@@ -1,5 +1,6 @@
 return {
     "prochri/telescope-all-recent.nvim",
+    enabled = false,
     dependencies = { "telescope.nvim" },
     lazy = true,
     config = function()

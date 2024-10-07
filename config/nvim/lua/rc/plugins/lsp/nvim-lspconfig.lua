@@ -4,39 +4,45 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
 
-        lspconfig.gopls.setup({
-            on_attach = function(client, bufnr)
-                -- [[ other on_attach code ]]
-                require("illuminate").on_attach(client)
-
-                if client.server_capabilities["documentSymbolProvider"] then
-                    require("nvim-navic").attach(client, bufnr)
-                end
-            end,
+        lspconfig.typos_lsp.setup({
+            init_options = {
+                config = "~/.config/nvim/spell/typos.toml",
+            },
         })
 
-        lspconfig.intelephense.setup({
-            on_attach = function(client, bufnr)
-                -- [[ other on_attach code ]]
-                require("illuminate").on_attach(client)
+        --    --lspconfig.gopls.setup({
+        --    --    on_attach = function(client, bufnr)
+        --    --        -- [[ other on_attach code ]]
+        --    --        require("illuminate").on_attach(client)
 
-                if client.server_capabilities["documentSymbolProvider"] then
-                    require("nvim-navic").attach(client, bufnr)
-                end
-            end,
-        })
+        --    --        if client.server_capabilities["documentSymbolProvider"] then
+        --    --            require("nvim-navic").attach(client, bufnr)
+        --    --        end
+        --    --    end,
+        --    --})
 
-        --lspconfig.bufls.setup {
-        --    on_attach = function(client, bufnr)
-        --        -- [[ other on_attach code ]]
-        --        require('illuminate').on_attach(client)
-        --
-        --        if client.server_capabilities['documentSymbolProvider'] then
-        --            require('nvim-navic').attach(client, bufnr)
-        --        end
-        --    end,
-        --}
-        --lspconfig.sumneko_lua.setup {}
-        --lspconfig.tsserver.setup {}
+        --    --lspconfig.intelephense.setup({
+        --    --    --on_attach = function(client, bufnr)
+        --    --    --    -- [[ other on_attach code ]]
+        --    --    --    require("illuminate").on_attach(client)
+
+        --    --    --    if client.server_capabilities["documentSymbolProvider"] then
+        --    --    --        require("nvim-navic").attach(client, bufnr)
+        --    --    --    end
+        --    --    --end,
+        --    --})
+
+        --    --lspconfig.bufls.setup {
+        --    --    on_attach = function(client, bufnr)
+        --    --        -- [[ other on_attach code ]]
+        --    --        require('illuminate').on_attach(client)
+        --    --
+        --    --        if client.server_capabilities['documentSymbolProvider'] then
+        --    --            require('nvim-navic').attach(client, bufnr)
+        --    --        end
+        --    --    end,
+        --    --}
+        --    --lspconfig.sumneko_lua.setup {}
+        --    --lspconfig.tsserver.setup {}
     end,
 }

@@ -2,6 +2,7 @@ return {
     "ray-x/navigator.lua",
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
+    commit = "4b2dbdadacc31f4c9d9b673180e1ba85180e4ec9",
     config = function()
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
@@ -300,6 +301,16 @@ return {
                     end,
                     settings = {
                         gopls = { gofumpt = false }, -- disable gofumpt etc,
+                    },
+                },
+                intelephense = {
+                    settings = {
+                        intelephense = {
+                            maxMemory = 256,
+                            files = {
+                                maxSize = 1300000,
+                            },
+                        },
                     },
                 },
                 --sumneko_lua = {

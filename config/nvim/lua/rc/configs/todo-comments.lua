@@ -44,7 +44,7 @@ require('todo-comments').setup({
     warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
     info = { "DiagnosticInfo", "#2563EB" },
     hint = { "DiagnosticHint", "#10B981" },
-    default = { "Identifier", "#7C3AED" },
+    default = { "Identifier", "#88c0d0" },
     test = { "Identifier", "#FF00FF" }
   },
   search = {
