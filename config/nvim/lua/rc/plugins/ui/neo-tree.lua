@@ -1,7 +1,9 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "main",
-    keys = { "<Leader>t" },
+    keys = {
+        "<Leader>t",
+    },
     --event = "VimEnter",
     config = function()
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
@@ -301,8 +303,9 @@ return {
         vim.keymap.set("n", "<leader>t", "[tree]", { remap = true, silent = true })
 
         vim.keymap.set("n", "[tree]t", ":Neotree filesystem toggle left<CR>", { remap = true, silent = true })        -- tt ファイル
-        vim.keymap.set("n", "[tree]c", ":Neotree filesystem toggle reveal left<CR>", { remap = true, silent = true }) -- tt カレントバッファーのディレクトリを開く
-        vim.keymap.set("n", "[tree]b", ":Neotree buffers toggle left<CR>", { remap = true, silent = true })           -- tt バッファー
+        vim.keymap.set("n", "[tree]c", ":Neotree filesystem toggle reveal left<CR>", { remap = true, silent = true }) -- tc カレントバッファーのディレクトリを開く
+        vim.keymap.set("n", "[tree]b", ":Neotree buffers toggle left<CR>", { remap = true, silent = true })           -- tb バッファー
+        vim.keymap.set("n", "[tree]g", ":Neotree git_status toggle left<CR>", { remap = true, silent = true })        -- tg Git
 
         -- background color
         vim.cmd([[
