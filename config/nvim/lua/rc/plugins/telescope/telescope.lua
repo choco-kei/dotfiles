@@ -128,8 +128,9 @@ return {
         vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = nil, bg = colors.bg2 })
         vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = colors.red.base, bg = colors.bg2 })
         vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = colors.red.base, bg = colors.bg2 })
-        vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.red.base, bg = colors.bg2 })
+        vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.red.base, bg = colors.bg0 })
         vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = nil, bg = colors.bg0 })
         vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = nil, bg = colors.bg0 })
+        vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = colors.red.base, bg = colors.bg2 })
     end,
 }
