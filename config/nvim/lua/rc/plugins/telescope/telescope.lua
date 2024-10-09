@@ -8,19 +8,18 @@ return {
     --event = "VimEnter",
     config = function()
         local actions = require("telescope.actions")
-        local action_layout = require("telescope.actions.layout")
-        local config = require("telescope.config")
-        local pickers = require("telescope.pickers")
-        local finders = require("telescope.finders")
-        local make_entry = require("telescope.make_entry")
-        local previewers = require("telescope.previewers")
-        local utils = require("telescope.utils")
-        local conf = require("telescope.config").values
-        local telescope_builtin = require("telescope.builtin")
-        local Path = require("plenary.path")
-
-        local action_state = require("telescope.actions.state")
-        local custom_actions = {}
+        --local action_layout = require("telescope.actions.layout")
+        --local config = require("telescope.config")
+        --local pickers = require("telescope.pickers")
+        --local finders = require("telescope.finders")
+        --local make_entry = require("telescope.make_entry")
+        --local previewers = require("telescope.previewers")
+        --local utils = require("telescope.utils")
+        --local conf = require("telescope.config").values
+        --local telescope_builtin = require("telescope.builtin")
+        --local Path = require("plenary.path")
+        --local action_state = require("telescope.actions.state")
+        --local custom_actions = {}
 
         require("telescope").setup({
             defaults = {
@@ -42,9 +41,15 @@ return {
                     ".git/",
                     "node_modules",
                 },
-                prompt_prefix = "> ",
-                selection_caret = "> ",
+
+                -- Appearance
                 entry_prefix = "  ",
+                prompt_prefix = "   ",
+                selection_caret = " ",
+                results_title = false,
+                color_devicons = true,
+                path_display = { "smart" },
+                dynamic_preview_title = true,
                 initial_mode = "insert",
                 selection_strategy = "reset",
                 sorting_strategy = "ascending",
@@ -62,11 +67,12 @@ return {
                     preview_cutoff = 120,
                 },
                 winblend = 0,
-                border = {},
-                borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-                color_devicons = true,
+                border = true,
+                --borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
                 use_less = true,
                 scroll_strategy = "cycle",
+
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 
                 extensions = {
@@ -93,11 +99,16 @@ return {
 
         -- キーマップ
         --vim.api.nvim_set_keymap('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<Leader>ff', "<Cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', }})<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<Leader>fr', '<Cmd>Telescope resume<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<Leader>fg', '<Cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('n', '<Leader>fh', '<Cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap(
+            "n",
+            "<Leader>ff",
+            "<Cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', }})<CR>",
+            { noremap = true, silent = true }
+        )
+        vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd>Telescope resume<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
         --vim.api.nvim_set_keymap('n', '<Leader>ft', '<Cmd>Telescope file_browser path=%:p:h<CR>', { noremap = true, silent = true })
         --vim.api.nvim_set_keymap('n', '<leader>fm', "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", { noremap = true, silent = true })
         --vim.api.nvim_set_keymap('n', '<leader>fm', "<Cmd>lua require('telescope').extensions.frecency.frecency({ default_workspace = 'CWD' })<CR>", { noremap = true, silent = true })
@@ -111,5 +122,14 @@ return {
                 })
             end,
         })
+
+        -- borderless
+        local colors = require("nightfox.palette").load("nordfox")
+        vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = nil, bg = colors.bg2 })
+        vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = colors.red.base, bg = colors.bg2 })
+        vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = colors.red.base, bg = colors.bg2 })
+        vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.red.base, bg = colors.bg2 })
+        vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = nil, bg = colors.bg0 })
+        vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = nil, bg = colors.bg0 })
     end,
 }
