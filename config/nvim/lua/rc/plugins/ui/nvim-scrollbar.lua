@@ -1,5 +1,6 @@
 return {
     "petertriho/nvim-scrollbar",
+    enabled=false,
     event = "VimEnter",
     dependencies = { COLOR_SCHEME, "nvim-hlslens" },
     config = function()
