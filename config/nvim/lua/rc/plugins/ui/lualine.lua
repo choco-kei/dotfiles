@@ -2,6 +2,10 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = function()
+        local tab_size = function()
+            return (vim.bo.expandtab and "␠" or "␉") .. vim.bo.tabstop
+        end
+
         local function is_available_gps()
             local ok, _ = pcall(require, "nvim-gps")
             if not ok then
@@ -12,10 +16,10 @@ return {
 
         local sections_1 = {
             lualine_a = { "mode" },
-            lualine_b = { { "filetype", icon_only = true }, { "filename", path = 1 } },
+            lualine_b = { { "filetype", icon_only = true } },
             lualine_c = { { "require('nvim-gps').get_location()", cond = is_available_gps } },
             lualine_x = { "require('lsp-status').status()", "diagnostics" },
-            lualine_y = { "branch", "diff" },
+            lualine_y = { "branch", { "diff", symbols = { added = " ", modified = " ", removed = " " } } },
             lualine_z = { "location" },
         }
 
@@ -23,7 +27,7 @@ return {
             lualine_a = { "mode" },
             lualine_b = { "" },
             lualine_c = { { "filetype", icon_only = true }, { "filename", path = 1 } },
-            lualine_x = { "encoding", "fileformat", "filetype" },
+            lualine_x = { tab_size, "encoding", "fileformat", "filetype" },
             lualine_y = { "filesize", "progress" },
             lualine_z = { "location" },
         }
@@ -156,7 +160,25 @@ return {
                 theme = "nordfox",
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
-                disabled_filetypes = {},
+                disabled_filetypes = {
+                    statusline = {
+                        "dashboard",
+                        "alpha",
+                    },
+                    winbar = {
+                        "neo-tree",
+                        "aerial",
+                        "packer",
+                        "alpha",
+                        "dap-repl",
+                        "dapui_watches",
+                        "dapui_stacks",
+                        "dapui_breakpoints",
+                        "dapui_scopes",
+                        "dapui_colsoles",
+                        "",
+                    },
+                },
                 always_divide_middle = true,
                 globalstatus = true,
             },
