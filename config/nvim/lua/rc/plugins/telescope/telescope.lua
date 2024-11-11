@@ -48,7 +48,7 @@ return {
                 selection_caret = " ",
                 results_title = false,
                 color_devicons = true,
-                path_display = { "smart" },
+                path_display = { "truncate" },
                 dynamic_preview_title = true,
                 initial_mode = "insert",
                 selection_strategy = "reset",
