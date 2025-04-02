@@ -1,5 +1,6 @@
 return {
     "haringsrob/nvim_context_vt",
+    enabled = false,
     lazy = true,
     dependencies = { COLOR_SCHEME },
     config = function()

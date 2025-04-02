@@ -3,24 +3,26 @@ return {
     dependencies = {
         COLOR_SCHEME,
         --"m-demare/hlargs.nvim",
+
         "JoosepAlviste/nvim-ts-context-commentstring",
         "yioneko/nvim-yati",
-        "haringsrob/nvim_context_vt",
+        --"haringsrob/nvim_context_vt",
         "David-Kunz/treesitter-unit",
         "nvim-treesitter/nvim-treesitter-textobjects",
+        --"nvim-treesitter/nvim-treesitter-context",
     },
     event = "VimEnter",
     build = ":TSUpdate",
-    --commit = "24ddf60",
+    --commit = "1c67567",
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = "all", -- one of 'all', 'language', or a list of languages
 
-            ignore_install = { 'javascript' },
+            ignore_install = { "javascript" },
 
             highlight = {
                 enable = true, -- false will disable the whole extension
-                disable = {},  -- list of language that will be disabled
+                disable = {  },  -- list of language that will be disabled
                 additional_vim_regex_highlighting = true,
             },
             incremental_selection = {

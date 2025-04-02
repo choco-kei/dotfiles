@@ -70,6 +70,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
 fi
 
+# PATH:PATH:luarocks
+eval "$(luarocks path --lua-version=5.1)"
+
 # PATH:rbenv
 path=($HOME/.rbenv/bin $path)
 path=($HOME/.rbenv/shims $path)
@@ -104,6 +107,10 @@ alias sed="gsed"
 # svn
 export SVN_EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
-
 # zprof
 #zmodload zsh/zprof && zprof
+
+# ローカル設定を読み込む
+if [[ -f "$HOME/.zshenv_local" ]]; then
+    source "$HOME/.zshenv_local"
+fi

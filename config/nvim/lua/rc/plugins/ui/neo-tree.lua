@@ -164,11 +164,12 @@ return {
             filesystem = {
                 filtered_items = {
                     visible = false, -- when true, they will just be displayed differently than normal items
+                    show_hidden_count = true,
                     hide_dotfiles = false,
                     hide_gitignored = false,
                     hide_hidden = false, -- only works on Windows for hidden files/directories
                     hide_by_name = {
-                        --'node_modules'
+                        --'.DS_Store'
                     },
                     hide_by_pattern = { -- uses glob style patterns
                         --'*.meta',
@@ -178,7 +179,7 @@ return {
                         --'.gitignored',
                     },
                     never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                        --'.DS_Store',
+                        '.DS_Store'
                         --'thumbs.db'
                     },
                     never_show_by_pattern = { -- uses glob style patterns
