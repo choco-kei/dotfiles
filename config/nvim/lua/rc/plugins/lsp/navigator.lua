@@ -95,12 +95,12 @@ return {
                 --{ key = '<Leader>ct', func = require('navigator.ctags').ctags, desc = 'ctags' },
 
                 -- signature_help
-                {
-                    key = "<M-k>",
-                    mode = "i",
-                    func = vim.lsp.buf.signature_help,
-                    desc = "signature_help",
-                },
+                -- {
+                --     key = "<M-k>",
+                --     mode = "i",
+                --     func = vim.lsp.buf.signature_help,
+                --     desc = "signature_help",
+                -- },
                 { key = "g?", func = vim.lsp.buf.signature_help,                        desc = "signature_help" },
 
                 -- diagnostic
@@ -126,12 +126,53 @@ return {
                 { key = "]O", func = vim.diagnostic.set_loclist, desc = "diagnostics set loclist" },
 
                 -- formmating
+                -- {
+                --     key = "<Space>f",
+                --     mode = "n",
+                --     func = vim.lsp.buf.format,
+                --     desc = "format",
+                -- },
                 {
                     key = "<Space>f",
                     mode = "n",
-                    func = vim.lsp.buf.format,
+                    func = function()
+                        -- PHPファイルでなければそのままフォーマット
+                        local ft = vim.bo.filetype
+                        if ft ~= "php" then
+                            return vim.lsp.buf.format({ async = true })
+                        end
+
+                        -- 設定ファイル読み込み
+                        local config_file_path = vim.fn.getcwd() .. "/.nvim-config.json"
+                        local formatter = nil
+
+                        if vim.fn.filereadable(config_file_path) == 1 then
+                            local file = io.open(config_file_path, "r")
+                            if file then
+                                local content = file:read("*a")
+                                file:close()
+                                local success, json = pcall(vim.fn.json_decode, content)
+                                if success and json.php and json.php.formatter and json.php.formatter.type then
+                                    formatter = json.php.formatter.type
+                                end
+                            end
+                        end
+
+                        -- フォーマッター指定があれば、特定のクライアントに限定
+                        if formatter then
+                            vim.lsp.buf.format({
+                                async = true,
+                                filter = function(client)
+                                    return client.name == formatter
+                                end,
+                            })
+                        else
+                            vim.lsp.buf.format({ async = true })
+                        end
+                    end,
                     desc = "format",
                 },
+
                 -- formmating(range)
                 {
                     key = "<Space>f",
@@ -256,9 +297,9 @@ return {
                 enable = true,
                 code_action = { enable = true, sign = true, sign_priority = 40, virtual_text = false },
                 code_lens_action = { enable = true, sign = true, sign_priority = 40, virtual_text = false },
-                format_on_save = false,                                  -- set to false to disable lsp code format on save (if you are using prettier/efm/formater etc)
-                disable_format_cap = { "sqls", "sumneko_lua", "gopls" }, -- a list of lsp disable format capacity (e.g. if you using efm or vim-codeformat etc), empty {} by default
-                disable_lsp = { "pylsd", "sqls", "phpactor", "ruff_lsp", "tsserver" },           -- a list of lsp server disabled for your project, e.g. denols and tsserver you may
+                format_on_save = false,                                                -- set to false to disable lsp code format on save (if you are using prettier/efm/formater etc)
+                disable_format_cap = { "sqls", "sumneko_lua", "gopls" },               -- a list of lsp disable format capacity (e.g. if you using efm or vim-codeformat etc), empty {} by default
+                disable_lsp = { "pylsd", "sqls", "phpactor", "ruff_lsp", "tsserver" }, -- a list of lsp server disabled for your project, e.g. denols and tsserver you may
                 -- only want to enable one lsp server
                 -- to disable all default config and use your own lsp setup set
                 -- disable_lsp = 'all'
