@@ -19,7 +19,21 @@ return {
             -- deleted snippets is performed.
             -- This can be especially useful when `history` is enabled.
             delete_check_events = "TextChanged",
-            ext_opts = { [types.choiceNode] = { active = { virt_text = { { "choiceNode", "Comment" } } } } },
+            ext_opts = {
+                [types.choiceNode] = { active = { virt_text = { { "choiceNode", "Comment" } } } },
+                [types.insertNode] = {
+                    unvisited = {
+                        virt_text = { { '󰜴', 'Conceal' } },
+                        virt_text_pos = 'inline',
+                    },
+                },
+                [types.exitNode] = {
+                    unvisited = {
+                        virt_text = { { '󰜮', 'Conceal' } },
+                        virt_text_pos = 'inline',
+                    },
+                },
+            },
             -- treesitter-hl has 100, use something higher (default is 200).
             ext_base_prio = 300,
             -- minimal increase in priority.

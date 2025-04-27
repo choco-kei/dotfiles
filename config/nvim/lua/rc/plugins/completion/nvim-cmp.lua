@@ -21,7 +21,7 @@ return {
         "saadparwaiz1/cmp_luasnip",
     },
     --event = { "InsertEnter", "CmdlineChanged"},
-    event = { "VimEnter" },
+    event = { "InsertEnter", "CmdlineEnter" },
     config = function()
         vim.g.completeopt = "menu,menuone,noselect"
 
