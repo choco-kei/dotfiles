@@ -1,5 +1,9 @@
 -- nvim-cmp+cmp-omniでcmdheightが増加する問題を対応
-local cmp = require('cmp')
+local ok, cmp = pcall(require, 'cmp')
+if not ok then
+    return
+end
+
 local sources = cmp.get_config().sources
 for i = #sources, 1, -1 do
     if sources[i].name == 'omni' then
