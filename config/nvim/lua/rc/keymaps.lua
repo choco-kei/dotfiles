@@ -46,3 +46,7 @@ vim.keymap.set('c', '?', "getcmdtype() == '?' ? '\\?' : '?'", { noremap = true, 
 -- .vimrcや.gvimrcを編集するためのKey-mappingを定義する
 vim.keymap.set('n', '<Space>ev', ':<C-u>edit $MYVIMRC<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Space>eg', ':<C-u>edit $MYGVIMRC<CR>', { noremap = true, silent = true })
+
+-- [t / ]t を無効化（誤爆防止）
+vim.keymap.set('n', '[t', '<Nop>')
+vim.keymap.set('n', ']t', '<Nop>')

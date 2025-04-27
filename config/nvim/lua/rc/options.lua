@@ -58,9 +58,12 @@ vim.o.wildignorecase = true -- 補完で大文字小文字を無視
 vim.o.cmdheight = 1 -- コマンドラインの高さ
 
 -- タグ
-vim.o.tags = 'tags,./.tags' .. vim.o.tags -- タグファイルを指定
-vim.o.showfulltag = true -- 補完時に1行まるごと補完
-vim.o.wildoptions = 'tagfile' -- タグから補完リストに追加
+-- vim.o.tags = 'tags,./.tags' .. vim.o.tags -- タグファイルを指定
+-- vim.o.showfulltag = true -- 補完時に1行まるごと補完
+-- vim.o.wildoptions = 'tagfile' -- タグから補完リストに追加
+vim.o.tags = '' -- 無効化
+vim.o.showfulltag = false
+vim.o.wildoptions = ''
 
 -- LSP
 --vim.diagnostic.config({
