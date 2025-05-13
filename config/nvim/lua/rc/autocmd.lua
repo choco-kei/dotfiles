@@ -1,6 +1,8 @@
-vim.api.nvim_exec(
-    [[
-    autocmd BufNewFile,BufRead *.blade.php set ft=html | set ft=phtml | set ft=blade
-    ]],
-    true
-)
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*.blade.php",
+    callback = function()
+        vim.cmd("set ft=html")
+        vim.cmd("set ft=phtml")
+        vim.cmd("set ft=blade")
+    end
+})

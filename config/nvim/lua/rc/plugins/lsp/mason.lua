@@ -2,7 +2,7 @@ return {
     "williamboman/mason.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "mason-lspconfig.nvim", "nlsp-settings.nvim" },
-    build = ":MasonUpdate",
+    --build = ":MasonUpdate",
     config = function()
         local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
         for type, icon in pairs(signs) do
