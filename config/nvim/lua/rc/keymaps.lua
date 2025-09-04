@@ -43,9 +43,9 @@ vim.keymap.set('n', '<Leader>dc', ':<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>
 vim.keymap.set('c', '/', "getcmdtype() == '/' ? '\\/' : '/'", { noremap = true, silent = false, expr = true})
 vim.keymap.set('c', '?', "getcmdtype() == '?' ? '\\?' : '?'", { noremap = true, silent = false, expr = true})
 
--- .vimrcや.gvimrcを編集するためのKey-mappingを定義する
-vim.keymap.set('n', '<Space>ev', ':<C-u>edit $MYVIMRC<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Space>eg', ':<C-u>edit $MYGVIMRC<CR>', { noremap = true, silent = true })
+-- 設定ファイル(init.lua)を編集するためのキーマッピング
+local config_path = vim.fn.stdpath('config')
+vim.keymap.set('n', '<Space>ev', string.format(':<C-u>edit %s/init.lua<CR>', config_path), { noremap = true, silent = true })
 
 -- [t / ]t を無効化（誤爆防止）
 vim.keymap.set('n', '[t', '<Nop>')

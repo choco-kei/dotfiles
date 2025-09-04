@@ -21,7 +21,7 @@ return {
             -- The attach code will apply to all LSP clients
 
             ts_fold = {
-                enable = true,
+                enable = false,
                 comment = true,                                   -- fold with comment string
                 max_lines_scan_comments = 20,                     -- only fold when the fold level higher than this value
                 disable_filetypes = { "help", "guihua", "text" }, -- list of filetypes which doesn't fold using treesitter
@@ -370,7 +370,7 @@ return {
         vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")
 
         -- folding
-        vim.o.foldlevel = 2
-        vim.opt.fillchars = { foldclose = "", foldopen = "", fold = " " }
+        -- vim.o.foldlevel = 2
+        -- vim.opt.fillchars = { foldclose = "", foldopen = "", fold = " " }
     end,
 }

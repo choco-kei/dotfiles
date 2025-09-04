@@ -18,7 +18,7 @@ vim.o.listchars = "tab:▹ ,trail:-,extends:»,precedes:«,eol: ,nbsp:%"
 
 -- 入力
 vim.o.backspace = 'indent,eol,start' -- バックスペースでなんでも消せるように
-vim.o.clipboard = 'unnamedplus,unnamed,' .. vim.o.clipboard -- ヤンクでクリップボードを使用
+vim.o.clipboard = 'unnamedplus' -- ヤンクでクリップボードを使用
 vim.o.formatoptions = 'lmq' -- テキスト整形オプション
 vim.api.nvim_create_autocmd({'BufEnter'}, {
     pattern = {'*.php'},
@@ -31,8 +31,6 @@ vim.o.hidden = true -- 編集中でもファイルを開けるように
 vim.o.autoread = true -- 他で編集したファイルを自動で再読み込み
 vim.o.backup = false -- バックアップを作成しない
 vim.o.swapfile = false -- スワップファイルを作成しない
-vim.o.hidden = true -- 編集中でもファイルを開けるように
-vim.o.autoread = true -- 他で編集したファイルを自動で再読み込み
 --vim.o.browsedir = 'buffer' -- 現在のディレクトリから開始
 vim.o.undofile = true -- undofile
 
@@ -50,7 +48,7 @@ vim.o.hlsearch = true -- 検索文字列をハイライト表示
 -- コマンド
 vim.o.lazyredraw = false -- コマンド実行中は再描画しない(false)
 vim.o.showcmd = true-- コマンドをステータスに表示
-vim.o.showmode = true -- 現在のモードを非表示
+vim.o.showmode = true -- 現在のモードを表示
 vim.o.wildmode = 'longest:full,full' -- コマンドモードで補完を使用
 vim.o.wildmenu = true -- コマンドモードで補完を使用
 vim.o.wildignorecase = true -- 補完で大文字小文字を無視

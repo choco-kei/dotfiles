@@ -1,5 +1,6 @@
 return {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "^1.0.0",
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "mason-lspconfig.nvim", "nlsp-settings.nvim" },
     --build = ":MasonUpdate",

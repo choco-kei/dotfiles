@@ -39,7 +39,7 @@ return {
                 },
             },
             -- scssで@extendのインデントがおかしい？
-            indent = { enable = true, disable = { "php", "scss" } },
+            indent = { enable = true, disable = { "php", "scss", "blade" } },
             --textsubjects = {
             --    enable = false,
             --    -- prev_selection = 'Q',
