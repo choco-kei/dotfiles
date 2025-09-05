@@ -3,11 +3,8 @@ return {
     version = "^1.0.0",
     lazy = true,
     config = function()
-        local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
         local lspconfig = require("lspconfig")
-
-        mason.setup()
 
         mason_lspconfig.setup()
 

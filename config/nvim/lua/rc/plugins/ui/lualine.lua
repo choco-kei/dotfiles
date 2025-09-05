@@ -46,7 +46,7 @@ return {
             require("lualine").setup(current_config)
         end
 
-        vim.api.nvim_set_keymap("n", "!", "<Cmd>lua LualineToggle()<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "!", "<Cmd>lua LualineToggle()<CR>", { noremap = true, silent = true })
 
         local colors = {
             -- onedark
@@ -76,7 +76,7 @@ return {
 
         local terminal_status_color = function(status)
             local mode_colors = {
-                Running = colors.orange,
+                Running = colors.yellow,
                 Finished = colors.purple,
                 Success = colors.blue,
                 Error = colors.red,
@@ -176,7 +176,6 @@ return {
                         "dapui_breakpoints",
                         "dapui_scopes",
                         "dapui_colsoles",
-                        "",
                     },
                 },
                 always_divide_middle = true,

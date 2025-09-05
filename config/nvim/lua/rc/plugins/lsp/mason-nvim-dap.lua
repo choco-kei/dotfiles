@@ -3,7 +3,8 @@ return {
     lazy = true,
     config = function()
         require("mason-nvim-dap").setup({
-            ensure_installed = { "php" },
+            -- 1. インストールしたいアダプタをリストに記述
+            ensure_installed = { "php", "python" },
 
             -- NOTE: this is left here for future porting in case needed
             -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
@@ -16,27 +17,18 @@ return {
             automatic_installation = false,
 
             -- See below on usage
+            -- 2. ハンドラで言語ごとの「起動設定(configurations)」を定義
             handlers = {
+                -- デフォルトハンドラ：特別な設定がない他の言語はここで処理
                 function(config)
                     -- all sources with no handler get passed here
 
                     -- Keep original functionality
                     require("mason-nvim-dap").default_setup(config)
                 end,
-                php = function(config)
-                    config.adapters = {
-                        type = "executable",
-                        command = "/usr/bin/python3",
-                        args = {
-                            "-m",
-                            "debugpy.adapter",
-                        },
-                    }
-                    config.adapters = {
-                        type = "executable",
-                        command = "php-debug-adapter",
-                    }
 
+                -- PHP用の起動設定
+                php = function(config)
                     config.configurations = {
                         {
                             type = "php",
@@ -49,7 +41,21 @@ return {
                             },
                         },
                     }
-                    require("mason-nvim-dap").default_setup(config) -- don't forget this!
+                    require("mason-nvim-dap").default_setup(config)
+                end,
+
+                -- Python用の起動設定
+                python = function(config)
+                    config.configurations = {
+                        {
+                            name = "Launch file",
+                            type = "python",
+                            request = "launch",
+                            program = "${file}", -- 現在のファイルを実行
+                            console = "integratedTerminal",
+                        },
+                    }
+                    require("mason-nvim-dap").default_setup(config)
                 end,
             },
         })
