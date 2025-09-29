@@ -27,7 +27,7 @@ return {
 
             -- Disable modes highlights in specified filetypes
             -- Please PR commonly ignored filetypes
-            ignore_filetypes = { "NvimTree", "neo-tree", "TelescopePrompt" },
+            ignore = { "NvimTree", "neo-tree", "TelescopePrompt" },
         })
     end,
 }
