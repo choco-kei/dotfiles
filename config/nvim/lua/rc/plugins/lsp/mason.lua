@@ -1,15 +1,20 @@
 return {
     "mason-org/mason.nvim",
-    version = "^1.0.0",
-    event = "VimEnter",
-    dependencies = { "nvim-lspconfig", "mason-lspconfig.nvim", "nlsp-settings.nvim" },
+    --version = "^1.0.0",
+    dependencies = { "neovim/nvim-lspconfig" },
     --build = ":MasonUpdate",
     config = function()
-        local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
-        for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
+        vim.diagnostic.config({
+            signs = {
+                active = true,
+                values = {
+                    { name = "DiagnosticSignError", text = "", texthl = "DiagnosticSignError" },
+                    { name = "DiagnosticSignWarn",  text = "", texthl = "DiagnosticSignWarn" },
+                    { name = "DiagnosticSignInfo",  text = "", texthl = "DiagnosticSignInfo" },
+                    { name = "DiagnosticSignHint",  text = "󰌶", texthl = "DiagnosticSignHint" },
+                },
+            },
+        })
 
         require("mason").setup({})
     end,

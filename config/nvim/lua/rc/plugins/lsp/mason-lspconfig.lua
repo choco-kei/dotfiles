@@ -1,10 +1,10 @@
 return {
     "mason-org/mason-lspconfig.nvim",
-    version = "^1.0.0",
+    --version = "^1.0.0",
     lazy = true,
     config = function()
         local mason_lspconfig = require("mason-lspconfig")
-        local lspconfig = require("lspconfig")
+        --local lspconfig = require("lspconfig")
 
         mason_lspconfig.setup()
 
