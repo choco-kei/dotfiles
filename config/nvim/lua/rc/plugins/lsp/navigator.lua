@@ -4,16 +4,16 @@ return {
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
     --commit = "4b2dbdadacc31f4c9d9b673180e1ba85180e4ec9",
     config = function()
-        -- nvim-ufo のために、LSPのcapabilitiesを拡張する
+        -- nvim-ufo: LSPのcapabilitiesを拡張
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities.textDocument.foldingRange = {
             dynamicRegistration = false,
             lineFoldingOnly = true,
         }
-        -- lspconfigのデフォルトとして設定する
-        -- これにより、navigatorが内部でlspconfigを呼び出す際に、このcapabilitiesが使われる
-        local lspconfig_util = require('lspconfig.util')
-        lspconfig_util.default_config.capabilities = capabilities
+        -- 全LSPサーバーに共通のcapabilitiesを設定
+        vim.lsp.config('*', {
+            capabilities = capabilities,
+        })
 
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log

@@ -2,9 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "VimEnter",
     config = function()
-        local lspconfig = require("lspconfig")
-
-        lspconfig.typos_lsp.setup({
+        vim.lsp.config('typos_lsp', {
             init_options = {
                 config = "~/.config/nvim/spell/typos.toml",
             },

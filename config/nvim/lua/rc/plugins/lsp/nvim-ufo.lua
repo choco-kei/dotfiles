@@ -1,3 +1,5 @@
+-- LSPのcapabilitiesの拡張はnavigator側に記述
+
 return {
     "kevinhwang91/nvim-ufo",
     event = "VimEnter",
@@ -10,13 +12,9 @@ return {
             dynamicRegistration = false,
             lineFoldingOnly = true,
         }
-        local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
-        for _, ls in ipairs(language_servers) do
-            require("lspconfig")[ls].setup({
-                capabilities = capabilities,
-                -- you can add other fields for setting up lsp server in this table
-            })
-        end
+        vim.lsp.config('*', {
+            capabilities = capabilities,
+        })
 
         local handler = function(virtText, lnum, endLnum, width, truncate)
             local newVirtText = {}
