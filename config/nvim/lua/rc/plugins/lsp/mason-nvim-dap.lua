@@ -1,32 +1,18 @@
 return {
     "jay-babu/mason-nvim-dap.nvim",
-    lazy = true,
+    dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
     config = function()
         require("mason-nvim-dap").setup({
-            -- 1. インストールしたいアダプタをリストに記述
-            ensure_installed = { "php", "python" },
+            -- 1. インストールしたいアダプタをmasonのパッケージ名で記述
+            ensure_installed = {
+                "php-debug-adapter", -- "php" ではなく、masonでのパッケージ名を指定
+                "debugpy",           -- "python" ではなく、masonでのパッケージ名を指定
+            },
 
-            -- NOTE: this is left here for future porting in case needed
-            -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
-            -- This setting has no relation with the `ensure_installed` setting.
-            -- Can either be:
-            --   - false: Daps are not automatically installed.
-            --   - true: All adapters set up via dap are automatically installed.
-            --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
-            --       Example: automatic_installation = { exclude = { "python", "delve" } }
             automatic_installation = false,
 
-            -- See below on usage
             -- 2. ハンドラで言語ごとの「起動設定(configurations)」を定義
             handlers = {
-                -- デフォルトハンドラ：特別な設定がない他の言語はここで処理
-                function(config)
-                    -- all sources with no handler get passed here
-
-                    -- Keep original functionality
-                    require("mason-nvim-dap").default_setup(config)
-                end,
-
                 -- PHP用の起動設定
                 php = function(config)
                     config.configurations = {

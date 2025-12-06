@@ -4,17 +4,6 @@ return {
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
     --commit = "4b2dbdadacc31f4c9d9b673180e1ba85180e4ec9",
     config = function()
-        -- nvim-ufo: LSPのcapabilitiesを拡張
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
-        -- 全LSPサーバーに共通のcapabilitiesを設定
-        vim.lsp.config('*', {
-            capabilities = capabilities,
-        })
-
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
             width = 0.75, -- max width ratio (number of cols for the floating window) / (window width)
@@ -377,8 +366,8 @@ return {
             },
         })
 
-        vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
-        vim.cmd("autocmd FileType guihua_rust lua require('cmp').setup.buffer { enabled = false }")
+        vim.cmd("autocmd FileType guihua lua vim.b.completion = false")
+        vim.cmd("autocmd FileType guihua_rust lua vim.b.completion = false")
 
         -- folding
         -- vim.o.foldlevel = 2

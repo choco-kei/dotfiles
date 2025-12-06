@@ -81,3 +81,4 @@ vim.cmd('set sessionoptions+=globals')
 
 -- lang
 vim.g.loaded_perl_provider = 0 -- perldoを無効
+vim.o.showtabline = 2 -- allways show tabline
