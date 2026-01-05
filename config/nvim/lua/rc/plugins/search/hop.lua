@@ -1,5 +1,6 @@
 return {
     "phaazon/hop.nvim",
+    enabled = false,
     event = "VimEnter",
     config = function()
         require("hop").setup({
