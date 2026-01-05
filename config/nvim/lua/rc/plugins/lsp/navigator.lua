@@ -42,7 +42,7 @@ return {
                 -- 定義先にジャンプ
                 { key = "gd", func = require("navigator.definition").definition,         desc = "definition" },
                 -- 宣言元にジャンプ
-                { key = "gD", func = vim.lsp.buf.declaration,                            desc = "declaration" },
+                { key = "gD", func = function() vim.lsp.buf.declaration() end,       desc = "declaration" },
                 -- 定義プレビュー
                 { key = "gp", func = require("navigator.definition").definition_preview, desc = "definition_preview" },
                 -- 定義タイププレビュー
@@ -66,11 +66,11 @@ return {
                     desc = "range_code_action",
                 },
                 -- 実装先を検索
-                { key = "gi",         func = vim.lsp.buf.implementation,              desc = "implementation" },
+                { key = "gi",         func = function() vim.lsp.buf.implementation() end, desc = "implementation" },
                 -- リネーム
                 { key = "gr",         func = require("navigator.rename").rename,      desc = "rename" },
                 -- ドキュメント表示
-                { key = "?",          func = vim.lsp.buf.hover,                       desc = "hover" },
+                { key = "?",          func = function() vim.lsp.buf.hover() end,          desc = "hover" },
                 --{ key = '<Leader>k', func = "require('navigator.dochighlight').hi_symbol()" },
 
                 -- treesitter ()
@@ -101,7 +101,7 @@ return {
                 --     func = vim.lsp.buf.signature_help,
                 --     desc = "signature_help",
                 -- },
-                { key = "g?", func = vim.lsp.buf.signature_help,                        desc = "signature_help" },
+                { key = "g?", func = function() vim.lsp.buf.signature_help() end,   desc = "signature_help" },
 
                 -- diagnostic
                 -- diagnostic
