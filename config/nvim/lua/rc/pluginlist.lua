@@ -33,6 +33,7 @@ local plugins = {
         { import = "rc.plugins.terminal" },
         { import = "rc.plugins.treesitter" },
         { import = "rc.plugins.ui" },
+        { import = "rc.plugins.mini" },
     },
 }
 

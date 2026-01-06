@@ -1,5 +1,6 @@
 return {
     "junegunn/vim-easy-align",
+    enabled = false,
     event = "VimEnter",
     config = function()
         vim.cmd("source ~/.config/nvim/rc/configs/vim-easy-align.vim")
