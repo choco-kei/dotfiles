@@ -7,5 +7,15 @@ return {
 
     -- mini.surround
     require('mini.surround').setup()
+
+    -- mini.ai
+    require('mini.ai').setup({
+      custom_textobjects = {
+        b = {
+          { '%b()', '%b[]', '%b{}', '%b""', "%b''", '%b``' },
+          '^.().*().$'
+        },
+      },
+    })
   end,
 }
