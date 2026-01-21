@@ -1,13 +1,15 @@
 return {
   "folke/flash.nvim",
+  enabled = false,
   event = "VeryLazy",
   opts = {
     modes = {
-      search = { enabled = true },
+      search = { enabled = false },
 
       char = {
         enabled = true,
         jump_labels = true,
+        multi_line = false,
         -- ";, は使わない" の方針なので、f,F のみ残す
         keys = { "f", "F" },
       },
