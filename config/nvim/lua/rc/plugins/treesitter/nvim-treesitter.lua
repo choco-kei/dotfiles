@@ -61,10 +61,10 @@ return {
             --    enable = false,
             --    disable = {},
             --},
-            yati = {
-                enable = true,
-                suppress_conflict_warning = true,
-            },
+            --yati = {
+            --    enable = true,
+            --    suppress_conflict_warning = true,
+            --},
         })
     end,
 }

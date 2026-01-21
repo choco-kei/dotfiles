@@ -109,9 +109,6 @@ return {
         vim.api.nvim_set_keymap("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
         vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
         vim.api.nvim_set_keymap("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
-        --vim.api.nvim_set_keymap('n', '<Leader>ft', '<Cmd>Telescope file_browser path=%:p:h<CR>', { noremap = true, silent = true })
-        --vim.api.nvim_set_keymap('n', '<leader>fm', "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", { noremap = true, silent = true })
-        --vim.api.nvim_set_keymap('n', '<leader>fm', "<Cmd>lua require('telescope').extensions.frecency.frecency({ default_workspace = 'CWD' })<CR>", { noremap = true, silent = true })
 
         -- telescopeで開く場合にfoldingが効かない問題(zxする)
         vim.api.nvim_create_autocmd("BufRead", {

@@ -1,16 +1,28 @@
 return {
     "mason-org/mason-lspconfig.nvim",
-    dependencies = { "mason-org/mason.nvim" },
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
     opts = {
         ensure_installed = {
-            "angularls",
-            "intelephense",
-            "jsonls",
+            -- lua
             "lua_ls",
+
+            -- php
+            "intelephense",
+
+            -- go
+            "gopls",
+
+            -- ts
+            "ts_ls",
+
+            -- json
+            "jsonls",
+
+            -- proto
+            "buf_ls",
+
+            -- typo
             "typos_lsp",
         },
     },
-    config = function(_, opts)
-        require("mason-lspconfig").setup(opts)
-    end,
 }

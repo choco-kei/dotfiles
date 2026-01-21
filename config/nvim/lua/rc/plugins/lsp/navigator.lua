@@ -1,30 +1,23 @@
 return {
     "ray-x/navigator.lua",
+    enabled = true,
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
     --commit = "4b2dbdadacc31f4c9d9b673180e1ba85180e4ec9",
+    --branch = "treesitter-main",
     config = function()
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
+
             width = 0.75, -- max width ratio (number of cols for the floating window) / (window width)
             height = 0.3, -- max list window height, 0.3 by default
             preview_height = 0.35, -- max height of preview windows
             border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, -- border style, can be one of 'none', 'single', 'double',
             -- 'shadow', or a list of chars which defines the border
-            on_attach = function(client, bufnr)
-                -- your hook
-            end,
-            -- put a on_attach of your own here, e.g
-            -- function(client, bufnr)
-            --   -- the on_attach will be called at end of navigator on_attach
-            -- end,
             -- The attach code will apply to all LSP clients
 
             ts_fold = {
                 enable = false,
-                comment = true,                                   -- fold with comment string
-                max_lines_scan_comments = 20,                     -- only fold when the fold level higher than this value
-                disable_filetypes = { "help", "guihua", "text" }, -- list of filetypes which doesn't fold using treesitter
             },
             default_mapping = false,                              -- set to false if you will remap every key
             keymaps = {
@@ -292,17 +285,14 @@ return {
                 doc_symbols = "󰈙 ",
             },
             --lsp_installer = true, -- set to true if you would like use the lsp installed by williamboman/nvim-lsp-installer
-            mason = true, -- set to true if you would like use the lsp installed by williamboman/mason
             lsp = {
                 enable = true,
                 code_action = { enable = true, sign = true, sign_priority = 40, virtual_text = false },
                 code_lens_action = { enable = true, sign = true, sign_priority = 40, virtual_text = false },
                 format_on_save = false,                                                -- set to false to disable lsp code format on save (if you are using prettier/efm/formater etc)
                 disable_format_cap = { "sqls", "sumneko_lua", "gopls" },               -- a list of lsp disable format capacity (e.g. if you using efm or vim-codeformat etc), empty {} by default
-                disable_lsp = { "pylsd", "sqls", "phpactor", "ruff_lsp", "tsserver" }, -- a list of lsp server disabled for your project, e.g. denols and tsserver you may
-                -- only want to enable one lsp server
                 -- to disable all default config and use your own lsp setup set
-                -- disable_lsp = 'all'
+                disable_lsp = "all",
                 -- Default {}
                 diagnostic = {
                     enable = true,
@@ -325,44 +315,6 @@ return {
                 diagnostic_virtual_text = false,     -- show virtual for diagnostic message
                 diagnostic_update_in_insert = false, -- update diagnostic message in insert mode
                 display_diagnostic_qf = false,       -- always show quickfix if there are diagnostic errors, set to false if you  want to ignore it
-                tsserver = {
-                    filetypes = { "typescript" },    -- disable javascript etc,
-                    -- set to {} to disable the lspclient for all filetypes
-                },
-                bufls = {
-                    filetypes = { "proto" }, -- disable javascript etc,
-                    -- set to {} to disable the lspclient for all filetypes
-                },
-                gopls = {                               -- gopls setting
-                    on_attach = function(client, bufnr) -- on_attach for gopls
-                        -- your special on attach here
-                        -- e.g. disable gopls format because a known issue https://github.com/golang/go/issues/45732
-                        print("i am a hook, I will disable document format")
-                        client.resolved_capabilities.document_formatting = false
-                    end,
-                    settings = {
-                        gopls = { gofumpt = false }, -- disable gofumpt etc,
-                    },
-                },
-                intelephense = {
-                    settings = {
-                        intelephense = {
-                            maxMemory = 256,
-                            files = {
-                                maxSize = 1300000,
-                            },
-                        },
-                    },
-                },
-                --sumneko_lua = {
-                --    sumneko_root_path = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server',
-                --    sumneko_binary = vim.fn.expand("$HOME") .. '/github/sumneko/lua-language-server/bin/macOS/lua-language-server',
-                --},
-                servers = { "bufls", "cmake", "ltex" }, -- by default empty, and it should load all LSP clients availble based on filetype
-                -- but if you whant navigator load  e.g. `cmake` and `ltex` for you , you
-                -- can put them in the `servers` list and navigator will auto load them.
-                -- you could still specify the custom config  like this
-                -- cmake = {filetypes = {'cmake', 'makefile'}, single_file_support = false},
             },
         })
 
