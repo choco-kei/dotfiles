@@ -20,7 +20,7 @@ return {
 
             -- Enable cursorline initially, and disable cursorline for inactive windows
             -- or ignored filetypes
-            set_cursorline = true,
+            set_cursorline = false,
 
             -- Enable line number highlights to match cursorline
             set_number = true,

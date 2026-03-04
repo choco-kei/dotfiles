@@ -129,5 +129,13 @@ return {
         vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = nil, bg = colors.bg0 })
         vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = nil, bg = colors.bg0 })
         vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = colors.red.base, bg = colors.bg2 })
-    end,
+
+    -- TelescopePromptでcursorlineを無効にする
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "TelescopePrompt",
+      callback = function()
+        vim.opt_local.cursorline = false
+      end,
+    })
+  end,
 }
