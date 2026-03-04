@@ -1,6 +1,5 @@
 return {
   "folke/flash.nvim",
-  enabled = false,
   event = "VeryLazy",
   opts = {
     modes = {
@@ -15,6 +14,10 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("flash").setup(opts)
+    vim.api.nvim_set_hl(0, "FlashLabel", { link = "IncSearch" })
+  end,
   keys = {
     { "sj", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash Jump" }, -- s -> sj surround系互換
     { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
