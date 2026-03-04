@@ -56,10 +56,14 @@ return {
         -- Lua formatter(常に有効)
         table.insert(sources, null_ls.builtins.formatting.stylua)
 
+        -- Golang formatter
+        table.insert(sources, null_ls.builtins.formatting.goimports)
+
         -- null-ls を設定
         null_ls.setup({
             sources = sources,
             debug = false,
         })
+
     end,
 }

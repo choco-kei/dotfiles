@@ -44,9 +44,25 @@ return {
             },
         })
 
-        -- gopls
-        -- vim.lsp.config("gopls", {
-        -- })
+        -- gopls (Go)
+        vim.lsp.config("gopls", {
+            -- フォーマット機能を無効化(goimportsに任せる)
+            on_attach = function(client, bufnr)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+            settings = {
+                gopls = {
+                    analyses = {
+                        unusedparams = true,
+                    },
+                    staticcheck = true,
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    gofumpt = false,
+                },
+            },
+        })
 
         -- ts_ls
         vim.lsp.config("ts_ls", {
