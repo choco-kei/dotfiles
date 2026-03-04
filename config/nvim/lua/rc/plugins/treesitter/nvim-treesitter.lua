@@ -14,6 +14,36 @@ return {
     build = ":TSUpdate",
     --commit = "1c67567",
     config = function()
+        -- TODO: nvim-ts-context-commentstringの設定を外に出すor綺麗にする
+        -- 1. プラグインの設定（PHPのときは // を使うと定義）
+        require('ts_context_commentstring').setup {
+            enable_autocmd = false,
+            config = {
+                php = '// %s',
+            },
+        }
+
+        -- 2. Neovim 0.10+ の標準コメント機能との連携
+        -- table.insert を使わず、get_option をフックするこの方法が最も安全です
+        if vim.fn.has('nvim-0.10') == 1 then
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "php",
+                callback = function()
+                    vim.bo.commentstring = require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+                end,
+            })
+
+            -- もしこれでもダメな場合、Neovim 0.10/0.11 本体の get_option を直接上書きします
+            vim.g.skip_ts_context_commentstring_module = true
+            ---@diagnostic disable-next-line: duplicate-set-field
+            vim.filetype.get_option = function(filetype, option)
+                if option == "commentstring" then
+                    return require("ts_context_commentstring.internal").calculate_commentstring()
+                end
+                return vim.filetype.get_option(filetype, option)
+            end
+        end
+
         require("nvim-treesitter.configs").setup({
             ensure_installed = "all", -- one of 'all', 'language', or a list of languages
 
