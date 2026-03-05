@@ -44,7 +44,7 @@ return {
             },
         })
 
-        -- gopls (Go)
+        -- gopls
         vim.lsp.config("gopls", {
             -- フォーマット機能を無効化(goimportsに任せる)
             on_attach = function(client, bufnr)
@@ -55,6 +55,9 @@ return {
                 gopls = {
                     analyses = {
                         unusedparams = true,
+                        ST1000 = false,
+                        ST1020 = false,
+                        ST1021 = false,
                     },
                     staticcheck = true,
                     completeUnimported = true,
