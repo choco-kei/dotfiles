@@ -16,7 +16,12 @@ return {
   },
   config = function(_, opts)
     require("flash").setup(opts)
-    vim.api.nvim_set_hl(0, "FlashLabel", { link = "IncSearch" })
+
+    -- DiagnosticVirtualTextWarn の色情報を取得して、underline を加えて再定義する
+    local hl = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextWarn", link = false })
+    vim.api.nvim_set_hl(0, "FlashLabel", vim.tbl_extend("force", hl, {
+      underline = true,
+    }))
   end,
   keys = {
     { "sj", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash Jump" }, -- s -> sj surround系互換
