@@ -2,6 +2,7 @@ return {
     "saghen/blink.cmp",
     -- TODO: スニペットについてLuaSnipを使うようにあとで調整
     dependencies = {
+        "L3MON4D3/LuaSnip",
         "windwp/nvim-autopairs",
         "rafamadriz/friendly-snippets",
         "moyiz/blink-emoji.nvim",
@@ -13,6 +14,8 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+        snippets = { preset = "luasnip" },
+
         -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
         -- 'super-tab' for mappings similar to vscode (tab to accept)
         -- 'enter' for enter to accept

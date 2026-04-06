@@ -18,13 +18,25 @@ return {
             -- `delete_check_events` determines on which events (:h events) a check for
             -- deleted snippets is performed.
             -- This can be especially useful when `history` is enabled.
-            delete_check_events = "TextChanged",
+            delete_check_events = "TextChanged,InsertLeave",
+            region_check_events = "CursorMoved",
             ext_opts = {
-                [types.choiceNode] = { active = { virt_text = { { "choiceNode", "Comment" } } } },
                 [types.insertNode] = {
-                    unvisited = {
+                    -- 現在地
+                    active = { hl_group = "Visual" },
+
+                    -- ★重要：待機中（ここが「次」を可視化する鍵）
+                    -- 背景色だけでなく、アイコンもここ（passive）に書かないと出ない場合があります
+                    passive = {
+                        hl_group = "Conceal",
                         virt_text = { { '󰜴', 'Conceal' } },
                         virt_text_pos = 'inline',
+                    },
+
+                    -- 未到達
+                    unvisited = {
+                        virt_text = { { '󰜴', 'Conceal' } },
+                        virt_text_pos = 'eol',
                     },
                 },
                 [types.exitNode] = {
@@ -34,6 +46,7 @@ return {
                     },
                 },
             },
+
             -- treesitter-hl has 100, use something higher (default is 200).
             ext_base_prio = 300,
             -- minimal increase in priority.

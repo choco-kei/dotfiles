@@ -15,6 +15,8 @@ return {
     },
     scope = {
       enabled = true,
+      -- 警告のアンダーラインなどを優先
+      priority = 1,
       -- スコープの色リスト
       highlight = {
         "IndentBlanklineIndent1",

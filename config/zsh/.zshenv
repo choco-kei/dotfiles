@@ -4,7 +4,7 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 
 # EDITOR
-export EDITOR=vim
+export EDITOR=nvim
 
 # disable path_helper
 setopt no_global_rcs

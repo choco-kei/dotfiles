@@ -1,11 +1,36 @@
 return {
     "ray-x/navigator.lua",
     enabled = true,
+    --branch = "treesitter-main",
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
     --commit = "4b2dbdadacc31f4c9d9b673180e1ba85180e4ec9",
     --branch = "treesitter-main",
     config = function()
+        -- navigator.lua のバッファフィルタリングのバグをメモリ上で修正
+        local lspwrapper = require("navigator.lspwrapper")
+        local nav_util = require("navigator.util")
+
+        lspwrapper.call_async = function(method, params, handler, bufnr)
+            params = params or {}
+            bufnr = (bufnr == nil or bufnr == 0) and vim.api.nvim_get_current_buf() or bufnr
+
+            -- 正しい引数 'bufnr' を使用してクライアントを取得
+            local clients = vim.lsp.get_clients({ bufnr = bufnr, method = method })
+
+            for _, client in pairs(clients) do
+                if client:supports_method(method, bufnr) then
+                    if type(params) == "function" then
+                        params = params(client)
+                    end
+                    return client:request(method, params, function(...)
+                        nav_util.show(...)
+                        handler(...)
+                    end, bufnr)
+                end
+            end
+        end
+
         require("navigator").setup({
             debug = false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
 
@@ -23,19 +48,27 @@ return {
             keymaps = {
                 -- basic
                 -- 参照先を検索
-                { key = "gh", func = require("navigator.reference").async_ref,      desc = "async_ref" },
+                -- { key = "gh", func = require("navigator.reference").async_ref,      desc = "async_ref" },
+                {
+                  key = "gh",
+                  func = function()
+                    require('telescope.builtin').lsp_references({
+                      jump_type = "never"
+                    })
+                  end,
+                  desc = "async_ref"
+                },
                 -- ドキュメントシンボル表示
                 { key = "g0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
                 -- ワークスペースシンボル検索
-                {
-                    key = "gw",
-                    func = require("navigator.workspace").workspace_symbol_live,
-                    desc = "workspace_symbol_live",
-                },
+                -- { key = "gw", func = require("navigator.workspace").workspace_symbol_live, desc = "workspace_symbol_live" },
+                { key = "gw", func = require('telescope.builtin').lsp_dynamic_workspace_symbols, desc = "workspace_symbol_live" },
                 -- 定義先にジャンプ
-                { key = "gd", func = require("navigator.definition").definition,         desc = "definition" },
+                -- { key = "gd", func = require("navigator.definition").definition,         desc = "definition" },
+                { key = "gd", func = require('telescope.builtin').lsp_definitions, desc = "definition" },
                 -- 宣言元にジャンプ
-                { key = "gD", func = function() vim.lsp.buf.declaration() end,       desc = "declaration" },
+                -- { key = "gD", func = function() vim.lsp.buf.declaration() end,       desc = "declaration" },
+                { key = "gD", func = require('telescope.builtin').lsp_declarations, desc = "declaration" },
                 -- 定義プレビュー
                 { key = "gp", func = require("navigator.definition").definition_preview, desc = "definition_preview" },
                 -- 定義タイププレビュー
@@ -59,9 +92,11 @@ return {
                     desc = "range_code_action",
                 },
                 -- 実装先を検索
-                { key = "gi",         func = function() vim.lsp.buf.implementation() end, desc = "implementation" },
+                -- { key = "gi",         func = function() vim.lsp.buf.implementation() end, desc = "implementation" },
+                { key = "gi", func = require('telescope.builtin').lsp_implementations, desc = "implementation" },
                 -- リネーム
-                { key = "gr",         func = require("navigator.rename").rename,      desc = "rename" },
+                -- { key = "gr",         func = require("navigator.rename").rename,      desc = "rename" },
+                { key = "gr", func = false, },
                 -- ドキュメント表示
                 { key = "?",          func = function() vim.lsp.buf.hover() end,          desc = "hover" },
                 --{ key = '<Leader>k', func = "require('navigator.dochighlight').hi_symbol()" },
@@ -228,7 +263,7 @@ return {
             signature_help_cfg = nil,   -- if you would like to init ray-x/lsp_signature plugin in navigator, and pass in your own config to signature help
             icons = {
                 -- Code action
-                code_action_icon = "󰌶 ",
+                code_action_icon = " ",
                 -- code lens
                 code_lens_action_icon = "󰧶 ",
                 -- Diagnostics
@@ -236,7 +271,7 @@ return {
                 diagnostic_err = " ",
                 diagnostic_warn = " ",
                 diagnostic_info = " ",
-                diagnostic_hint = "󰌶 ",
+                diagnostic_hint = " ",
 
                 diagnostic_head_severity_1 = " ",
                 diagnostic_head_severity_2 = " ",

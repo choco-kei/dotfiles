@@ -53,6 +53,7 @@ return {
             end,
             settings = {
                 gopls = {
+                    expandWorkspaceToModule = true,
                     analyses = {
                         unusedparams = true,
                         ST1000 = false,
