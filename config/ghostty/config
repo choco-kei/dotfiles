@@ -1,0 +1,56 @@
+theme = nordfox
+
+# フォント
+# 12.4 /  0.0  => 52行
+# 12.3 /  0.0  => 52行
+# 12.2 /  1.0  => 52行
+# 11.7 /  2.0  => 52行
+# 11.6 /  2.0  => 52行
+# 11.7 / -2.0  => 59行
+# 11.1 /  0.0  => 59行
+# 少しボトムに隙間あり
+# 11.7 / -1.0  => 57行
+font-family = "Source Han Code JP"
+font-size = 12.3
+adjust-cell-height = 0
+font-thicken = false
+font-thicken-strength = 0
+font-feature = -dlig
+font-feature = -calt
+
+# カーソル
+cursor-style = bar
+
+# マウス
+mouse-hide-while-typing = true
+
+# UI/ウインドウ
+background-opacity = 0.70
+background-blur-radius = 30
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
+window-save-state = always
+
+# クリップボード
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+# その他
+confirm-close-surface = true
+
+# キーマップ
+keybind = cmd+right=next_tab
+keybind = cmd+left=previous_tab
+keybind = cmd+shift+right=move_tab:1
+keybind = cmd+shift+left=move_tab:-1
+keybind = shift+enter=text:\x1b\x0d
+
+# mac
+macos-icon = custom
+macos-custom-icon = ~/.config/ghostty/catppuccin-frappe.icns
+macos-titlebar-style = tabs
+macos-option-as-alt = true
