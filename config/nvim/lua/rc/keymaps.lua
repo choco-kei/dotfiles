@@ -39,6 +39,10 @@ vim.keymap.set('n', '<Leader>dc', ':<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>
 --vim.keymap.set('n', '[tab]l', ':tabnext<CR>', { remap = true, silent = true }) -- tl 次のタブ
 --vim.keymap.set('n', '[tab]h', ':tabprevious<CR>', { remap = true, silent = true }) -- th 前のタブ
 
+-- 検索時にすぐ飛ばないように
+vim.keymap.set('n', '*', '*N', { noremap = true, silent = true })
+vim.keymap.set('n', '#', '#N', { noremap = true, silent = true })
+
 -- 検索で自動エスケープ
 vim.keymap.set('c', '/', "getcmdtype() == '/' ? '\\/' : '/'", { noremap = true, silent = false, expr = true})
 vim.keymap.set('c', '?', "getcmdtype() == '?' ? '\\?' : '?'", { noremap = true, silent = false, expr = true})
@@ -50,3 +54,7 @@ vim.keymap.set('n', '<Space>ev', string.format(':<C-u>edit %s/init.lua<CR>', con
 -- [t / ]t を無効化（誤爆防止）
 vim.keymap.set('n', '[t', '<Nop>')
 vim.keymap.set('n', ']t', '<Nop>')
+
+-- lspデフォルトを無効化
+vim.keymap.del("n", "grx")
+vim.keymap.del("x", "gra")

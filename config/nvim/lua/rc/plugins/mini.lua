@@ -1,21 +1,26 @@
 return {
-  'nvim-mini/mini.nvim',
+  "nvim-mini/mini.nvim",
   version = false,
   config = function()
     -- mini.align
-    require('mini.align').setup()
+    require("mini.align").setup()
 
     -- mini.surround
-    require('mini.surround').setup()
+    require("mini.surround").setup()
 
     -- mini.ai
-    require('mini.ai').setup({
+    require("mini.ai").setup({
       custom_textobjects = {
         b = {
-          { '%b()', '%b[]', '%b{}', '%b""', "%b''", '%b``' },
-          '^.().*().$'
+          { "%b()", "%b[]", "%b{}", '%b""', "%b''", "%b``" },
+          "^.().*().$",
         },
       },
+    })
+
+    -- mini.cursorword
+    require("mini.cursorword").setup({
+      delay = 100,
     })
   end,
 }

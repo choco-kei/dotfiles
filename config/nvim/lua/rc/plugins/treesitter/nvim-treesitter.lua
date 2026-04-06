@@ -1,100 +1,61 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        COLOR_SCHEME,
-        --"m-demare/hlargs.nvim",
-
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        "yioneko/nvim-yati",
-        --"haringsrob/nvim_context_vt",
-        "David-Kunz/treesitter-unit",
-        --"nvim-treesitter/nvim-treesitter-context",
-    },
-    event = "VimEnter",
-    build = ":TSUpdate",
-    --commit = "1c67567",
-    config = function()
-        -- TODO: nvim-ts-context-commentstringの設定を外に出すor綺麗にする
-        -- 1. プラグインの設定（PHPのときは // を使うと定義）
-        require('ts_context_commentstring').setup {
-            enable_autocmd = false,
-            config = {
-                php = '// %s',
-            },
-        }
-
-        -- 2. Neovim 0.10+ の標準コメント機能との連携
-        -- table.insert を使わず、get_option をフックするこの方法が最も安全です
-        if vim.fn.has('nvim-0.10') == 1 then
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = "php",
-                callback = function()
-                    vim.bo.commentstring = require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
-                end,
-            })
-
-            -- もしこれでもダメな場合、Neovim 0.10/0.11 本体の get_option を直接上書きします
-            vim.g.skip_ts_context_commentstring_module = true
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.filetype.get_option = function(filetype, option)
-                if option == "commentstring" then
-                    return require("ts_context_commentstring.internal").calculate_commentstring()
-                end
-                return vim.filetype.get_option(filetype, option)
-            end
+  "nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
+  build = ":TSUpdate",
+  config = function()
+    require('ts_context_commentstring').setup {
+      enable_autocmd = false,
+      config = {
+        php = '// %s',
+      },
+    }
+    -- Neovim 0.10+ の標準コメント機能との連携
+    -- table.insert を使わず、get_option をフックするこの方法が最も安全です
+    if vim.fn.has('nvim-0.10') == 1 then
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "php",
+        callback = function()
+          vim.bo.commentstring = require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+        end,
+      })
+      -- もしこれでもダメな場合、Neovim 0.10/0.11 本体の get_option を直接上書きします
+      vim.g.skip_ts_context_commentstring_module = true
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.filetype.get_option = function(filetype, option)
+        if option == "commentstring" then
+          return require("ts_context_commentstring.internal").calculate_commentstring()
         end
+        return vim.filetype.get_option(filetype, option)
+      end
+    end
 
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = "all", -- one of 'all', 'language', or a list of languages
+    require("nvim-treesitter").setup({
+      install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site"),
+    })
 
-            ignore_install = { "javascript" },
+    local langs = {
+      "go", "gomod", "proto",
+      "php", "php_only",
+      "dockerfile",
+      "yaml", "toml",
+      "lua", "vim", "vimdoc",
+    }
+    require("nvim-treesitter").install(langs)
 
-            highlight = {
-                enable = true, -- false will disable the whole extension
-                disable = { "dockerfile" },  -- list of language that will be disabled
-                additional_vim_regex_highlighting = true,
-            },
-            incremental_selection = {
-                enable = true,
-                keymaps = { -- mappings for incremental selection (visual mappings)
-                    -- node_incremental = 'grn', -- increment to the upper named parent
-                    -- scope_incremental = 'grc', -- increment to the upper scope (as defined in locals.scm)
-                    -- init_selection = 'gnn', -- maps in normal mode to init the node/scope selection
-                    -- node_decremental = 'grm' -- decrement to the previous node
-                    --init_selection = '<CR>',
-                    --scope_incremental = '<CR>',
-                    node_incremental = "<TAB>",
-                    node_decremental = "<S-TAB>",
-                },
-            },
-            -- scssで@extendのインデントがおかしい？
-            indent = { enable = true, disable = { "php", "scss", "blade" } },
-            --textsubjects = {
-            --    enable = false,
-            --    -- prev_selection = 'Q',
-            --    keymaps = {
-            --        ['.'] = 'textsubjects-smart',
-            --        ['<Tab>'] = 'textsubjects-container-outer',
-            --        ['<S-Tab>'] = 'textsubjects-container-inner',
-            --    },
-            --},
-            --pairs = {
-            --    enable = false,
-            --    disable = {},
-            --    highlight_pair_events = { 'CursorMoved' }, -- when to highlight the pairs, use {} to deactivate highlighting
-            --    highlight_self = true,
-            --    goto_right_end = false, -- whether to go to the end of the right partner or the beginning
-            --    fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. 'normal! %')
-            --    keymaps = { goto_partner = "'%" },
-            --},
-            --matchup = {
-            --    enable = false,
-            --    disable = {},
-            --},
-            --yati = {
-            --    enable = true,
-            --    suppress_conflict_warning = true,
-            --},
-        })
-    end,
+    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+    vim.api.nvim_create_autocmd('FileType', {
+      group = group,
+      pattern = langs,
+      callback = function(args)
+        -- ハイライトを有効
+        vim.treesitter.start(args.buf)
+
+        -- インデントを有効
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+  end,
 }

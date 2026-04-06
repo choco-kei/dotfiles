@@ -66,3 +66,9 @@ vim.diagnostic.config({
     },
   },
 })
+
+
+-- 実験的UI (ui2) の有効化
+if vim.version().minor >= 12 then
+  require('vim._core.ui2').enable({})
+end
