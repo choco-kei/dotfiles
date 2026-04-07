@@ -1,4 +1,4 @@
-theme = nordfox
+theme = "nordfox"
 
 # フォント
 # 12.4 /  0.0  => 52行

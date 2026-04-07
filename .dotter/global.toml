@@ -9,6 +9,8 @@ depends = []
 # zsh
 "config/zsh/.zshrc"  = "~/.zshrc"
 "config/zsh/.zshenv" = "~/.zshenv"
+# starship
+"config/starship/starship.toml" = "~/.config/starship.toml"
 # ghostty
 "config/ghostty" = { target = "~/.config/ghostty", recurse = false, type = "symbolic" }
 # nvim
