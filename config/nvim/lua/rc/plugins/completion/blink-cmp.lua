@@ -1,6 +1,5 @@
 return {
     "saghen/blink.cmp",
-    -- TODO: スニペットについてLuaSnipを使うようにあとで調整
     dependencies = {
         "L3MON4D3/LuaSnip",
         "windwp/nvim-autopairs",
@@ -83,6 +82,16 @@ return {
             },
             --default = { "lsp", "path", "snippets", "buffer", "emoji", "omni", "spell" },
             default = { "lsp", "path", "snippets", "buffer", "emoji", "spell" },
+        },
+
+        cmdline = {
+            completion = {
+                list = {
+                    selection = {
+                        preselect = false,
+                    },
+                },
+            },
         },
 
         -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

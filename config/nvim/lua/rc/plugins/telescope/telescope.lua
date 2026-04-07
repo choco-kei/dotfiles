@@ -95,6 +95,12 @@ return {
                     },
                 },
             },
+            pickers = {
+              find_files = {
+                -- シンボリックリンクを検索対象に含める
+                follow = true
+              },
+            },
         })
 
         -- キーマップ
