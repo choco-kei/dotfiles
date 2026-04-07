@@ -11,8 +11,8 @@ scriptencoding utf-8
 "----------------------------------------------------------
 
 if has('vim_starting')
-    set runtimepath+=~/dotfiles/.vim/bundle/auto/neobundle.vim/
-    call neobundle#begin(expand('~/dotfiles/.vim/bundle/auto/'))
+    set runtimepath+=~/.vim/bundle/auto/neobundle.vim/
+    call neobundle#begin(expand('~/.vim/bundle/auto/'))
 endif
 
 "" NeoBundle
@@ -240,10 +240,10 @@ NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 
 "" No Repository
-NeoBundleLocal expand('~/dotfiles/.vim/bundle/user');
+NeoBundleLocal expand('~/.vim/bundle/user');
 NeoBundle 'neocomplete-php-analyze.vim', {
       \   'type' : 'nosync',
-      \   'base' : '~/dotfiles/.vim/bundle/user'
+      \   'base' : '~/.vim/bundle/user'
       \ }
 
 call neobundle#end()
@@ -270,11 +270,11 @@ set scrolloff=5
 set nobackup
 
 " テンポラリディレクトリパス
-set directory=~/dotfiles/.vim/tmp
+set directory=~/.vim/tmp
 
 " runtimepathの追加
-set runtimepath+=~/dotfiles/.vim/
-set runtimepath+=~/dotfiles/.vim/after/
+set runtimepath+=~/.vim/
+set runtimepath+=~/.vim/after/
 
 " バックスペースでなんでも消せるように
 set backspace=indent,eol,start
@@ -317,7 +317,7 @@ set wildmode=longest:full,full
 set noswapfile
 
 " undofile
-set undodir=~/dotfiles/.vim/undo
+set undodir=~/.vim/undo
 
 
 "}}}
@@ -660,7 +660,7 @@ endfor
 
 "" unite.vim
 " ディレクトリ変更
-let g:unite_data_directory=expand('~/dotfiles/.vim/tmp/unite')
+let g:unite_data_directory=expand('~/.vim/tmp/unite')
 " 起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
 " 大文字小文字を区別しない
@@ -709,8 +709,8 @@ endif
 let g:unite_source_grep_max_candidates = 10000
 
 "" neomru
-let g:neomru#file_mru_path      = expand('~/dotfiles/.vim/tmp/neomru/file')
-let g:neomru#directory_mru_path = expand('~/dotfiles/.vim/tmp/neomru/directory')
+let g:neomru#file_mru_path      = expand('~/.vim/tmp/neomru/file')
+let g:neomru#directory_mru_path = expand('~/.vim/tmp/neomru/directory')
 let g:neomru#time_format        = '(%Y.%m.%d %H:%M:%S) '
 let g:neomru#filename_format    = ':~:.'
 let g:neomru#file_mru_limit     = 2000
@@ -722,7 +722,7 @@ let g:unite_quickfix_filename_is_pathshorten = 0
 
 "" vimfiler
 " ディレクトリ変更
-let g:vimfiler_data_directory=expand('~/dotfiles/.vim/tmp/vimfiler')
+let g:vimfiler_data_directory=expand('~/.vim/tmp/vimfiler')
 
 "" vim-gitgutter
 " windowsで動かないっぽい？
@@ -737,7 +737,7 @@ endif
 
 "" neocomplete
 " ディレクトリ変更
-let g:neocomplete#data_directory=expand('~/dotfiles/.vim/tmp/neocomplete')
+let g:neocomplete#data_directory=expand('~/.vim/tmp/neocomplete')
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -1012,7 +1012,7 @@ endif
 "let g:neosnippet#enable_preview = 1
 
 " Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory=expand('~/dotfiles/.vim/snippets')
+let g:neosnippet#snippets_directory=expand('~/.vim/snippets')
 
 "" vim-over
 nnoremap [vim-over] <Nop>
@@ -1031,7 +1031,7 @@ nmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-next)
 nmap <C-n> <Plug>(yankround-prev)
-let g:yankround_dir = expand('~/dotfiles/.vim/tmp/yankround/')
+let g:yankround_dir = expand('~/.vim/tmp/yankround/')
 let g:yankround_max_history = 50
 
 "" vim-quickhl

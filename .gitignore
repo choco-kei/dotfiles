@@ -1,62 +1,36 @@
-# nvim
-/config/nvim/.netrwhist
-/config/nvim/snippet/*
-/config/nvim/plugin/packer_compiled.lua
-
-#vim
-
-# tmp
-tmp/zsh/*
-
-!.gitkeep
-
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-*.pyc
-
-# Numerous always-ignore extensions
-###################
-*.diff
-*.err
-*.orig
-*.log
-*.rej
-*.swo
-*.swp
-*.vi
-*~
-*.sass-cache
-
-# Folders to ignore
-###################
-.hg
-.svn
-.CVS
-# OS or Editor folders
-###################
+# =========================
+# OS
+# =========================
 .DS_Store
 Icon?
 Thumbs.db
-ehthumbs.db
-nbproject
-.cache
-.project
-.settings
-.tmproj
-*.esproj
-*.sublime-project
-*.sublime-workspace
-# Dreamweaver added files
-###################
-_notes
-dwsync.xml
-# Komodo
-###################
-*.komodoproject
-.komodotools
+
+# =========================
+# Dotter
+# =========================
+.dotter/local.toml
+.dotter/cache.toml
+
+# =========================
+# Local Configs
+# =========================
+*.local
+*_local
+config/fish/fish_variables
+
+# =========================
+# Editor & Temporary Files
+# =========================
+*~
+*.swp
+*.swo
+config/nvim/.netrwhist
+config/nvim/*.log
+
+# Zsh tmp
+tmp/zsh/*
+
+# =========================
+# Exceptions
+# =========================
+!.gitkeep

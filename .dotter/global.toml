@@ -1,0 +1,26 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+# fish
+"config/fish"    = { target = "~/.config/fish", recurse = false, type = "symbolic" }
+# zsh
+"config/zsh/.zshrc"  = "~/.zshrc"
+"config/zsh/.zshenv" = "~/.zshenv"
+# ghostty
+"config/ghostty" = { target = "~/.config/ghostty", recurse = false, type = "symbolic" }
+# nvim
+"config/nvim"    = { target = "~/.config/nvim", recurse = false, type = "symbolic" }
+# vim
+"config/vim/.vimrc"  = "~/.vimrc"
+"config/vim/.gvimrc" = "~/.gvimrc"
+"config/vim/.vim"    = { target = "~/.vim", recurse = false, type = "symbolic" }
+# misc
+"config/misc/.editorconfig" = "~/.editorconfig"
+
+[default.variables]
+
+[settings]
+default_target_type = "symbolic"
