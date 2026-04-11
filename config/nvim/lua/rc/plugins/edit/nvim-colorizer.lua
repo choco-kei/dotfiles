@@ -1,3 +1,4 @@
+-- TODO: mini.hipatternsに
 return {
     {
         "norcalli/nvim-colorizer.lua",

@@ -20,8 +20,9 @@ font-feature = -calt
 
 # カーソル
 cursor-style = bar
-custom-shader = shaders/ghostty-cursor-shaders/cursor_warp.glsl
-custom-shader-animation = always
+#custom-shader = shaders/ghostty-cursor-shaders/cursor_warp.glsl
+custom-shader = shaders/cursor_blaze.glsl
+custom-shader-animation = true
 
 # マウス
 mouse-hide-while-typing = true

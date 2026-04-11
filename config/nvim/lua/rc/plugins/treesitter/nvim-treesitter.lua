@@ -43,6 +43,9 @@ return {
       "yaml", "toml",
       "lua", "vim", "vimdoc",
     }
+
+    local ignore_indent = { "proto" }
+
     require("nvim-treesitter").install(langs)
 
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
@@ -54,8 +57,15 @@ return {
         vim.treesitter.start(args.buf)
 
         -- インデントを有効
-        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      end,
+        local lang = vim.bo[args.buf].filetype
+
+        -- ignore_indent に現在の言語が含まれているかチェック
+        if vim.list_contains(ignore_indent, lang) then
+          vim.bo[args.buf].indentexpr = ""
+        else
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end
     })
   end,
 }

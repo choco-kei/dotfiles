@@ -48,6 +48,7 @@ return {
 
         vim.keymap.set("n", "!", "<Cmd>lua LualineToggle()<CR>", { noremap = true, silent = true })
 
+        -- TODO: toggletermからsnacksに移行するタイミングで調整
         local colors = {
             -- onedark
             -- blue = '#61afef',

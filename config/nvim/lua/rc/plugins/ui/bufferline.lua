@@ -1,6 +1,5 @@
 return {
     "akinsho/bufferline.nvim",
-    dependencies = { COLOR_SCHEME },
     event = "VimEnter",
     config = function()
         require("bufferline").setup({
@@ -56,14 +55,14 @@ return {
                     -- },
                 },
             },
-            highlights = {
-                fill = {
-                    bg = "#232831",
-                },
-                --indicator_selected = {
-                --    fg = '#87a0be',
-                --},
-            },
+            -- highlights = {
+            --     fill = {
+            --         bg = "#232831",
+            --     },
+            --     --indicator_selected = {
+            --     --    fg = '#87a0be',
+            --     --},
+            -- },
         })
 
         -- タブ操作

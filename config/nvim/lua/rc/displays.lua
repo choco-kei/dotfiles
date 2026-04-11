@@ -11,26 +11,11 @@ vim.o.background = 'dark'
 --vim.o.modelines = false -- モードラインを無効
 vim.o.wrap = false -- 折り返さない
 vim.o.ruler = true -- ルーラーを表示
-vim.o.cursorline = false -- カレント行のハイライト（autocmdで制御）
+vim.o.cursorline = false -- カレント行のハイライト(mods.nvim制御)
 vim.o.showmatch = true -- 対応する括弧をハイライト表示する
 vim.o.matchtime = 3 -- 括弧のハイライト表示の秒数を設定
 vim.o.number = true-- 行番号を表示
 vim.o.relativenumber = true -- 行番号を相対値で表示
-
--- アクティブウィンドウでのみ cursorline を表示
-vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
-vim.api.nvim_create_autocmd("WinEnter", {
-    group = "CursorLineControl",
-    callback = function()
-        vim.wo.cursorline = true
-    end,
-})
-vim.api.nvim_create_autocmd("WinLeave", {
-    group = "CursorLineControl",
-    callback = function()
-        vim.wo.cursorline = false
-    end,
-})
 
 -- 折りたたみ
 -- navigator側で設定

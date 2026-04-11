@@ -59,7 +59,8 @@ return {
                   desc = "async_ref"
                 },
                 -- ドキュメントシンボル表示
-                { key = "g0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
+                -- { key = "g0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
+                { key = "g0", func = false, },
                 -- ワークスペースシンボル検索
                 -- { key = "gw", func = require("navigator.workspace").workspace_symbol_live, desc = "workspace_symbol_live" },
                 { key = "gw", func = require('telescope.builtin').lsp_dynamic_workspace_symbols, desc = "workspace_symbol_live" },
@@ -67,8 +68,8 @@ return {
                 -- { key = "gd", func = require("navigator.definition").definition,         desc = "definition" },
                 { key = "gd", func = require('telescope.builtin').lsp_definitions, desc = "definition" },
                 -- 宣言元にジャンプ
-                -- { key = "gD", func = function() vim.lsp.buf.declaration() end,       desc = "declaration" },
-                { key = "gD", func = require('telescope.builtin').lsp_declarations, desc = "declaration" },
+                { key = "gD", func = function() vim.lsp.buf.declaration() end,       desc = "declaration" },
+                -- { key = "gD", func = require('telescope.builtin').lsp_declarations, desc = "declaration" },
                 -- 定義プレビュー
                 { key = "gp", func = require("navigator.definition").definition_preview, desc = "definition_preview" },
                 -- 定義タイププレビュー

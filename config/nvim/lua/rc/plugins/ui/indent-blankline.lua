@@ -2,7 +2,6 @@ return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
   event = "VeryLazy",
-  dependencies = { COLOR_SCHEME },
   ---@module "ibl"
   ---@type ibl.config
   opts = {
