@@ -18,7 +18,14 @@ return {
 
       -- Disable modes highlights in specified filetypes
       -- Please PR commonly ignored filetypes
-      ignore = { "NvimTree", "!neo-tree", "!neo-tree-popup", "neo-tree-preview", "TelescopePrompt", "snacks_picker_input" },
+      ignore = {
+        "NvimTree",
+        "!neo-tree",
+        "!neo-tree-popup",
+        "neo-tree-preview",
+        "TelescopePrompt",
+        "snacks_picker_input",
+      },
     })
   end,
 }

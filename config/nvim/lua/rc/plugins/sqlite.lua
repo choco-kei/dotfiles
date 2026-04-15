@@ -1,4 +1,4 @@
 return {
-    "tami5/sqlite.lua",
-    event = "VimEnter",
+  "tami5/sqlite.lua",
+  event = "VimEnter",
 }

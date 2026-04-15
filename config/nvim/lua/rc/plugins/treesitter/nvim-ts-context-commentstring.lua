@@ -1,12 +1,12 @@
 return {
   "JoosepAlviste/nvim-ts-context-commentstring",
-  event = "VimEnter",
+  event = "VeryLazy",
   config = function()
-    require('ts_context_commentstring').setup {
+    require("ts_context_commentstring").setup({
       enable_autocmd = false,
       config = {
-        php = '// %s',
+        php = "// %s",
       },
-    }
+    })
   end,
 }

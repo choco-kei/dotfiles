@@ -1,6 +1,6 @@
 return {
   "kevinhwang91/nvim-hlslens",
-  event = "VimEnter",
+  event = "VeryLazy",
   config = function()
     require("hlslens").setup({
       nearest_only = true,
@@ -24,13 +24,13 @@ return {
           else
             text = ("[%d/%d]"):format(idx, cnt)
           end
-          chunks = {{" "}, {text, "HlSearchLensNear"}}
+          chunks = { { " " }, { text, "HlSearchLensNear" } }
         else
           text = ("[%s %d]"):format(indicator, idx)
-          chunks = {{" "}, {text, "HlSearchLens"}}
+          chunks = { { " " }, { text, "HlSearchLens" } }
         end
         render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
-      end
+      end,
     })
 
     local kopts = { noremap = true, silent = true }

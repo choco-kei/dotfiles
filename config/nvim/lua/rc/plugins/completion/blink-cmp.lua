@@ -2,7 +2,6 @@ return {
     "saghen/blink.cmp",
     dependencies = {
         "L3MON4D3/LuaSnip",
-        "windwp/nvim-autopairs",
         "rafamadriz/friendly-snippets",
         "moyiz/blink-emoji.nvim",
         "ribru17/blink-cmp-spell",

@@ -1,5 +1,6 @@
 return {
   "rachartier/tiny-cmdline.nvim",
+  event = "VimEnter",
   config = function()
     vim.o.cmdheight = 0
     require("tiny-cmdline").setup({

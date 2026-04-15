@@ -33,7 +33,7 @@ return {
     end
 
     require("nvim-treesitter").setup({
-      install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site"),
+      install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site/treesitter"),
     })
 
     local langs = {
