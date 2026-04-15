@@ -29,7 +29,7 @@ vim.keymap.set('c', '<M-b>', '<S-Left>', { noremap = true, silent = false }) -- 
 vim.keymap.set('c', '<M-f>', '<S-Right>', { noremap = true, silent = false }) -- 次の単語へ移動
 
 -- TAB CR削除
-vim.keymap.set('n', '<Leader>dc', ':<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>gg', { noremap = true, silent = true })
+--vim.keymap.set('n', '<Leader>dc', ':<C-u>%s/<C-v><C-m>//ge<CR>:noh<CR>:retab<CR>gg', { noremap = true, silent = true })
 
 -- タブ操作
 -- bufferline側で設定移動

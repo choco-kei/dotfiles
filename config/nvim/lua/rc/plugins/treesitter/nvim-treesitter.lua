@@ -38,7 +38,7 @@ return {
 
     local langs = {
       "go", "gomod", "proto",
-      "php", "php_only",
+      "php", "php_only", "phpdoc",
       "dockerfile",
       "yaml", "toml",
       "lua", "vim", "vimdoc",

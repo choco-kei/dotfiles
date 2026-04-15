@@ -1,13 +1,14 @@
 return {
-    "ray-x/guihua.lua",
-    lazy = true,
-    build = "cd lua/fzy && make",
-    config = function()
-        require("guihua.maps").setup({
-            maps = {
-                close_view = "<C-g>",
-            },
-            title = false,
-        })
-    end,
+  "ray-x/guihua.lua",
+  enabled = false,
+  lazy = true,
+  build = "cd lua/fzy && make",
+  config = function()
+    require("guihua.maps").setup({
+      maps = {
+        close_view = "<C-g>",
+      },
+      title = false,
+    })
+  end,
 }

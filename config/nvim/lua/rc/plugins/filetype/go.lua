@@ -29,6 +29,7 @@ return {
   },
   {
     "edolphin-ydf/goimpl.nvim",
+    enabled = false,
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter/nvim-treesitter",

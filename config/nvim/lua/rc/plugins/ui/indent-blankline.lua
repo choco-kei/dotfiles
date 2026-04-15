@@ -18,12 +18,12 @@ return {
       priority = 1,
       -- スコープの色リスト
       highlight = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
+        "rainbow1",
+        "rainbow2",
+        "rainbow3",
+        "rainbow4",
+        "rainbow5",
+        "rainbow6",
       },
       show_start = true,
       show_end = false,

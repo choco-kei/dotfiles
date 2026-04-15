@@ -7,6 +7,9 @@ fish_add_path -p /usr/local/opt/mysql-client/bin
 fish_add_path -p /usr/local/opt/imagemagick@6/bin
 fish_add_path -p /opt/homebrew/opt/openssl@3/bin
 fish_add_path -p /opt/homebrew/opt/sqlite/bin
+
+# golang
+fish_add_path /usr/local/opt/go/libexec/bin
 fish_add_path -p ~/go/bin
 
 # rbenv

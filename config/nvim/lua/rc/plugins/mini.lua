@@ -1,5 +1,6 @@
 return {
   "nvim-mini/mini.nvim",
+  lazy = false,
   version = false,
   config = function()
     -- mini.align
@@ -20,7 +21,10 @@ return {
 
     -- mini.cursorword
     require("mini.cursorword").setup({
-      delay = 100,
+      delay = 200,
     })
+
+    -- mini.icons
+    require("mini.icons").setup()
   end,
 }

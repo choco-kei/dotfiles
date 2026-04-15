@@ -19,7 +19,6 @@ set -gx LESSCHARSET utf-8
 
 # Go
 set -gx GOPATH ~/go
-set -gx GOROOT ~/sdk/go
 set -gx GO111MODULE on
 
 # NVM

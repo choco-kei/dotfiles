@@ -1,5 +1,6 @@
 return {
     "utilyre/barbecue.nvim",
+    enabled = false,
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "SmiteshP/nvim-navic" },
     config = function()

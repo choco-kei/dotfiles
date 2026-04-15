@@ -1,6 +1,6 @@
 return {
     "ray-x/navigator.lua",
-    enabled = true,
+    enabled = false,
     --branch = "treesitter-main",
     event = "VimEnter",
     dependencies = { "nvim-lspconfig", "ray-x/guihua.lua" },
@@ -59,8 +59,7 @@ return {
                   desc = "async_ref"
                 },
                 -- ドキュメントシンボル表示
-                -- { key = "g0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
-                { key = "g0", func = false, },
+                { key = "g0", func = require("navigator.symbols").document_symbols, desc = "document_symbols" },
                 -- ワークスペースシンボル検索
                 -- { key = "gw", func = require("navigator.workspace").workspace_symbol_live, desc = "workspace_symbol_live" },
                 { key = "gw", func = require('telescope.builtin').lsp_dynamic_workspace_symbols, desc = "workspace_symbol_live" },
@@ -104,6 +103,7 @@ return {
 
                 -- treesitter ()
                 -- symbol
+                { key = "<Leader>gt", func = require("navigator.treesitter").buf_ts,  desc = "buf_ts" },
                 { key = "<Leader>gt", func = require("navigator.treesitter").buf_ts,  desc = "buf_ts" },
                 -- symbol(bufs)
                 { key = "<Leader>gT", func = require("navigator.treesitter").bufs_ts, desc = "bufs_ts" },

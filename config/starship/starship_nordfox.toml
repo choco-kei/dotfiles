@@ -1,0 +1,172 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+command_timeout = 2500
+
+format = """
+[](os_bg)\
+$os\
+$username\
+[](bg:dir_bg fg:os_bg)\
+$directory\
+[](bg:git_bg fg:dir_bg)\
+$git_branch\
+$git_status\
+[](fg:git_bg bg:lang_bg)\
+$c\
+$rust\
+$golang\
+$nodejs\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+[](fg:lang_bg bg:conda_bg)\
+$conda\
+[](fg:conda_bg bg:time_bg)\
+$time\
+[ ](fg:time_bg)\
+$cmd_duration\
+$line_break\
+$character"""
+
+palette = 'nordfox'
+
+[palettes.nordfox]
+# 配色順序に基づいたマッピング
+os_bg    = "#7e8188" # fg3 (グレー)
+os_fg    = "#232831" # bg0 (暗い)
+dir_bg   = "#a3be8c" # green (緑)
+dir_fg   = "#2e3440" # bg1 (暗い)
+git_bg   = "#ebcb8b" # yellow (黄)
+git_fg   = "#39404f" # bg2 (暗い)
+lang_bg  = "#81a1c1" # blue (青)
+lang_fg  = "#2e3440" # bg1 (暗い)
+conda_bg = "#b48ead" # magenta (紫)
+conda_fg = "#2e3440" # bg1 (暗い)
+time_bg  = "#444c5e" # bg3 (濃いグレー)
+time_fg  = "#cdcecf" # fg1 (明るい)
+# 記号・エラー用
+nord_red = "#bf616a"
+
+[os]
+disabled = false
+style = "bg:os_bg fg:os_fg"
+
+[os.symbols]
+Windows = ""
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Arch = "󰣇"
+Debian = "󰣚"
+
+[username]
+show_always = true
+style_user = "bg:os_bg fg:os_fg"
+style_root = "bg:os_bg fg:os_fg"
+format = '[ $user]($style)'
+
+[directory]
+style = "bg:dir_bg fg:dir_fg"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:git_bg"
+format = '[[ $symbol $branch ](fg:git_fg bg:git_bg)]($style)'
+
+[git_status]
+style = "bg:git_bg"
+format = '[[($all_status$ahead_behind )](fg:git_fg bg:git_bg)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[c]
+symbol = " "
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[php]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[java]
+symbol = " "
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[python]
+symbol = ""
+style = "bg:lang_bg"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:lang_fg bg:lang_bg)]($style)'
+
+[conda]
+symbol = "  "
+style = "bg:conda_bg fg:conda_fg"
+format = '[$symbol$environment ]($style)'
+ignore_base = false
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:time_bg"
+format = '[[  $time ](fg:time_fg bg:time_bg)]($style)'
+
+[cmd_duration]
+show_milliseconds = true
+format = " in $duration "
+style = "fg:conda_bg"
+disabled = false
+
+[line_break]
+disabled = false
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:dir_bg)'
+error_symbol = '[❯](bold fg:nord_red)'
+vimcmd_symbol = '[❮](bold fg:dir_bg)'
+vimcmd_replace_one_symbol = '[❮](bold fg:conda_bg)'
+vimcmd_replace_symbol = '[❮](bold fg:conda_bg)'
+vimcmd_visual_symbol = '[❮](bold fg:git_bg)'

@@ -1,5 +1,6 @@
 return {
     "nvim-telescope/telescope.nvim",
+    enabled = false,
     dependencies = {
         "nvim-telescope/telescope-dap.nvim",
         "prochri/telescope-all-recent.nvim",
@@ -105,17 +106,17 @@ return {
 
         -- キーマップ
         --vim.api.nvim_set_keymap('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap(
-            "n",
-            "<Leader>ff",
-            "<Cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', }})<CR>",
-            { noremap = true, silent = true }
-        )
-        vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd>Telescope resume<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
-        vim.api.nvim_set_keymap("n", "<Leader>fw", "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap(
+        --     "n",
+        --     "<Leader>ff",
+        --     "<Cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git', }})<CR>",
+        --     { noremap = true, silent = true }
+        -- )
+        -- vim.api.nvim_set_keymap("n", "<Leader>fr", "<Cmd>Telescope resume<CR>", { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap("n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap("n", "<Leader>fb", "<Cmd>Telescope buffers<CR>", { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap("n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
+        -- vim.api.nvim_set_keymap("n", "<Leader>fw", "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true, silent = true })
 
         -- telescopeで開く場合にfoldingが効かない問題(zxする)
         vim.api.nvim_create_autocmd("BufRead", {
@@ -128,14 +129,14 @@ return {
         })
 
         -- borderless
-        local colors = require("nightfox.palette").load("nordfox")
-        vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = nil, bg = colors.bg2 })
-        vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = colors.red.base, bg = colors.bg2 })
-        vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = colors.red.base, bg = colors.bg2 })
-        vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.red.base, bg = colors.bg0 })
-        vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = nil, bg = colors.bg0 })
-        vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = nil, bg = colors.bg0 })
-        vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = colors.red.base, bg = colors.bg2 })
+        -- local colors = require("nightfox.palette").load("nordfox")
+        -- vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = nil, bg = colors.bg2 })
+        -- vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = colors.red.base, bg = colors.bg2 })
+        -- vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = colors.red.base, bg = colors.bg2 })
+        -- vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.red.base, bg = colors.bg0 })
+        -- vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = nil, bg = colors.bg0 })
+        -- vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = nil, bg = colors.bg0 })
+        -- vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = colors.red.base, bg = colors.bg2 })
 
     -- TelescopePromptでcursorlineを無効にする
     vim.api.nvim_create_autocmd("FileType", {

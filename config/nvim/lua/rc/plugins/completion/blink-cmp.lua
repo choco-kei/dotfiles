@@ -73,12 +73,22 @@ return {
                 lsp = { module = "blink.cmp.sources.lsp", score_offset = 100 },
                 path = { module = "blink.cmp.sources.path", score_offset = 100 },
                 snippets = { module = "blink.cmp.sources.snippets", score_offset = 20 },
-                buffer = { module = "blink.cmp.sources.buffer", score_offset = 30 },
                 emoji = { module = "blink-emoji", name = "Emoji", score_offset = 60, opts = { insert = true, trigger = function() return { ":" } end } },
                 --lua = { module = "blink.cmp.sources.lua", score_offset = 50 },
                 signature_help = { module = "blink.cmp.sources.signature_help", score_offset = 80 },
                 omni = { module = "blink.cmp.sources.complete_func", score_offset = 40 },
                 spell = { module = "blink-cmp-spell", name = "Spell", score_offset = 40 },
+                -- buffer = { module = "blink.cmp.sources.buffer", score_offset = 30 }
+                buffer = {
+                  module = "blink.cmp.sources.buffer",
+                  score_offset = 30,
+                  transform_items = function(_, items)
+                    return vim.tbl_filter(function(item)
+                      --return not item.label:match("[^\x00-\x7f]") -- 日本語を除外
+                      return not item.label:match("[ぁ-んァ-ヶ一-龠]")
+                    end, items)
+                  end,
+                },
             },
             --default = { "lsp", "path", "snippets", "buffer", "emoji", "omni", "spell" },
             default = { "lsp", "path", "snippets", "buffer", "emoji", "spell" },
