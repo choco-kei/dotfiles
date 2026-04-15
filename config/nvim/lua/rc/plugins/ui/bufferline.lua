@@ -66,28 +66,26 @@ return {
     })
 
     -- タブ操作
-    vim.keymap.set("n", "[tab]", "<Nop>", { noremap = true, silent = true })
-    vim.keymap.set("n", "t", "[tab]", { remap = true, silent = true })
-    vim.keymap.set("n", "[tab]n", ":tabnew<CR>", { remap = true, silent = true }) -- tn 新規タブ
-    -- nvim-bufdel
-    vim.keymap.set("n", "[tab]q", ":bd<CR>", { remap = true, silent = true }) -- tn タブ閉じ(バッファー閉じ)
+    vim.keymap.set("n", "tn", ":tabnew<CR>", { noremap = true, silent = true }) -- tn 新規タブ
+    -- bufdel(snacks側に移動)
+    --vim.keymap.set("n", "[tab]q", ":bd<CR>", { remap = true, silent = true }) -- tn タブ閉じ(バッファー閉じ)
 
     -- bufferline
-    vim.keymap.set("n", "[tab]p", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]h", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true }) -- th 前のタブ
-    vim.keymap.set("n", "[tab]l", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true }) -- tl 次のタブ
-    vim.keymap.set("n", "[tab]mh", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]ml", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "tp", "<Cmd>BufferLinePick<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "th", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true }) -- th 前のタブ
+    vim.keymap.set("n", "tl", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true }) -- tl 次のタブ
+    vim.keymap.set("n", "tj", "<Cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "tk", "<Cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true })
 
     -- タブ番号指定
-    vim.keymap.set("n", "[tab]1", "<Cmd>BufferLineGoToBuffer 1<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]2", "<Cmd>BufferLineGoToBuffer 2<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]3", "<Cmd>BufferLineGoToBuffer 3<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]4", "<Cmd>BufferLineGoToBuffer 4<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]5", "<Cmd>BufferLineGoToBuffer 5<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]6", "<Cmd>BufferLineGoToBuffer 6<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]7", "<Cmd>BufferLineGoToBuffer 7<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]8", "<Cmd>BufferLineGoToBuffer 8<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "[tab]9", "<Cmd>BufferLineGoToBuffer 9<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t1", "<Cmd>BufferLineGoToBuffer 1<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t2", "<Cmd>BufferLineGoToBuffer 2<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t3", "<Cmd>BufferLineGoToBuffer 3<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t4", "<Cmd>BufferLineGoToBuffer 4<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t5", "<Cmd>BufferLineGoToBuffer 5<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t6", "<Cmd>BufferLineGoToBuffer 6<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t7", "<Cmd>BufferLineGoToBuffer 7<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t8", "<Cmd>BufferLineGoToBuffer 8<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "t9", "<Cmd>BufferLineGoToBuffer 9<CR>", { noremap = true, silent = true })
   end,
 }

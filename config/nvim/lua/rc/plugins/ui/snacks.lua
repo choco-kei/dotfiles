@@ -112,7 +112,7 @@ return {
     -- <leader>e = Explorer
     -- ════════════════════════════════════════════════════════════════════
     { "<leader>ee", function() Snacks.explorer({ hidden = true, ignored = true }) end, desc = "Explorer" },
-    { "<leader>ec", function() Snacks.explorer({ reveal = true }) end, desc = "Explorer Current" },
+    { "<leader>ec", function() Snacks.explorer({ hidden = true, ignored = true, reveal = true }) end, desc = "Explorer Current" },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>b = Buffers
@@ -236,7 +236,7 @@ return {
     -- ════════════════════════════════════════════════════════════════════
     -- Terminal
     -- ════════════════════════════════════════════════════════════════════
-    { "<C-_>", function() Snacks.terminal() end, desc = "Terminal: Open" },
+    { "<C-_>", function() Snacks.terminal.toggle() end, desc = "Terminal: Open" },
     --{ "<C-/>", function() Snacks.terminal() end, desc = "Terminal: which_key_ignore" }, -- <C-_>:signature_help
 
   },
