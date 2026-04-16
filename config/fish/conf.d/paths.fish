@@ -1,28 +1,21 @@
-# fisher for homebrew
-set -p fish_function_path (brew --prefix)/share/fish/vendor_functions.d
-
-# Path
-fish_add_path -p /opt/homebrew/bin /opt/homebrew/sbin
-fish_add_path -p /usr/local/opt/mysql-client/bin
-fish_add_path -p /usr/local/opt/imagemagick@6/bin
-fish_add_path -p /opt/homebrew/opt/openssl@3/bin
-fish_add_path -p /opt/homebrew/opt/sqlite/bin
-
-# golang
-fish_add_path /usr/local/opt/go/libexec/bin
-fish_add_path -p ~/go/bin
-
-# rbenv
-if command -v rbenv > /dev/null
-    rbenv init - | source
+# homebrew
+if test -d /opt/homebrew
+    set -l BREW_PREFIX /opt/homebrew
+else if test -d /usr/local/Homebrew
+    set -l BREW_PREFIX /usr/local
+else if type -q brew
+    set -l BREW_PREFIX (brew --prefix)
 end
 
-# nodenv
-if command -v nodenv > /dev/null
-    nodenv init - | source
-end
-
-# pyenv
-if command -v pyenv > /dev/null
-    pyenv init - | source
+# Path: only add if directory exists (prepend intent kept with -p)
+for p in \
+    /opt/homebrew/bin \
+    /opt/homebrew/sbin \
+    /usr/local/opt/mysql-client/bin \
+    /usr/local/opt/imagemagick@6/bin \
+    /opt/homebrew/opt/openssl@3/bin \
+    /opt/homebrew/opt/sqlite/bin \
+    /usr/local/opt/go/libexec/bin \
+    ~/go/bin
+    test -d $p; and fish_add_path -p $p
 end
