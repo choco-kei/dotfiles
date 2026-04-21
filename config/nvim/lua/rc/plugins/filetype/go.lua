@@ -1,45 +1,67 @@
 return {
   {
-    "ray-x/go.nvim",
-    enabled = false,
+    "fang2hou/go-impl.nvim",
+    ft = "go",
     dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
+      "MunifTanjim/nui.nvim",
+      "folke/snacks.nvim",
     },
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()',
-    config = function()
-      require("go").setup({
-        lsp_cfg = true,
-        lsp_gopls = true,
-        lsp_keymaps = false,
+    opts = {
+      picker = "snacks",
 
-        lsp_inlay_hints = {
-          enable = false,
-        },
+      insert = {
+        position = "after",
+        before_newline = true,
+        after_newline = false,
+      },
+    },
+    keys = {
+      {
+        "<leader>lgi",
+        function()
+          require("go-impl").open()
+        end,
+        mode = { "n" },
+        ft = "go",
+        desc = "Go: Generate Implementation",
+      },
+    },
+    config = function(_, opts)
+      -- nui.nvimでnormalモードが使えるように
+      require("go-impl.ui").get_receiver = function(default_value, callback)
+        local cfg = require("go-impl.config")
+        local text = require("nui.text")
+        local input = require("nui.input")(
+          vim.tbl_deep_extend("force", cfg.options.style.receiver_input, {
+            border = {
+              text = {
+                top = require("nui.line")({
+                  text(" [ "),
+                  text(cfg.options.icons.go.text, cfg.options.icons.go.hl),
+                  text("Receiver", "Fg"),
+                  text(" ] "),
+                }),
+              },
+            },
+          }),
+          {
+            prompt = text(cfg.options.prompt.receiver, "GoImplHighlight"),
+            default_value = default_value,
+            on_close = callback,
+            on_submit = callback,
+          }
+        )
 
-        lsp_on_attach = false,
+        input:mount()
+        input:on(require("nui.utils.autocmd").event.BufLeave, function()
+          input:unmount()
+        end)
+        input:map("n", "<Esc>", function()
+          input:unmount()
+        end, { noremap = true })
+      end
 
-        gofmt = nil,
-        goimport = nil,
-      })
+      require("go-impl").setup(opts)
     end,
   },
-  {
-    "edolphin-ydf/goimpl.nvim",
-    enabled = false,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    ft = { "go", "gomod" },
-    config = function()
-      require("telescope").load_extension("goimpl")
-    end,
-    keys = {
-      { "<leader>im", "<CMD>Telescope goimpl<CR>", desc = "Go Implement" },
-    },
-  }
 }
