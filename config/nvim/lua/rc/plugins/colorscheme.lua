@@ -223,6 +223,9 @@ return {
               SnacksInputBorder        = { fg = c.surface0, bg = c.surface0 },
               SnacksInputNormal        = { bg = c.surface0 },
               SnacksInputTitle        = { fg = c.base, bg = c.teal },
+              SnacksIndent      = { fg = c.surface0, bg = c.base },
+              SnacksIndentScope = { fg = c.surface1, bg = c.base },
+              -- snacks.nvim:indent
               -- witch-key.nvim:borderless
               -- WhichKeyBorder = { fg = c.mantle, bg = c.mantle },
               -- WhichKeyTitle = { fg = c.mantle, bg = c.green},

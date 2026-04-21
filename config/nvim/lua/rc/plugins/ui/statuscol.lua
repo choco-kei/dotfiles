@@ -1,5 +1,6 @@
 return {
   "luukvbaal/statuscol.nvim",
+  enabled = false,
   event = "VimEnter",
   config = function()
     local builtin = require("statuscol.builtin")

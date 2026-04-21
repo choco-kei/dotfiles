@@ -7,7 +7,7 @@ return {
     "ribru17/blink-cmp-spell",
   },
   version = "1.*",
-  enabled = true,
+  event = { "InsertEnter", "CmdlineEnter" },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config

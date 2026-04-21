@@ -1,6 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
   config = function()
     -- ════════════════════════════════════════════════════════════════════
     -- LSP Keymaps Setup
@@ -18,8 +19,12 @@ return {
 
       -- Diagnostics
       map("n", "gl", vim.diagnostic.open_float, "Line Diagnostic")
-      map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Prev Diagnostic")
-      map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next Diagnostic")
+      map("n", "[d", function()
+        vim.diagnostic.jump({ count = -1 })
+      end, "Prev Diagnostic")
+      map("n", "]d", function()
+        vim.diagnostic.jump({ count = 1 })
+      end, "Next Diagnostic")
 
       -- Inlay Hints
       map("n", "<leader>lh", function()
@@ -35,7 +40,9 @@ return {
       callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then return end
+        if not client then
+          return
+        end
 
         setup_keymaps(bufnr)
         vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"

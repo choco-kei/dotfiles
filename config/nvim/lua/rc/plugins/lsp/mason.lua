@@ -1,21 +1,37 @@
 return {
+  {
     "mason-org/mason.nvim",
-    --version = "^1.0.0",
     dependencies = { "neovim/nvim-lspconfig" },
-    --build = ":MasonUpdate",
-    config = function()
-        --vim.diagnostic.config({
-        --    signs = {
-        --        active = true,
-        --        values = {
-        --            { name = "DiagnosticSignError", text = "", texthl = "DiagnosticSignError" },
-        --            { name = "DiagnosticSignWarn",  text = "", texthl = "DiagnosticSignWarn" },
-        --            { name = "DiagnosticSignInfo",  text = "", texthl = "DiagnosticSignInfo" },
-        --            { name = "DiagnosticSignHint",  text = "󰌶", texthl = "DiagnosticSignHint" },
-        --        },
-        --    },
-        --})
 
-        require("mason").setup({})
+      require("mason").setup({})
     end,
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      ensure_installed = {
+        -- lua
+        "lua_ls",
+
+        -- php
+        "intelephense",
+
+        -- go
+        "gopls",
+
+        -- ts
+        "ts_ls",
+
+        -- json
+        "jsonls",
+
+        -- proto
+        "buf_ls",
+
+        -- typo
+        "typos_lsp",
+      },
+    },
+  },
 }

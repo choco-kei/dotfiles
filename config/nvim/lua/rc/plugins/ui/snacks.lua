@@ -6,7 +6,9 @@ return {
 
   opts = {
     bigfile = { enabled = true },
+
     --dashboard = { enabled = true },
+
     explorer = { enabled = true },
     image = {
       enabled = true,
@@ -18,7 +20,55 @@ return {
         max_height = 40,
       },
     },
+
     notifier = { enabled = true, timeout = 3000 },
+
+    statuscolumn = {
+      enabled = true,
+      left = { "mark", "sign" },
+      right = { "fold", "number" },
+      folds = {
+        open = true,
+        git_hl = false,
+      },
+      sections = {
+        -- statuscol.nvim の segments に相当するロジックは内部で最適化されています
+      },
+    },
+
+    indent = {
+      enabled = true,
+      char = "│",
+      animate = {
+        duration = {
+          step = 15,
+          total = 150,
+        },
+      },
+      scope = {
+        enabled = true,
+        hl = {
+          "rainbow1",
+          "rainbow2",
+          "rainbow3",
+          "rainbow4",
+          "rainbow5",
+          "rainbow6",
+        },
+      },
+      chunk = {
+        enabled = true,
+        hl = {
+          "rainbow1",
+          "rainbow2",
+          "rainbow3",
+          "rainbow4",
+          "rainbow5",
+          "rainbow6",
+        },
+      },
+    },
+
     picker = {
       enabled = true,
       sources = {
@@ -30,7 +80,7 @@ return {
           auto_close = false,
           jump = {
             close = true,
-          }
+          },
         },
         gh_issue = {},
         gh_pr = {},
@@ -39,7 +89,7 @@ return {
       wo = {
         number = true,
         relativenumber = false,
-        signcolumn = "no"
+        signcolumn = "no",
       },
       --layout = "borderless",
       layout = "borderless",
@@ -64,25 +114,25 @@ return {
         },
         borderless = {
           layout = {
-            box = 'horizontal',
+            box = "horizontal",
             backdrop = true,
             width = 0.8,
             height = 0.9,
-            border = 'none',
+            border = "none",
             {
-              box = 'vertical',
-              { win = 'input', height = 1, border = 'rounded', title = '{title} {live} {flags}', title_pos = 'center' },
-              { win = 'list', title = ' Results ', title_pos = 'center', border = 'rounded' },
+              box = "vertical",
+              { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
+              { win = "list", title = " Results ", title_pos = "center", border = "rounded" },
             },
             {
-              win = 'preview',
-              title = '{preview:Preview}',
+              win = "preview",
+              title = "{preview:Preview}",
               width = 0.5,
-              border = 'rounded',
-              title_pos = 'center',
+              border = "rounded",
+              title_pos = "center",
             },
           },
-        }
+        },
       },
       icons = {
         ui = {
@@ -90,12 +140,12 @@ return {
         },
       },
       toggles = {
-        hidden  = "󰘓",
+        hidden = "󰘓",
         ignored = "",
-        follow  = "",
+        follow = "",
       },
     },
-    -- input
+
     input = {
       enabled = true,
       win = {
@@ -104,6 +154,7 @@ return {
         col = 0,
       },
     },
+
     rename = { enabled = true },
   },
 
@@ -111,8 +162,20 @@ return {
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>e = Explorer
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>ee", function() Snacks.explorer({ hidden = true, ignored = true }) end, desc = "Explorer" },
-    { "<leader>ec", function() Snacks.explorer({ hidden = true, ignored = true, reveal = true }) end, desc = "Explorer Current" },
+    {
+      "<leader>ee",
+      function()
+        Snacks.explorer({ hidden = true, ignored = true })
+      end,
+      desc = "Explorer",
+    },
+    {
+      "<leader>ec",
+      function()
+        Snacks.explorer({ hidden = true, ignored = true, reveal = true })
+      end,
+      desc = "Explorer Current",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>b = Buffers
@@ -129,27 +192,105 @@ return {
       end,
       desc = "Buffers",
     },
-    { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-    { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },
-    { "tq", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+    {
+      "<leader>bd",
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
+    {
+      "<leader>bo",
+      function()
+        Snacks.bufdelete.other()
+      end,
+      desc = "Delete Other Buffers",
+    },
+    {
+      "tq",
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>d = Diagnostics
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>dd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
-    { "<leader>dw", function() Snacks.picker.diagnostics() end, desc = "Workspace Diagnostics" },
-    { "<leader>dq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-    { "<leader>dl", function() Snacks.picker.loclist() end, desc = "Location List" },
+    {
+      "<leader>dd",
+      function()
+        Snacks.picker.diagnostics_buffer()
+      end,
+      desc = "Buffer Diagnostics",
+    },
+    {
+      "<leader>dw",
+      function()
+        Snacks.picker.diagnostics()
+      end,
+      desc = "Workspace Diagnostics",
+    },
+    {
+      "<leader>dq",
+      function()
+        Snacks.picker.qflist()
+      end,
+      desc = "Quickfix List",
+    },
+    {
+      "<leader>dl",
+      function()
+        Snacks.picker.loclist()
+      end,
+      desc = "Location List",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>f = Files
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
-    { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
-    { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Config Files" },
-    { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Git Files" },
-    { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-    { "<leader>fR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
+    {
+      "<leader>ff",
+      function()
+        Snacks.picker.files()
+      end,
+      desc = "Find Files",
+    },
+    {
+      "<leader>fr",
+      function()
+        Snacks.picker.recent()
+      end,
+      desc = "Recent Files",
+    },
+    {
+      "<leader>fc",
+      function()
+        Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+      end,
+      desc = "Config Files",
+    },
+    {
+      "<leader>fg",
+      function()
+        Snacks.picker.git_files()
+      end,
+      desc = "Git Files",
+    },
+    {
+      "<leader>fp",
+      function()
+        Snacks.picker.projects()
+      end,
+      desc = "Projects",
+    },
+    {
+      "<leader>fR",
+      function()
+        Snacks.rename.rename_file()
+      end,
+      desc = "Rename File",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>g = Git
@@ -173,42 +314,187 @@ return {
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>n = Notifications
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>nn", function() Snacks.notifier.show_history() end, desc = "Notification: Show History" },
-    { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Notification: Dismiss All" },
+    {
+      "<leader>nn",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Notification: Show History",
+    },
+    {
+      "<leader>nd",
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = "Notification: Dismiss All",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>l = LSP
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" }, -- g0
-    { "<leader>lw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" }, -- gw
+    {
+      "<leader>ls",
+      function()
+        Snacks.picker.lsp_symbols()
+      end,
+      desc = "Document Symbols",
+    }, -- g0
+    {
+      "<leader>lw",
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = "Workspace Symbols",
+    }, -- gw
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>s = Search
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Word", mode = { "n", "x" } },
-    { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
-    { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Buffers" },
-    { "<leader>sh", function() Snacks.picker.help() end, desc = "Help" },
-    { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-    { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
-    { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-    { "<leader>sc", function() Snacks.picker.commands() end, desc = "Commands" },
-    { "<leader>s:", function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "<leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
-    { "<leader>sr", function() Snacks.picker.registers() end, desc = "Registers" },
-    { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume Last" },
-    { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
-    { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
-    { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+    {
+      "<leader>sg",
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = "Grep",
+    },
+    {
+      "<leader>sw",
+      function()
+        Snacks.picker.grep_word()
+      end,
+      desc = "Word",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>sb",
+      function()
+        Snacks.picker.lines()
+      end,
+      desc = "Buffer Lines",
+    },
+    {
+      "<leader>sB",
+      function()
+        Snacks.picker.grep_buffers()
+      end,
+      desc = "Grep Buffers",
+    },
+    {
+      "<leader>sh",
+      function()
+        Snacks.picker.help()
+      end,
+      desc = "Help",
+    },
+    {
+      "<leader>sm",
+      function()
+        Snacks.picker.marks()
+      end,
+      desc = "Marks",
+    },
+    {
+      "<leader>sj",
+      function()
+        Snacks.picker.jumps()
+      end,
+      desc = "Jumps",
+    },
+    {
+      "<leader>sk",
+      function()
+        Snacks.picker.keymaps()
+      end,
+      desc = "Keymaps",
+    },
+    {
+      "<leader>sc",
+      function()
+        Snacks.picker.commands()
+      end,
+      desc = "Commands",
+    },
+    {
+      "<leader>s:",
+      function()
+        Snacks.picker.command_history()
+      end,
+      desc = "Command History",
+    },
+    {
+      "<leader>s/",
+      function()
+        Snacks.picker.search_history()
+      end,
+      desc = "Search History",
+    },
+    {
+      "<leader>sr",
+      function()
+        Snacks.picker.registers()
+      end,
+      desc = "Registers",
+    },
+    {
+      "<leader>sR",
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = "Resume Last",
+    },
+    {
+      "<leader>su",
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = "Undo History",
+    },
+    {
+      "<leader>sM",
+      function()
+        Snacks.picker.man()
+      end,
+      desc = "Man Pages",
+    },
+    {
+      "<leader>si",
+      function()
+        Snacks.picker.icons()
+      end,
+      desc = "Icons",
+    },
 
     -- ════════════════════════════════════════════════════════════════════
     -- <leader>u = UI / Toggles
     -- ════════════════════════════════════════════════════════════════════
-    { "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-    { "<leader>uh", function() Snacks.picker.highlights() end, desc = "Highlight Groups" },
-    { "<leader>uz", function() Snacks.zen() end, desc = "Zen Mode" },
-    { "<leader>uZ", function() Snacks.zen.zoom() end, desc = "Zoom" },
+    {
+      "<leader>uc",
+      function()
+        Snacks.picker.colorschemes()
+      end,
+      desc = "Colorschemes",
+    },
+    {
+      "<leader>uh",
+      function()
+        Snacks.picker.highlights()
+      end,
+      desc = "Highlight Groups",
+    },
+    {
+      "<leader>uz",
+      function()
+        Snacks.zen()
+      end,
+      desc = "Zen Mode",
+    },
+    {
+      "<leader>uZ",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Zoom",
+    },
     {
       "<leader>uN",
       function()
@@ -225,20 +511,62 @@ return {
     -- ════════════════════════════════════════════════════════════════════
     -- g = Goto (LSP navigation via Snacks picker)
     -- ════════════════════════════════════════════════════════════════════
-    { "gr", function() vim.lsp.buf.rename() end, desc = "Rename" },
-    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Definition" },
-    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Declaration" },
-    { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Type Definition" },
-    { "gh", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-    { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Implementation" },
+    {
+      "gr",
+      function()
+        vim.lsp.buf.rename()
+      end,
+      desc = "Rename",
+    },
+    {
+      "gd",
+      function()
+        Snacks.picker.lsp_definitions()
+      end,
+      desc = "Definition",
+    },
+    {
+      "gD",
+      function()
+        Snacks.picker.lsp_declarations()
+      end,
+      desc = "Declaration",
+    },
+    {
+      "gt",
+      function()
+        Snacks.picker.lsp_type_definitions()
+      end,
+      desc = "Type Definition",
+    },
+    {
+      "gh",
+      function()
+        Snacks.picker.lsp_references()
+      end,
+      nowait = true,
+      desc = "References",
+    },
+    {
+      "gi",
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = "Implementation",
+    },
     -- gx: CodeAction
 
     -- ════════════════════════════════════════════════════════════════════
     -- Terminal
     -- ════════════════════════════════════════════════════════════════════
-    { "<C-_>", function() Snacks.terminal.toggle() end, desc = "Terminal: Open" },
+    {
+      "<C-_>",
+      function()
+        Snacks.terminal.toggle()
+      end,
+      desc = "Terminal: Open",
+    },
     --{ "<C-/>", function() Snacks.terminal() end, desc = "Terminal: which_key_ignore" }, -- <C-_>:signature_help
-
   },
 
   config = function(_, opts)
@@ -288,7 +616,7 @@ return {
           title = client.name,
           opts = function(notif)
             notif.icon = #progress[client.id] == 0 and " "
-            or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+              or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
           end,
         })
       end,
