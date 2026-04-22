@@ -31,11 +31,11 @@ return {
     require("mini.pairs").setup()
 
     -- mini.hipatterns
-    require("mini.hipatterns").setup({
-      highlighters = {
-        hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
-      },
-    })
+    -- require("mini.hipatterns").setup({
+    --   highlighters = {
+    --     hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
+    --   },
+    -- })
 
     -- mini.operators
     require("mini.operators").setup({

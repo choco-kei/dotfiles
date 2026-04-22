@@ -21,18 +21,12 @@ return {
       region_check_events = "CursorMoved",
       ext_opts = {
         [types.insertNode] = {
-          -- 現在地
           active = { hl_group = "Visual" },
-
-          -- ★重要：待機中（ここが「次」を可視化する鍵）
-          -- 背景色だけでなく、アイコンもここ（passive）に書かないと出ない場合があります
           passive = {
             hl_group = "Conceal",
             virt_text = { { "󰜴", "Conceal" } },
             virt_text_pos = "inline",
           },
-
-          -- 未到達
           unvisited = {
             virt_text = { { "󰜴", "Conceal" } },
             virt_text_pos = "eol",

@@ -1,7 +1,5 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
   config = function()
     -- ════════════════════════════════════════════════════════════════════
     -- LSP Keymaps Setup

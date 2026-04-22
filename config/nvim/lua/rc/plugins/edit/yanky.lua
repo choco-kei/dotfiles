@@ -1,19 +1,11 @@
 return {
   "gbprod/yanky.nvim",
-  event = "VeryLazy",
-  config = function()
-    require("yanky").setup()
-    vim.api.nvim_set_keymap("n", "p", "<Plug>(YankyPutAfter)", {})
-    vim.api.nvim_set_keymap("n", "P", "<Plug>(YankyPutBefore)", {})
-    vim.api.nvim_set_keymap("x", "p", "<Plug>(YankyPutAfter)", {})
-    vim.api.nvim_set_keymap("x", "P", "<Plug>(YankyPutBefore)", {})
-    -- vim.api.nvim_set_keymap("n", "gp", "<Plug>(YankyGPutAfter)", {})
-    -- vim.api.nvim_set_keymap("n", "gP", "<Plug>(YankyGPutBefore)", {})
-    -- vim.api.nvim_set_keymap("x", "gp", "<Plug>(YankyGPutAfter)", {})
-    -- vim.api.nvim_set_keymap("x", "gP", "<Plug>(YankyGPutBefore)", {})
-    vim.api.nvim_set_keymap("n", "<C-n>", "<Plug>(YankyCycleForward)", {})
-    vim.api.nvim_set_keymap("n", "<C-p>", "<Plug>(YankyCycleBackward)", {})
-    vim.api.nvim_set_keymap("n", "y", "<Plug>(YankyYank)", {})
-    vim.api.nvim_set_keymap("x", "y", "<Plug>(YankyYank)", {})
-  end,
+  keys = {
+    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+    { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put text after" },
+    { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put text before" },
+    { "<C-n>", "<Plug>(YankyCycleForward)", desc = "Cycle forward through yank history" },
+    { "<C-p>", "<Plug>(YankyCycleBackward)", desc = "Cycle backward through yank history" },
+  },
+  opts = {},
 }

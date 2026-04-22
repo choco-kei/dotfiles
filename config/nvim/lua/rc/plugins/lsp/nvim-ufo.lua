@@ -1,19 +1,8 @@
 return {
   "kevinhwang91/nvim-ufo",
-  event = "VeryLazy",
+  event = "VimEnter",
   dependencies = { "kevinhwang91/promise-async" },
   config = function()
-    -- Tell the server the capability of foldingRange,
-    -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
-    vim.lsp.config("*", {
-      capabilities = capabilities,
-    })
-
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
       local suffix = ("   󰹹 %d lines "):format(endLnum - lnum)

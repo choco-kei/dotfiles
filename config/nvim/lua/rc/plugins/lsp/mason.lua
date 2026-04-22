@@ -1,37 +1,36 @@
 return {
-  {
-    "mason-org/mason.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-
-      require("mason").setup({})
-    end,
+  "mason-org/mason-lspconfig.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    {
+      "mason-org/mason.nvim",
+      cmd = "Mason",
+      opts = {},
+    },
+    "neovim/nvim-lspconfig",
   },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      ensure_installed = {
-        -- lua
-        "lua_ls",
+  opts = {
+    ensure_installed = {
+      -- lua
+      "lua_ls",
 
-        -- php
-        "intelephense",
+      -- php
+      "intelephense",
 
-        -- go
-        "gopls",
+      -- go
+      "gopls",
 
-        -- ts
-        "ts_ls",
+      -- ts
+      "ts_ls",
 
-        -- json
-        "jsonls",
+      -- json
+      "jsonls",
 
-        -- proto
-        "buf_ls",
+      -- proto
+      "buf_ls",
 
-        -- typo
-        "typos_lsp",
-      },
+      -- typo
+      "typos_lsp",
     },
   },
 }

@@ -1,13 +1,11 @@
 return {
   "Bekaboo/dropbar.nvim",
-  lazy = false,
-  config = function()
-    require("dropbar").setup({
-      icons = {
-        ui = {
-          bar = { separator = "  ", extends = "…" },
-        }
-      },
-    })
-  end,
+  event = "VimEnter",
+  opts = {
+    icons = {
+      ui = {
+        bar = { separator = "  ", extends = "…" },
+      }
+    },
+  }
 }

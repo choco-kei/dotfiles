@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  event = { "BufReadPost", "BufNewFile" },
   keys = {
     {
       "<Space>f",

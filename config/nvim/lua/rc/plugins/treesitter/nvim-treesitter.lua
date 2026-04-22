@@ -1,24 +1,26 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
+  lazy = false,
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   build = ":TSUpdate",
   config = function()
-    require('ts_context_commentstring').setup {
+    require("ts_context_commentstring").setup({
       enable_autocmd = false,
       config = {
-        php = '// %s',
+        php = "// %s",
       },
-    }
+    })
     -- Neovim 0.10+ の標準コメント機能との連携
     -- table.insert を使わず、get_option をフックするこの方法が最も安全です
-    if vim.fn.has('nvim-0.10') == 1 then
+    if vim.fn.has("nvim-0.10") == 1 then
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "php",
         callback = function()
-          vim.bo.commentstring = require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+          vim.bo.commentstring = require("ts_context_commentstring.internal").calculate_commentstring()
+            or vim.bo.commentstring
         end,
       })
       -- もしこれでもダメな場合、Neovim 0.10/0.11 本体の get_option を直接上書きします
@@ -36,22 +38,29 @@ return {
       install_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site/treesitter"),
     })
 
-    local langs = {
-      "go", "gomod", "proto",
-      "php", "php_only", "phpdoc",
+    local ensure_installed = {
+      "go",
+      "gomod",
+      "proto",
+      "php",
+      "php_only",
+      "phpdoc",
       "dockerfile",
-      "yaml", "toml",
-      "lua", "vim", "vimdoc",
+      "yaml",
+      "toml",
+      "lua",
+      "vim",
+      "vimdoc",
     }
 
     local ignore_indent = { "proto" }
 
-    require("nvim-treesitter").install(langs)
+    require("nvim-treesitter").install(ensure_installed)
 
-    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
-    vim.api.nvim_create_autocmd('FileType', {
+    local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+    vim.api.nvim_create_autocmd("FileType", {
       group = group,
-      pattern = langs,
+      pattern = ensure_installed,
       callback = function(args)
         -- ハイライトを有効
         vim.treesitter.start(args.buf)
@@ -65,7 +74,7 @@ return {
         else
           vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
-      end
+      end,
     })
   end,
 }

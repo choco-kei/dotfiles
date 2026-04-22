@@ -28,8 +28,8 @@ vim.keymap.set("c", "<M-f>", "<S-Right>", { noremap = true, silent = false }) --
 -- barbar側で設定
 
 -- 検索時にすぐ飛ばないように
-vim.keymap.set("n", "*", "*N", { noremap = true, silent = true })
-vim.keymap.set("n", "#", "#N", { noremap = true, silent = true })
+-- vim.keymap.set("n", "*", "*N", { noremap = true, silent = true })
+-- vim.keymap.set("n", "#", "#N", { noremap = true, silent = true })
 
 -- 検索で自動エスケープ
 vim.keymap.set("c", "/", "getcmdtype() == '/' ? '\\/' : '/'", { noremap = true, silent = false, expr = true })
