@@ -26,7 +26,6 @@ return {
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = "default",
       ["<Tab>"] = { "select_next", "fallback" }, -- 候補選択 (次)
       ["<S-Tab>"] = { "select_prev", "fallback" }, -- 候補選択 (前)
       ["<CR>"] = { "accept", "fallback" }, -- 候補の確定
@@ -34,13 +33,7 @@ return {
       ["<C-k>"] = { "snippet_backward", "fallback" }, -- スニペット前へジャンプ
     },
 
-    appearance = {
-      -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- Adjusts spacing to ensure icons are aligned
-      nerd_font_variant = "mono",
-    },
-
-    -- (Default) Only show the documentation popup when manually triggered
+    -- Show documentation automatically when selecting a completion item
     completion = {
       documentation = { auto_show = true },
       list = { selection = { preselect = false } }, -- 候補を自動で事前選択しない (nvim-cmpのnoselect挙動)
@@ -84,8 +77,7 @@ return {
           },
         },
         --lua = { module = "blink.cmp.sources.lua", score_offset = 50 },
-        signature_help = { module = "blink.cmp.sources.signature_help", score_offset = 80 },
-        omni = { module = "blink.cmp.sources.complete_func", score_offset = 40 },
+        --omni = { module = "blink.cmp.sources.complete_func", score_offset = 40 },
         spell = { module = "blink-cmp-spell", name = "Spell", score_offset = 40 },
         -- buffer = { module = "blink.cmp.sources.buffer", score_offset = 30 }
         buffer = {
@@ -112,15 +104,6 @@ return {
         },
       },
     },
-
-    -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-    --
-    -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" },
-
-    signature = { enabled = true }, -- シグネチャヘルプを有効化
   },
   opts_extend = { "sources.default" },
 }

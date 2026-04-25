@@ -17,14 +17,6 @@ vim.o.matchtime = 3 -- 括弧のハイライト表示の秒数を設定
 vim.o.number = true -- 行番号を表示
 vim.o.relativenumber = true -- 行番号を相対値で表示
 
--- 折りたたみ
--- navigator側で設定
---vim.o.foldmethod = 'marker'
---vim.o.foldlevel = 1
---vim.o.foldmethod = 'expr'
---vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
---vim.o.foldlevel = 2
-
 -- ステータスライン
 --vim.o.laststatus = 2
 vim.o.laststatus = 3

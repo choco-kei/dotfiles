@@ -25,8 +25,8 @@ return {
       end
     end
 
-    -- 1. gj: 2文字検索
-    vim.keymap.set({ "n", "x", "o" }, "gj", function()
+    -- 1. sj: 2文字検索
+    vim.keymap.set({ "n", "x", "o" }, "sj", function()
       leap.leap({
         target_windows = { vim.api.nvim_get_current_win() },
         opts = { safe_labels = "" },

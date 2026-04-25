@@ -1,5 +1,4 @@
 # starship
-set -gx MISE_QUIET 1
 if status is-interactive; and type -q starship
     starship init fish | source
 end
