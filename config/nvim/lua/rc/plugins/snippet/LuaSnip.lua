@@ -4,6 +4,8 @@ return {
   config = function()
     local ls = require("luasnip")
     local types = require("luasnip.util.types")
+    local config_dir = vim.fn.stdpath("config")
+    local data_dir = vim.fn.stdpath("data")
 
     -- If you're reading this file for the first time, best skip to around line 190
     -- where the actual snippet-definitions start.
@@ -76,14 +78,18 @@ return {
     -- a similar `package.json`)
     -- require('luasnip.loaders.from_vscode').load({paths = {'./my-snippets'}}) -- Load snippets from my-snippets folder
 
-    require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/luasnip-snippets" })
-
     -- You can also use lazy loading so snippets are loaded on-demand, not all at once (may interfere with lazy-loading luasnip itself).
     -- require('luasnip.loaders.from_vscode').lazy_load() -- You can pass { paths = './my-snippets/'} as well
     require("luasnip.loaders.from_vscode").lazy_load({
-      paths = { "~/.local/share/nvim/lazy/friendly-snippets" },
+      paths = {
+        vim.fs.joinpath(data_dir, "lazy", "friendly-snippets"),
+      },
     }) -- You can pass { paths = './my-snippets/'} as well
-    require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets/" } }) -- You can pass { paths = './my-snippets/'} as well
+    require("luasnip.loaders.from_vscode").lazy_load({
+      paths = {
+        vim.fs.joinpath(config_dir, "snippets"),
+      },
+    }) -- You can pass { paths = './my-snippets/'} as well
 
     -- You can also use snippets in snipmate format, for example <https://github.com/honza/vim-snippets>.
     -- The usage is similar to vscode.
@@ -105,7 +111,6 @@ return {
     -- vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
     -- vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
     -- vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
-    vim.api.nvim_set_keymap("i", "<C-Down>", "<Plug>luasnip-next-choice", {})
-    vim.api.nvim_set_keymap("s", "<C-Down>", "<Plug>luasnip-next-choice", {})
+    vim.keymap.set({ "i", "s" }, "<C-Down>", "<Plug>luasnip-next-choice", { silent = true })
   end,
 }

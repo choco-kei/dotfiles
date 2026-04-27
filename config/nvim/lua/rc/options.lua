@@ -1,5 +1,7 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
+vim.g.php_autocomment = 0
+vim.g.PHP_autoformatcomment = 0
 
 vim.o.shada = "'50,<1000,s100,\"1000,!"
 vim.o.shadafile = vim.fn.stdpath('data') .. '/shada/main.shada'
@@ -20,11 +22,6 @@ vim.o.listchars = "tab:▹ ,trail:-,extends:»,precedes:«,eol: ,nbsp:%"
 vim.o.backspace = 'indent,eol,start' -- バックスペースでなんでも消せるように
 vim.o.clipboard = 'unnamedplus' -- ヤンクでクリップボードを使用
 vim.o.formatoptions = 'lmq' -- テキスト整形オプション
-vim.api.nvim_create_autocmd({'BufEnter'}, {
-    pattern = {'*.php'},
-    command = 'set formatoptions-=ro',
-})
---autocmd Filetype * setlocal formatoptions-=ro
 
 -- ファイル
 vim.o.hidden = true -- 編集中でもファイルを開けるように

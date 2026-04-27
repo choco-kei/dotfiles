@@ -235,6 +235,7 @@ return {
     },
     { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
     { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },
+    { "<leader>bn", function() Snacks.scratch() end, desc = "Scratch Buffer" },
     { "tq", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
 
     -- ════════════════════════════════════════════════════════════════════

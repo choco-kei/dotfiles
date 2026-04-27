@@ -1,8 +1,9 @@
 vim.loader.enable()
 
 vim.o.langmenu = os.getenv("LANG") or "ja_JP.UTF-8"
-vim.o.fileencodings = "utf-8,cp932,euc-jp,iso-20220-jp,default,latin"
+vim.o.fileencodings = "utf-8,cp932,euc-jp,iso-2022-jp,default,latin"
 vim.o.fileformats = "unix,dos,mac"
+vim.o.exrc = true
 
 require("rc.options")
 require("rc.displays")
@@ -25,6 +26,3 @@ end
 
 -- ローカル設定
 load_config("~/.nvim.local.lua")
-
--- プロジェクト設定
-load_config(".nvim.project.lua")

@@ -152,11 +152,6 @@ return {
       },
     })
 
-    -- ts_ls
-    vim.lsp.config("ts_ls", {
-      filetypes = { "typescript" },
-    })
-
     -- buf_ls
     vim.lsp.config("buf_ls", {
       filetypes = { "proto" },
@@ -165,7 +160,7 @@ return {
     -- typos_lsp
     vim.lsp.config("typos_lsp", {
       init_options = {
-        config = "~/.config/nvim/spell/typos.toml",
+        config = vim.fs.joinpath(vim.fn.stdpath("config"), "spell", "typos.toml"),
       },
     })
   end,

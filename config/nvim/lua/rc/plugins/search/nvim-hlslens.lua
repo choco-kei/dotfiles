@@ -2,7 +2,9 @@ return {
   "kevinhwang91/nvim-hlslens",
   event = "VeryLazy",
   config = function()
-    require("hlslens").setup({
+    local hlslens = require("hlslens")
+
+    hlslens.setup({
       nearest_only = true,
       override_lens = function(render, posList, nearest, idx, relIdx)
         local sfw = vim.v.searchforward == 1
@@ -33,23 +35,21 @@ return {
       end,
     })
 
-    local kopts = { noremap = true, silent = true }
+    local kopts = { silent = true }
 
-    vim.api.nvim_set_keymap(
-      "n",
-      "n",
-      [[<Cmd>execute("normal! " . v:count1 . "n")<CR><Cmd>lua require("hlslens").start()<CR>]],
-      kopts
-    )
-    vim.api.nvim_set_keymap(
-      "n",
-      "N",
-      [[<Cmd>execute("normal! " . v:count1 . "N")<CR><Cmd>lua require("hlslens").start()<CR>]],
-      kopts
-    )
-    vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require("hlslens").start()<CR>]], kopts)
-    vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require("hlslens").start()<CR>]], kopts)
-    vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]], kopts)
-    vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
+    local function start_search(keys, with_count)
+      return function()
+        local prefix = with_count and tostring(vim.v.count1) or ""
+        vim.cmd.normal({ args = { prefix .. keys }, bang = true })
+        hlslens.start()
+      end
+    end
+
+    vim.keymap.set("n", "n", start_search("n", true), kopts)
+    vim.keymap.set("n", "N", start_search("N", true), kopts)
+    vim.keymap.set("n", "*", start_search("*"), kopts)
+    vim.keymap.set("n", "#", start_search("#"), kopts)
+    vim.keymap.set("n", "g*", start_search("g*"), kopts)
+    vim.keymap.set("n", "g#", start_search("g#"), kopts)
   end,
 }
