@@ -33,7 +33,7 @@ return {
         -- - SatelliteDiagnosticHint (default links to DiagnosticHint)
       },
       gitsigns = {
-        enable = false,
+        enable = true,
         signs = { -- can only be a single character (multibyte is okay)
           add = "│",
           change = "│",

@@ -39,6 +39,8 @@ return {
       "php_only",
       "phpdoc",
       "dockerfile",
+      "markdown",
+      "markdown_inline",
       "yaml",
       "toml",
       "lua",

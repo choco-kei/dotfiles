@@ -10,6 +10,7 @@ set -gx LS_COLORS 'di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=4
 set -gx EDITOR 'nvim'
 set -gx GIT_EDITOR 'nvim'
 set -gx VISUAL 'nvim'
+set -gx LG_CONFIG_FILE ~/.config/lazygit/config.yaml
 
 # Homebrew
 set -gx HOMEBREW_NO_ANALYTICS 1

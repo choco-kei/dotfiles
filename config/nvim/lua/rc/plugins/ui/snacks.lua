@@ -333,7 +333,7 @@ return {
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Definition" },
     { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Declaration" },
     { "gt", function() Snacks.picker.lsp_type_definitions() end, desc = "Type Definition" },
-    { "gh", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+    { "gh", function() Snacks.picker.lsp_references({ auto_confirm = false }) end, nowait = true, desc = "References" },
     { "gi", function() Snacks.picker.lsp_implementations() end, desc = "Implementation" },
     -- gx: CodeAction
 
