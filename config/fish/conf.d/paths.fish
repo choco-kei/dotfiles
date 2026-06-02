@@ -8,6 +8,8 @@ else if type -q brew
 end
 
 # Path: only add if directory exists (prepend intent kept with -p)
+test -d ~/dotfiles/bin; and fish_add_path -p ~/dotfiles/bin
+
 for p in \
     /opt/homebrew/bin \
     /opt/homebrew/sbin \
